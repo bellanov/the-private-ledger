@@ -172,3 +172,5 @@ coverage/
 # Marimo
 **/__marimo__/
 
+# Diagrams
+diagrams/*.bkp
