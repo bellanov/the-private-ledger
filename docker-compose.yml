@@ -3,10 +3,10 @@ services:
 
   frontend:
     container_name: the-private-ledger-web
+    image: the-private-ledger-web
     build:
       context: ./frontend/web
       dockerfile: Dockerfile
-      image: the-private-ledger-web
     ports:
       - 8080:80
     environment:
@@ -17,10 +17,10 @@ services:
 
   db-postgres:
     container_name: the-private-ledger-db
+    image: the-private-ledger-db
     build:
       context: ./backend/db/postgres
       dockerfile: Dockerfile
-      image: the-private-ledger-db
     restart: always
     ports:
       - 5432:5432
