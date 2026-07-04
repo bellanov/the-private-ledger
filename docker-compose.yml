@@ -2,9 +2,9 @@
 services:
 
   frontend:
-    container_name: svelte-template
+    container_name: the-private-ledger
     build:
-      context: ./frontend
+      context: ./frontend/web
       dockerfile: Dockerfile
     ports:
       - 8080:80

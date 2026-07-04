@@ -3,7 +3,7 @@
 # Build Docker containers after code changes.
 
 install_dir () {
-  cd frontend/
+  cd frontend/web
 }
 
 build_dir () {
