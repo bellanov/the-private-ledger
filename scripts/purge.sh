@@ -2,6 +2,6 @@
 #
 # Clean up existing Docker images.
 
-docker image rm react-template-frontend
-docker image rm react-template-db
+docker image rm the-private-ledger-web
+docker image rm the-private-ledger-db
 docker image rm adminer

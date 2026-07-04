@@ -1,6 +1,6 @@
 -- Seed the local development database with data.
 
-CREATE TABLE IF NOT EXISTS test_data (
+CREATE TABLE IF NOT EXISTS theprivateledger (
   "id" TEXT NOT NULL,
   "name" TEXT NOT NULL,
   "email" TEXT NOT NULL,
@@ -9,4 +9,4 @@ CREATE TABLE IF NOT EXISTS test_data (
 );
 
 -- Seed
-INSERT INTO test_data (id, name, email) VALUES ('userid', 'Gopher', 'hello@gopher.com');
+INSERT INTO theprivateledger (id, name, email) VALUES ('userid', 'Gopher', 'hello@gopher.com');

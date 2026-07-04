@@ -25,7 +25,11 @@ services:
     ports:
       - 5432:5432
     environment:
+      POSTGRES_USER: admin
       POSTGRES_PASSWORD: local
+      TEST_USER: test_user
+      TEST_PASSWORD: test
+      TEST_DB: test_db
     networks:
       - data-tier
 
