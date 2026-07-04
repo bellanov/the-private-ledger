@@ -1,0 +1,42 @@
+
+services:
+
+  frontend:
+    container_name: svelte-template
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - 8080:80
+    environment:
+      NODE_ENV: production
+    networks:
+      - front-tier
+      - data-tier
+
+  postgres:
+    container_name: postgres
+    build:
+      context: ./db/postgres
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: local
+    networks:
+      - data-tier
+
+  adminer:
+    container_name: adminer
+    image: adminer
+    restart: always
+    ports:
+      - 8081:8080
+    networks:
+      - data-tier
+
+networks:
+  # The presence of these objects is sufficient to define them
+  front-tier: {}
+  data-tier: {}
