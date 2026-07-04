@@ -2,10 +2,11 @@
 services:
 
   frontend:
-    container_name: the-private-ledger
+    container_name: the-private-ledger-web
     build:
       context: ./frontend/web
       dockerfile: Dockerfile
+      image: the-private-ledger-web
     ports:
       - 8080:80
     environment:
@@ -14,11 +15,12 @@ services:
       - front-tier
       - data-tier
 
-  postgres:
-    container_name: postgres
+  db-postgres:
+    container_name: the-private-ledger-db
     build:
-      context: ./db/postgres
+      context: ./backend/db/postgres
       dockerfile: Dockerfile
+      image: the-private-ledger-db
     restart: always
     ports:
       - 5432:5432

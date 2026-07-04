@@ -1,6 +1,5 @@
 -- Seed the local development database with data.
 
--- Create Table
 CREATE TABLE IF NOT EXISTS test_data (
   "id" TEXT NOT NULL,
   "name" TEXT NOT NULL,

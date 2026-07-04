@@ -2,18 +2,18 @@
 #
 # Build Docker containers after code changes.
 
-install_dir () {
+cd_install_dir () {
   cd frontend/web
 }
 
-build_dir () {
+cd_build_dir () {
   cd ..
 }
 
 # Install Dependencies
-install_dir
+cd_install_dir
 npm install
 
 # Build Containers
-build_dir
+cd_build_dir
 docker compose build
