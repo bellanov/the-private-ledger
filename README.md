@@ -1,6 +1,6 @@
 # The Private Ledger
 
-End-to-end solution for creating and managing *Ledgers*.
+Solution for creating and managing *Ledgers*.
 
 # Requirements
 
