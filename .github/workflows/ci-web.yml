@@ -3,8 +3,12 @@ name: CI
 on:
   push:
     branches: [main]
+    paths:
+    - "frontend/web/**"
   pull_request:
     branches: [main]
+    paths:
+    - "frontend/web/**"
 
 jobs:
   build-and-test:
@@ -17,18 +21,18 @@ jobs:
 
     defaults:
       run:
-        working-directory: frontend
+        working-directory: frontend/web
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Setup Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6.4.0
         with:
           node-version: ${{ matrix.node-version }}
           cache: npm
-          cache-dependency-path: frontend/package-lock.json
+          cache-dependency-path: frontend/web/package-lock.json
 
       - name: Install dependencies
         run: npm ci
@@ -49,7 +53,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: frontend
+        working-directory: frontend/web
 
     steps:
       - name: Checkout
@@ -60,7 +64,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: npm
-          cache-dependency-path: frontend/package-lock.json
+          cache-dependency-path: frontend/web/package-lock.json
 
       - name: Install dependencies
         run: npm ci
