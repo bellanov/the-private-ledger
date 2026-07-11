@@ -4,7 +4,7 @@ from dataclasses import dataclass
 
 
 @dataclass
-class PerformanceTracker:
+class Performance:
     """Tracks daily performance metrics.
 
     Attributes:

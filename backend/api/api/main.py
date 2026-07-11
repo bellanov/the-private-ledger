@@ -119,6 +119,7 @@ def read_root():
 def read_item(item_id: int, q: str | None = None):
     return {"item_id": item_id, "q": q}
 
+
 @app.get("/transactions")
 def get_transactions():
     return {"transactions": transactions}
@@ -126,4 +127,8 @@ def get_transactions():
 
 @app.get("/transactions/{account_id}")
 def get_transactions_for_account(account_id: str):
-    return [transaction for transaction in transactions if transaction.account_id == account_id]
+    return [
+        transaction
+        for transaction in transactions
+        if transaction.account_id == account_id
+    ]
