@@ -1,0 +1,13 @@
+date,account_id,type,amount,shares,note
+"May 12, 5:45 PM",PL-1593,DEPOSIT,100,10,venmo
+"May 13, 4:11 AM",PL-4921,DEPOSIT,50,5,bank
+"May 13, 7:56 AM",PL-1593,DEPOSIT,100,10,venmo
+"May 14, 7:19 PM",PL-2359,DEPOSIT,250,25,zelle
+"May 16, 11:25 AM",PL-8107,DEPOSIT,200,20,venmo
+"May 16th, 12:39 PM",PL-6044,DEPOSIT,200,20,cash app
+"May 18th, 5:45 PM",PL-7210,DEPOSIT,100,10,zelle
+"May 30th, 10:20 PM",PL-9543,DEPOSIT,159.15,15,apple
+"May 31st, 8:22 PM",PL-1593,DEPOSIT,106.1,10,venmo
+"June 3rd, 12:08 PM",PL-8107,DEPOSIT,106.1,10,venmo
+"June 13th, 11:16 PM",PL-4834,DEPOSIT,244.68,20,zelle
+"June 22nd, 11:11 PM",PL-9543,DEPOSIT,49.64,4,apple

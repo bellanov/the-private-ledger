@@ -4,7 +4,7 @@ from dataclasses import dataclass
 
 
 @dataclass
-class MasterTrackingSheet:
+class Account:
     """Represents a master tracking sheet.
 
     Attributes:
