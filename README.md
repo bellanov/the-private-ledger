@@ -7,3 +7,9 @@ Solution for creating and managing *Ledgers*.
 - [Docker Compose](https://docs.docker.com/compose/)
 - [NodeJS 22+](https://nodejs.org/en)
 - [Python 3.12+](https://www.python.org/)
+
+## Local Development
+
+Below is a diagram of the local development environment setup.
+
+ ![Local Development Diagram](./diagrams/Local.svg)
