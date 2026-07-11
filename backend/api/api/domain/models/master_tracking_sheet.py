@@ -21,4 +21,4 @@ class MasterTrackingSheet:
     current_value: float
     shares_owned: float
     ownership: float
-    return_on_investment: dict[str,str]
+    return_on_investment: dict[str, str]

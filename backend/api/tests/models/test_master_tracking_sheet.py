@@ -1,6 +1,7 @@
 """Unit tests for MasterTrackingSheet model."""
 
 import pytest
+
 from api.domain.models.master_tracking_sheet import MasterTrackingSheet
 
 
@@ -17,7 +18,7 @@ class TestMasterTrackingSheetInstantiation:
             current_value=57500.00,
             shares_owned=100.0,
             ownership=25.5,
-            return_on_investment=roi
+            return_on_investment=roi,
         )
         assert sheet.account_id == "ACC123"
         assert sheet.account_balance == 50000.00
@@ -35,7 +36,7 @@ class TestMasterTrackingSheetInstantiation:
             current_value=0.0,
             shares_owned=0.0,
             ownership=0.0,
-            return_on_investment={}
+            return_on_investment={},
         )
         assert sheet.account_balance == 0.0
         assert sheet.current_value == 0.0
@@ -52,7 +53,7 @@ class TestMasterTrackingSheetInstantiation:
             current_value=-2000.00,
             shares_owned=-10.0,
             ownership=-5.5,
-            return_on_investment={"total": "-15.2%"}
+            return_on_investment={"total": "-15.2%"},
         )
         assert sheet.account_balance == -5000.00
         assert sheet.current_value == -2000.00
@@ -68,7 +69,7 @@ class TestMasterTrackingSheetInstantiation:
             current_value=1234567890.50,
             shares_owned=1000000.0,
             ownership=99.99,
-            return_on_investment={"ytd": "500%"}
+            return_on_investment={"ytd": "500%"},
         )
         assert sheet.account_balance == 999999999.99
         assert sheet.current_value == 1234567890.50
@@ -84,7 +85,7 @@ class TestMasterTrackingSheetInstantiation:
             current_value=5678.901,
             shares_owned=123.456,
             ownership=45.678,
-            return_on_investment={"monthly": "2.345%"}
+            return_on_investment={"monthly": "2.345%"},
         )
         assert sheet.account_balance == 1234.567
         assert sheet.current_value == 5678.901
@@ -104,7 +105,7 @@ class TestMasterTrackingSheetAccountId:
             current_value=1100.0,
             shares_owned=10.0,
             ownership=50.0,
-            return_on_investment={}
+            return_on_investment={},
         )
         assert sheet.account_id == "ACC123"
 
@@ -117,7 +118,7 @@ class TestMasterTrackingSheetAccountId:
             current_value=1100.0,
             shares_owned=10.0,
             ownership=50.0,
-            return_on_investment={}
+            return_on_investment={},
         )
         assert sheet.account_id == "123456789"
 
@@ -130,7 +131,7 @@ class TestMasterTrackingSheetAccountId:
             current_value=1100.0,
             shares_owned=10.0,
             ownership=50.0,
-            return_on_investment={}
+            return_on_investment={},
         )
         assert sheet.account_id == "ACC-123-XYZ"
 
@@ -143,7 +144,7 @@ class TestMasterTrackingSheetAccountId:
             current_value=1100.0,
             shares_owned=10.0,
             ownership=50.0,
-            return_on_investment={}
+            return_on_investment={},
         )
         assert sheet.account_id == ""
 
@@ -160,7 +161,7 @@ class TestMasterTrackingSheetReturnOnInvestment:
             current_value=1100.0,
             shares_owned=10.0,
             ownership=50.0,
-            return_on_investment={}
+            return_on_investment={},
         )
         assert sheet.return_on_investment == {}
         assert len(sheet.return_on_investment) == 0
@@ -175,7 +176,7 @@ class TestMasterTrackingSheetReturnOnInvestment:
             current_value=1100.0,
             shares_owned=10.0,
             ownership=50.0,
-            return_on_investment=roi
+            return_on_investment=roi,
         )
         assert sheet.return_on_investment == roi
         assert sheet.return_on_investment["ytd"] == "15.5%"
@@ -183,19 +184,14 @@ class TestMasterTrackingSheetReturnOnInvestment:
     @pytest.mark.unit
     def test_roi_multiple_entries(self):
         """Test return_on_investment with multiple entries."""
-        roi = {
-            "ytd": "15.5%",
-            "total": "45.2%",
-            "monthly": "2.1%",
-            "weekly": "0.5%"
-        }
+        roi = {"ytd": "15.5%", "total": "45.2%", "monthly": "2.1%", "weekly": "0.5%"}
         sheet = MasterTrackingSheet(
             account_id="ACC001",
             account_balance=1000.0,
             current_value=1100.0,
             shares_owned=10.0,
             ownership=50.0,
-            return_on_investment=roi
+            return_on_investment=roi,
         )
         assert sheet.return_on_investment == roi
         assert len(sheet.return_on_investment) == 4
@@ -212,7 +208,7 @@ class TestMasterTrackingSheetReturnOnInvestment:
             current_value=1100.0,
             shares_owned=10.0,
             ownership=50.0,
-            return_on_investment=roi
+            return_on_investment=roi,
         )
         assert sheet.return_on_investment["ytd"] == "-5.2%"
         assert sheet.return_on_investment["total"] == "-12.5%"
@@ -227,7 +223,7 @@ class TestMasterTrackingSheetReturnOnInvestment:
             current_value=1100.0,
             shares_owned=10.0,
             ownership=50.0,
-            return_on_investment=roi
+            return_on_investment=roi,
         )
         assert sheet.return_on_investment["ytd"] == "15.567%"
         assert sheet.return_on_investment["total"] == "45.234%"
@@ -242,7 +238,7 @@ class TestMasterTrackingSheetReturnOnInvestment:
             current_value=1100.0,
             shares_owned=10.0,
             ownership=50.0,
-            return_on_investment=roi
+            return_on_investment=roi,
         )
         assert sheet.return_on_investment["ytd"] == "500%"
         assert sheet.return_on_investment["total"] == "1250%"
@@ -254,7 +250,7 @@ class TestMasterTrackingSheetReturnOnInvestment:
             "1_year": "25.5%",
             "3_year": "75.2%",
             "5_year": "120.5%",
-            "inception": "250.0%"
+            "inception": "250.0%",
         }
         sheet = MasterTrackingSheet(
             account_id="ACC001",
@@ -262,7 +258,7 @@ class TestMasterTrackingSheetReturnOnInvestment:
             current_value=1100.0,
             shares_owned=10.0,
             ownership=50.0,
-            return_on_investment=roi
+            return_on_investment=roi,
         )
         assert sheet.return_on_investment["1_year"] == "25.5%"
         assert sheet.return_on_investment["inception"] == "250.0%"
@@ -280,14 +276,14 @@ class TestMasterTrackingSheetDataclassProperties:
             current_value=1100.0,
             shares_owned=10.0,
             ownership=50.0,
-            return_on_investment={}
+            return_on_investment={},
         )
-        assert hasattr(sheet, 'account_id')
-        assert hasattr(sheet, 'account_balance')
-        assert hasattr(sheet, 'current_value')
-        assert hasattr(sheet, 'shares_owned')
-        assert hasattr(sheet, 'ownership')
-        assert hasattr(sheet, 'return_on_investment')
+        assert hasattr(sheet, "account_id")
+        assert hasattr(sheet, "account_balance")
+        assert hasattr(sheet, "current_value")
+        assert hasattr(sheet, "shares_owned")
+        assert hasattr(sheet, "ownership")
+        assert hasattr(sheet, "return_on_investment")
 
     @pytest.mark.unit
     def test_tracking_sheet_equality(self):
@@ -299,7 +295,7 @@ class TestMasterTrackingSheetDataclassProperties:
             current_value=1100.0,
             shares_owned=10.0,
             ownership=50.0,
-            return_on_investment=roi
+            return_on_investment=roi,
         )
         sheet2 = MasterTrackingSheet(
             account_id="ACC001",
@@ -307,7 +303,7 @@ class TestMasterTrackingSheetDataclassProperties:
             current_value=1100.0,
             shares_owned=10.0,
             ownership=50.0,
-            return_on_investment=roi
+            return_on_investment=roi,
         )
         assert sheet1 == sheet2
 
@@ -321,7 +317,7 @@ class TestMasterTrackingSheetDataclassProperties:
             current_value=1100.0,
             shares_owned=10.0,
             ownership=50.0,
-            return_on_investment=roi
+            return_on_investment=roi,
         )
         sheet2 = MasterTrackingSheet(
             account_id="ACC001",
@@ -329,7 +325,7 @@ class TestMasterTrackingSheetDataclassProperties:
             current_value=1100.0,
             shares_owned=10.0,
             ownership=50.0,
-            return_on_investment=roi
+            return_on_investment=roi,
         )
         assert sheet1 != sheet2
 
@@ -342,7 +338,7 @@ class TestMasterTrackingSheetDataclassProperties:
             current_value=1100.0,
             shares_owned=10.0,
             ownership=50.0,
-            return_on_investment={"ytd": "15.5%"}
+            return_on_investment={"ytd": "15.5%"},
         )
         sheet2 = MasterTrackingSheet(
             account_id="ACC001",
@@ -350,7 +346,7 @@ class TestMasterTrackingSheetDataclassProperties:
             current_value=1100.0,
             shares_owned=10.0,
             ownership=50.0,
-            return_on_investment={"ytd": "20.5%"}
+            return_on_investment={"ytd": "20.5%"},
         )
         assert sheet1 != sheet2
 
@@ -363,11 +359,11 @@ class TestMasterTrackingSheetDataclassProperties:
             current_value=1100.0,
             shares_owned=10.0,
             ownership=50.0,
-            return_on_investment={}
+            return_on_investment={},
         )
         repr_str = repr(sheet)
-        assert 'MasterTrackingSheet' in repr_str
-        assert 'ACC001' in repr_str
+        assert "MasterTrackingSheet" in repr_str
+        assert "ACC001" in repr_str
 
     @pytest.mark.unit
     def test_tracking_sheet_is_mutable_by_default(self):
@@ -378,7 +374,7 @@ class TestMasterTrackingSheetDataclassProperties:
             current_value=1100.0,
             shares_owned=10.0,
             ownership=50.0,
-            return_on_investment={}
+            return_on_investment={},
         )
         # Modify fields
         sheet.account_balance = 2000.0
@@ -401,7 +397,7 @@ class TestMasterTrackingSheetFinancialCalculations:
             current_value=57500.00,
             shares_owned=100.0,
             ownership=50.0,
-            return_on_investment={}
+            return_on_investment={},
         )
         gain = sheet.current_value - sheet.account_balance
         assert gain == 7500.00
@@ -416,7 +412,7 @@ class TestMasterTrackingSheetFinancialCalculations:
             current_value=50000.00,
             shares_owned=100.0,
             ownership=50.0,
-            return_on_investment={}
+            return_on_investment={},
         )
         price_per_share = sheet.current_value / sheet.shares_owned
         assert price_per_share == 500.0
@@ -430,7 +426,7 @@ class TestMasterTrackingSheetFinancialCalculations:
             current_value=57500.00,
             shares_owned=100.0,
             ownership=25.5,
-            return_on_investment={}
+            return_on_investment={},
         )
         assert 0 <= sheet.ownership <= 100
         assert sheet.ownership == 25.5
@@ -444,7 +440,7 @@ class TestMasterTrackingSheetFinancialCalculations:
             current_value=0.0,
             shares_owned=0.0,
             ownership=0.0,
-            return_on_investment={}
+            return_on_investment={},
         )
         assert sheet.shares_owned == 0.0
         assert sheet.account_balance == 0.0
@@ -458,7 +454,7 @@ class TestMasterTrackingSheetFinancialCalculations:
             current_value=40000.00,
             shares_owned=100.0,
             ownership=50.0,
-            return_on_investment={"ytd": "-20%"}
+            return_on_investment={"ytd": "-20%"},
         )
         loss = sheet.current_value - sheet.account_balance
         assert loss == -10000.00
@@ -477,7 +473,7 @@ class TestMasterTrackingSheetEdgeCases:
             current_value=0.02,
             shares_owned=0.001,
             ownership=0.001,
-            return_on_investment={}
+            return_on_investment={},
         )
         assert sheet.account_balance == 0.01
         assert sheet.current_value == 0.02
@@ -492,7 +488,7 @@ class TestMasterTrackingSheetEdgeCases:
             current_value=1100.0,
             shares_owned=10.0,
             ownership=50.0,
-            return_on_investment={"ytd": "15.5%"}
+            return_on_investment={"ytd": "15.5%"},
         )
         assert isinstance(sheet.account_id, str)
         assert isinstance(sheet.account_balance, float)
@@ -510,7 +506,7 @@ class TestMasterTrackingSheetEdgeCases:
             current_value=1100.0,
             shares_owned=10.0,
             ownership=25.0,
-            return_on_investment={"ytd": "10%"}
+            return_on_investment={"ytd": "10%"},
         )
         sheet2 = MasterTrackingSheet(
             account_id="ACC002",
@@ -518,7 +514,7 @@ class TestMasterTrackingSheetEdgeCases:
             current_value=2200.0,
             shares_owned=20.0,
             ownership=75.0,
-            return_on_investment={"ytd": "20%"}
+            return_on_investment={"ytd": "20%"},
         )
         # Verify they're independent
         assert sheet1.account_id != sheet2.account_id
@@ -535,7 +531,7 @@ class TestMasterTrackingSheetEdgeCases:
             current_value=1000.0,
             shares_owned=10.0,
             ownership=50.0,
-            return_on_investment={"ytd": "0%"}
+            return_on_investment={"ytd": "0%"},
         )
         assert sheet.account_balance == sheet.current_value
 
@@ -548,7 +544,7 @@ class TestMasterTrackingSheetEdgeCases:
             current_value=1100.0,
             shares_owned=10.5,
             ownership=33.333,
-            return_on_investment={}
+            return_on_investment={},
         )
         assert sheet.shares_owned == 10.5
         assert sheet.ownership == 33.333
@@ -563,7 +559,7 @@ class TestMasterTrackingSheetEdgeCases:
             current_value=1100.0,
             shares_owned=10.0,
             ownership=50.0,
-            return_on_investment={}
+            return_on_investment={},
         )
         assert sheet.account_id == long_id
         assert len(sheet.account_id) == 103
@@ -577,7 +573,7 @@ class TestMasterTrackingSheetEdgeCases:
             current_value=1100.0,
             shares_owned=10.0,
             ownership=50.0,
-            return_on_investment={}
+            return_on_investment={},
         )
         # Add entries to the dictionary
         sheet.return_on_investment["ytd"] = "15.5%"
@@ -594,7 +590,7 @@ class TestMasterTrackingSheetEdgeCases:
             current_value=0.0,
             shares_owned=0.0,
             ownership=0.0,
-            return_on_investment={}
+            return_on_investment={},
         )
         assert sheet.account_balance == 0.0
         assert sheet.current_value == 0.0
