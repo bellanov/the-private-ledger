@@ -2,7 +2,7 @@
 
 import pytest
 
-from api.domain.models.transactions import Transaction
+from api.domain.models.transaction import Transaction
 
 
 class TestTransactionInstantiation:
