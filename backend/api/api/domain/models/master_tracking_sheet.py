@@ -1,11 +1,11 @@
-"""Transactions Model."""
+"""Master Tracking Sheet Model."""
 
 from dataclasses import dataclass
 
 
 @dataclass
-class Transaction:
-    """Represents a financial transaction.
+class MasterTrackingSheet:
+    """Represents a master tracking sheet.
 
     Attributes:
         date: The date of the transaction.
@@ -16,9 +16,9 @@ class Transaction:
         note: Type of note (Venmo, Bank Transfer, etc.).
     """
 
-    date: str
     account_id: str
-    amount: float
-    type: str
-    shares: float
-    note: str
+    account_balance: float
+    current_value: float
+    shares_owned: float
+    ownership: float
+    return_on_investment: dict[str,str]
