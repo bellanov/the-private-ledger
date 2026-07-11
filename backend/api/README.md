@@ -4,6 +4,14 @@ API layer for *ThePrivateLedger*.
 
 # Quickstart
 
-To quickly get started, install the required development dependencies.
+1. Install the required development dependencies.
 
-```pip install -e ".[dev]"```
+   ```sh
+   pip install -e ".[dev]"
+   ```
+
+2. Start the `FastAPI` server.
+
+   ```sh
+   fastapi dev api/main.py
+   ```
