@@ -1,6 +1,7 @@
 """Unit tests for PerformanceTracker model."""
 
 import pytest
+
 from api.domain.models.performance_tracker import PerformanceTracker
 
 
@@ -15,7 +16,7 @@ class TestPerformanceTrackerInstantiation:
             total_bankroll=10000.00,
             units_won=5.0,
             share_price=100.00,
-            record="5-2-0"
+            record="5-2-0",
         )
         assert tracker.date == "2026-07-11"
         assert tracker.total_bankroll == 10000.00
@@ -31,7 +32,7 @@ class TestPerformanceTrackerInstantiation:
             total_bankroll=0.0,
             units_won=0.0,
             share_price=0.0,
-            record="0-0-0"
+            record="0-0-0",
         )
         assert tracker.total_bankroll == 0.0
         assert tracker.units_won == 0.0
@@ -45,7 +46,7 @@ class TestPerformanceTrackerInstantiation:
             total_bankroll=-5000.00,
             units_won=-3.0,
             share_price=-50.00,
-            record="-3-5-0"
+            record="-3-5-0",
         )
         assert tracker.total_bankroll == -5000.00
         assert tracker.units_won == -3.0
@@ -59,7 +60,7 @@ class TestPerformanceTrackerInstantiation:
             total_bankroll=999999999.99,
             units_won=1000000.0,
             share_price=500000.00,
-            record="1000000-0-0"
+            record="1000000-0-0",
         )
         assert tracker.total_bankroll == 999999999.99
         assert tracker.units_won == 1000000.0
@@ -73,7 +74,7 @@ class TestPerformanceTrackerInstantiation:
             total_bankroll=1234.56,
             units_won=12.345,
             share_price=123.456,
-            record="12.345-0-0"
+            record="12.345-0-0",
         )
         assert tracker.total_bankroll == 1234.56
         assert tracker.units_won == 12.345
@@ -91,7 +92,7 @@ class TestPerformanceTrackerDateField:
             total_bankroll=1000.0,
             units_won=1.0,
             share_price=100.0,
-            record="1-0-0"
+            record="1-0-0",
         )
         assert tracker.date == "2026-07-11"
 
@@ -103,7 +104,7 @@ class TestPerformanceTrackerDateField:
             total_bankroll=1000.0,
             units_won=1.0,
             share_price=100.0,
-            record="1-0-0"
+            record="1-0-0",
         )
         assert tracker.date == "07/11/2026"
 
@@ -115,7 +116,7 @@ class TestPerformanceTrackerDateField:
             total_bankroll=1000.0,
             units_won=1.0,
             share_price=100.0,
-            record="1-0-0"
+            record="1-0-0",
         )
         assert tracker.date == ""
 
@@ -131,7 +132,7 @@ class TestPerformanceTrackerRecordField:
             total_bankroll=1000.0,
             units_won=5.0,
             share_price=100.0,
-            record="5-2-0"
+            record="5-2-0",
         )
         assert tracker.record == "5-2-0"
 
@@ -143,7 +144,7 @@ class TestPerformanceTrackerRecordField:
             total_bankroll=1000.0,
             units_won=5.0,
             share_price=100.0,
-            record="5-2"
+            record="5-2",
         )
         assert tracker.record == "5-2"
 
@@ -155,7 +156,7 @@ class TestPerformanceTrackerRecordField:
             total_bankroll=1000.0,
             units_won=5.0,
             share_price=100.0,
-            record=""
+            record="",
         )
         assert tracker.record == ""
 
@@ -167,7 +168,7 @@ class TestPerformanceTrackerRecordField:
             total_bankroll=1000.0,
             units_won=5.0,
             share_price=100.0,
-            record="Perfect Week"
+            record="Perfect Week",
         )
         assert tracker.record == "Perfect Week"
 
@@ -183,13 +184,13 @@ class TestPerformanceTrackerDataclassProperties:
             total_bankroll=1000.0,
             units_won=5.0,
             share_price=100.0,
-            record="5-2-0"
+            record="5-2-0",
         )
-        assert hasattr(tracker, 'date')
-        assert hasattr(tracker, 'total_bankroll')
-        assert hasattr(tracker, 'units_won')
-        assert hasattr(tracker, 'share_price')
-        assert hasattr(tracker, 'record')
+        assert hasattr(tracker, "date")
+        assert hasattr(tracker, "total_bankroll")
+        assert hasattr(tracker, "units_won")
+        assert hasattr(tracker, "share_price")
+        assert hasattr(tracker, "record")
 
     @pytest.mark.unit
     def test_performance_tracker_equality(self):
@@ -199,14 +200,14 @@ class TestPerformanceTrackerDataclassProperties:
             total_bankroll=1000.0,
             units_won=5.0,
             share_price=100.0,
-            record="5-2-0"
+            record="5-2-0",
         )
         tracker2 = PerformanceTracker(
             date="2026-07-11",
             total_bankroll=1000.0,
             units_won=5.0,
             share_price=100.0,
-            record="5-2-0"
+            record="5-2-0",
         )
         assert tracker1 == tracker2
 
@@ -218,14 +219,14 @@ class TestPerformanceTrackerDataclassProperties:
             total_bankroll=1000.0,
             units_won=5.0,
             share_price=100.0,
-            record="5-2-0"
+            record="5-2-0",
         )
         tracker2 = PerformanceTracker(
             date="2026-07-10",
             total_bankroll=1000.0,
             units_won=5.0,
             share_price=100.0,
-            record="5-2-0"
+            record="5-2-0",
         )
         assert tracker1 != tracker2
 
@@ -237,12 +238,12 @@ class TestPerformanceTrackerDataclassProperties:
             total_bankroll=1000.0,
             units_won=5.0,
             share_price=100.0,
-            record="5-2-0"
+            record="5-2-0",
         )
         repr_str = repr(tracker)
-        assert 'PerformanceTracker' in repr_str
-        assert '2026-07-11' in repr_str
-        assert '1000.0' in repr_str
+        assert "PerformanceTracker" in repr_str
+        assert "2026-07-11" in repr_str
+        assert "1000.0" in repr_str
 
     @pytest.mark.unit
     def test_performance_tracker_is_mutable_by_default(self):
@@ -252,7 +253,7 @@ class TestPerformanceTrackerDataclassProperties:
             total_bankroll=1000.0,
             units_won=5.0,
             share_price=100.0,
-            record="5-2-0"
+            record="5-2-0",
         )
         # Modify a field
         tracker.units_won = 10.0
@@ -270,7 +271,7 @@ class TestPerformanceTrackerEdgeCases:
             total_bankroll=0.01,
             units_won=0.001,
             share_price=0.0001,
-            record="0.001-0-0"
+            record="0.001-0-0",
         )
         assert tracker.total_bankroll == 0.01
         assert tracker.units_won == 0.001
@@ -284,7 +285,7 @@ class TestPerformanceTrackerEdgeCases:
             total_bankroll=1000.0,
             units_won=5.0,
             share_price=100.0,
-            record="5-2-0"
+            record="5-2-0",
         )
         assert isinstance(tracker.date, str)
         assert isinstance(tracker.record, str)
@@ -300,14 +301,14 @@ class TestPerformanceTrackerEdgeCases:
             total_bankroll=1000.0,
             units_won=5.0,
             share_price=100.0,
-            record="5-2-0"
+            record="5-2-0",
         )
         tracker2 = PerformanceTracker(
             date="2026-07-12",
             total_bankroll=2000.0,
             units_won=10.0,
             share_price=200.0,
-            record="10-1-0"
+            record="10-1-0",
         )
         # Verify they're independent
         assert tracker1.date != tracker2.date
@@ -322,7 +323,7 @@ class TestPerformanceTrackerEdgeCases:
             total_bankroll=1000.0,
             units_won=5.0,
             share_price=100.0,
-            record="✓ 5-2-0"
+            record="✓ 5-2-0",
         )
         assert tracker.record == "✓ 5-2-0"
 
@@ -334,6 +335,6 @@ class TestPerformanceTrackerEdgeCases:
             total_bankroll=1000.0,
             units_won=5.0,
             share_price=100.0,
-            record="5-2-0 (W-L-D)"
+            record="5-2-0 (W-L-D)",
         )
         assert tracker.record == "5-2-0 (W-L-D)"
