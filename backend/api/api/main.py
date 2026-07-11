@@ -3,6 +3,7 @@
 from fastapi import FastAPI
 
 from api.domain.models.transaction import Transaction
+from api.domain.models.performance import Performance
 
 # TODO: Turn into an enum for transaction types
 # TODO: Turn into an enum for note types
@@ -106,6 +107,36 @@ transactions = [
     ),
 ]
 
+performance_records = [
+    Performance(
+        date="2026-07-11",
+        record="10-5",
+        share_price=12.5,
+        total_bankroll=2500.0,
+        units_won=3.75,
+    ),
+    Performance(
+        date="2026-07-12",
+        record="8-7",
+        share_price=13.0,
+        total_bankroll=2600.0,
+        units_won=-1.5,
+    ),
+    Performance(
+        date="2026-07-13",
+        record="12-3",
+        share_price=14.0,
+        total_bankroll=2800.0,
+        units_won=4.5,
+    ),
+    Performance(
+        date="2026-07-14",
+        record="9-6",
+        share_price=14.5,
+        total_bankroll=2900.0,
+        units_won=-2.0,
+    ),
+]
 
 app = FastAPI()
 
