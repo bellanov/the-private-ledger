@@ -4,5 +4,14 @@ Solution for creating and managing *Ledgers*.
 
 # Requirements
 
-- NodeJS 22+
-- Python 3.12+
+- [Docker Compose](https://docs.docker.com/compose/)
+- [NodeJS 22+](https://nodejs.org/en)
+- [Python 3.12+](https://www.python.org/)
+
+## Development
+
+The local development environment architecture is shown below.
+
+The project utilizes **Docker** to containerize various aspects of the *frontend* / *backend*, and **Docker Compose** to deploy them locally.
+
+![Local Development Diagram](./diagrams/Local.svg)
