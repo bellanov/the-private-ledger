@@ -4,5 +4,6 @@ Solution for creating and managing *Ledgers*.
 
 # Requirements
 
-- NodeJS 22+
-- Python 3.12+
+- [Docker Compose](https://docs.docker.com/compose/)
+- [NodeJS 22+](https://nodejs.org/en)
+- [Python 3.12+](https://www.python.org/)
