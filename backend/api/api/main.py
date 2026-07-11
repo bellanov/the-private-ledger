@@ -1,9 +1,10 @@
 """ThePrivateLedger API."""
 
-from fastapi import FastAPI
-import pandas as pd
-import numpy as np
 from pathlib import Path
+
+import numpy as np
+import pandas as pd
+from fastapi import FastAPI
 
 # TODO: Enable these after the current endpoints are updated
 # from api.domain.models.account import Account
@@ -16,11 +17,11 @@ BASE_DIR = Path(__file__).resolve()
 # TODO: Turn into an enum for transaction types
 # TODO: Turn into an enum for note types
 # TODO: Dynamically generate account_id
-TRANSACTION = BASE_DIR.parent / "domain" /"data" / "Transaction.csv"
+TRANSACTION = BASE_DIR.parent / "domain" / "data" / "Transaction.csv"
 
 # TODO: Dynamically generate performance records
 # TODO: Add validation wherever necessary
-PERFORMANCE = BASE_DIR.parent / "domain" /"data" / "Performance.csv"
+PERFORMANCE = BASE_DIR.parent / "domain" / "data" / "Performance.csv"
 
 # TODO: Dynamically generate account records
 # TODO: Add validation wherever necessary
@@ -48,10 +49,9 @@ def get_accounts():
 @app.get("/accounts/{account_id}")
 def get_account(account_id: str):
     return [
-        account
-        for account in db["accounts"]
-        if account["account_id"] == account_id
+        account for account in db["accounts"] if account["account_id"] == account_id
     ]
+
 
 @app.get("/performance")
 def get_performance():
@@ -60,11 +60,7 @@ def get_performance():
 
 @app.get("/performance/{date}")
 def get_performance_for_date(date: str):
-    return [
-        record
-        for record in db["performance"]
-        if record["date"] == date
-    ]
+    return [record for record in db["performance"] if record["date"] == date]
 
 
 @app.get("/transactions")
