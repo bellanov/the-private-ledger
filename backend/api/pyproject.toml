@@ -20,6 +20,7 @@ classifiers = [
 dependencies = [
     "fastapi[standard]",
     "httpx",
+    "pandas",
     "tenacity",
 ]
 
