@@ -8,8 +8,10 @@ Solution for creating and managing *Ledgers*.
 - [NodeJS 22+](https://nodejs.org/en)
 - [Python 3.12+](https://www.python.org/)
 
-## Local Development
+## Development
 
-Below is a diagram of the local development environment setup.
+The local development environment architecture is shown below.
 
- ![Local Development Diagram](./diagrams/Local.svg)
+The project utilizes **Docker** to containerize various aspects of the *frontend* / *backend*, and **Docker Compose** to deploy them locally.
+
+![Local Development Diagram](./diagrams/Local.svg)
