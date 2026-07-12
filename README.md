@@ -10,7 +10,11 @@ Solution for creating and managing *Ledgers*.
 
 ## Development
 
-The local development environment architecture is shown below.
+The project utilizes **Docker** to containerize various aspects of the *frontend* / *backend*, and **Docker Compose** to deploy them locally.
+
+![Local Development Diagram](./diagrams/Local.svg)
+
+### Project Structure
 
 ```sh
 ├───backend
@@ -24,7 +28,3 @@ The local development environment architecture is shown below.
 │   └───web
 └───scripts
 ```
-
-The project utilizes **Docker** to containerize various aspects of the *frontend* / *backend*, and **Docker Compose** to deploy them locally.
-
-![Local Development Diagram](./diagrams/Local.svg)
