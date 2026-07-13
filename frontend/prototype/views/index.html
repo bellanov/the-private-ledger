@@ -15,49 +15,11 @@
     </header>
 
     <main>
-      <!-- Example 1: Counter with Increment/Decrement -->
-      <section class="example">
-        <h2>Example 1: Counter</h2>
-        <p>Click the buttons to increment or decrement the counter using HTMX.</p>
-        <div class="counter-demo">
-          <button hx-get="/api/counter?count=1" hx-target="#counter-value" hx-swap="innerHTML">
-            Increment
-          </button>
-          <span id="counter-value">0</span>
-          <button hx-get="/api/counter?count=-1" hx-target="#counter-value" hx-swap="innerHTML">
-            Decrement
-          </button>
-        </div>
+      <section>
+        <h2>Hello World</h2>
+        <p>Welcome to the HTMX template. This is a simple demonstration of good design patterns with HTMX.</p>
       </section>
-
-      <!-- Example 2: Todo List with AJAX -->
-      <section class="example">
-        <h2>Example 2: Todo List</h2>
-        <p>Dynamic todo list that loads from the server using HTMX.</p>
-        
-        <div id="todos-container" hx-get="/api/todos" hx-trigger="load" hx-swap="innerHTML">
-          <p>Loading todos...</p>
-        </div>
-
-        <form hx-post="/api/todos" hx-target="#todos-list" hx-swap="beforeend" class="add-todo-form">
-          <input type="text" name="title" placeholder="Add a new todo..." required>
-          <button type="submit">Add Todo</button>
-        </form>
-      </section>
-
-      <!-- Example 3: Search and Filter -->
-      <section class="example">
-        <h2>Example 3: Search (Pattern)</h2>
-        <p>Type to search (pattern demonstration).</p>
-        <div class="search-demo">
-          <input type="text" 
-                 placeholder="Search..." 
-                 hx-get="/api/search"
-                 hx-trigger="keyup changed delay:500ms"
-                 hx-target="#search-results">
-          <div id="search-results"></div>
-        </div>
-      </section>
+             
     </main>
 
     <footer>
