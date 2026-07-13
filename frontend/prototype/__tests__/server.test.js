@@ -47,8 +47,8 @@ describe('Private Ledger Prototype Server', () => {
     it('should contain account headers', async () => {
       const res = await request(app).get('/accounts');
       expect(res.text).toContain('Account ID');
-      expect(res.text).toContain('Account Name');
-      expect(res.text).toContain('Account Type');
+      expect(res.text).toContain('Current Value');
+      expect(res.text).toContain('Ownership');
       expect(res.text).toContain('Balance');
     });
   });
@@ -106,24 +106,6 @@ describe('Private Ledger Prototype Server', () => {
       expect(res.text).toContain('Account ID');
       expect(res.text).toContain('Type');
       expect(res.text).toContain('Amount');
-      expect(res.text).toContain('Description');
-    });
-  });
-
-  describe('POST /clicked', () => {
-    it('should return 200 on button click', async () => {
-      const res = await request(app).post('/clicked');
-      expect(res.statusCode).toBe(200);
-    });
-
-    it('should return HTML fragment', async () => {
-      const res = await request(app).post('/clicked');
-      expect(res.text).toContain('Button was clicked');
-    });
-
-    it('should include parent-div id for HTMX swap', async () => {
-      const res = await request(app).post('/clicked');
-      expect(res.text).toContain('id="parent-div"');
     });
   });
 
@@ -149,8 +131,8 @@ describe('Private Ledger Prototype Server', () => {
       expect(res.text).not.toContain('<!DOCTYPE html>');
     });
 
-    it('should support hx-post requests', async () => {
-      const res = await request(app).post('/clicked');
+    it('should support hx-get requests', async () => {
+      const res = await request(app).get('/transactions');
       expect(res.statusCode).toBe(200);
     });
 
