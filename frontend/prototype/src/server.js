@@ -26,6 +26,22 @@ app.get('/', (req, res) => {
   res.render('index.html');
 });
 
+// Accounts
+app.get('/accounts', (req, res) => {  
+  res.render('accounts.html');
+});
+
+// Performance
+app.get('/performance', (req, res) => {  
+  res.render('performance.html');
+});
+
+// Transactions
+app.get('/transactions', (req, res) => {  
+  res.render('transactions.html');
+});
+
+
 // Error handling middleware
 // eslint-disable-next-line no-unused-vars
 app.use((err, req, res, next) => {

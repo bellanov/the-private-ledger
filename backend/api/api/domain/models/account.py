@@ -8,12 +8,12 @@ class Account:
     """Represents a master tracking sheet.
 
     Attributes:
-        date: The date of the transaction.
         account_id: The ID of the account associated with the transaction.
-        amount: The amount of the transaction.
-        type: The type of the transaction (deposit, withdrawal).
-        shares: The number of shares involved in the transaction.
-        note: Type of note (Venmo, Bank Transfer, etc.).
+        account_balance: The balance of the account.
+        current_value: The current value of the account.
+        shares_owned: The number of shares owned in the account.
+        ownership: The ownership percentage of the account.
+        return_on_investment: Return on investment metrics.
     """
 
     account_id: str
