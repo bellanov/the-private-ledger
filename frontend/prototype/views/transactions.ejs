@@ -1,0 +1,21 @@
+<section>
+  <h2>Transactions</h2>
+  <table>
+    <tr>
+      <th>Date</th>
+      <th>Account ID</th>
+      <th>Type</th>
+      <th>Amount</th>
+      <th>Shares</th>
+    </tr>
+    <% transactions.forEach(transaction => { %>
+    <tr>
+      <td><%= transaction.date %></td>
+      <td><%= transaction.accountId %></td>
+      <td><%= transaction.type %></td>
+      <td>$<%= transaction.amount %></td>
+      <td><%= transaction.shares %></td>
+    </tr>
+    <% }); %>
+  </table>
+</section>

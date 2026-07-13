@@ -1,0 +1,27 @@
+<section>
+  <h2>Performance</h2>
+  <table>
+    <tr>
+      <th>Date</th>
+      <th>Record</th>
+      <th>Shares</th>
+      <th>Share Price</th>
+      <th>Return on Investment</th>
+      <th>Total Bankroll</th>
+      <th>Units Won</th>
+      <th>Unit Price</th>
+    </tr>
+    <% performance.forEach(performance => { %>
+    <tr>
+      <td><%= performance.date %></td>
+      <td><%= performance.record %></td>
+      <td><%= performance.shares %></td>
+      <td>$<%= performance.sharePrice %></td>
+      <td>$<%= performance.returnOnInvestment %></td>
+      <td>$<%= performance.totalBankroll %></td>
+      <td><%= performance.unitsWon %></td>
+      <td>$<%= performance.unitPrice %></td>
+    </tr>
+    <% }); %>
+  </table>
+</section>
