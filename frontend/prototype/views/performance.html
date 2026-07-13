@@ -14,8 +14,8 @@
   <body>
     <div>
       <header>
-        <h1>Prototypes</h1>
-        <p class="subtitle">Various prototypes of <i>The Private Ledger</i>.</p>
+        <h1>Performance</h1>
+        <p>Performance metrics of <i>The Private Ledger</i>.</p>
       </header>
 
       <main>
@@ -23,6 +23,14 @@
           <div hx-get="/menu" hx-trigger="load" hx-swap="outerHTML"></div>
 
           <div hx-get="/options" hx-trigger="load" hx-swap="outerHTML"></div>
+        </section>
+
+        <section>
+          <div
+            hx-get="/performance"
+            hx-trigger="load"
+            hx-swap="outerHTML"
+          ></div>
         </section>
       </main>
 

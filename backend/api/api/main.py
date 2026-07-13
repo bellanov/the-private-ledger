@@ -5,6 +5,10 @@ from pathlib import Path
 import pandas as pd
 from fastapi import FastAPI
 
+from api.domain.models.account import Account
+from api.domain.models.performance import Performance
+from api.domain.models.transaction import Transaction
+
 # TODO: Enable these after the current endpoints are updated
 # from api.domain.models.account import Account
 # from api.domain.models.transaction import Transaction
@@ -40,34 +44,34 @@ print(f"Performance: {len(db['performance'])} records")
 app = FastAPI()
 
 
-@app.get("/accounts")
+@app.get("/accounts", response_model=list[Account])
 def get_accounts():
-    return {"accounts": db["accounts"]}
+    return db["accounts"]
 
 
-@app.get("/accounts/{account_id}")
+@app.get("/accounts/{account_id}", response_model=list[Account])
 def get_account(account_id: str):
     return [
         account for account in db["accounts"] if account["account_id"] == account_id
     ]
 
 
-@app.get("/performance")
+@app.get("/performance", response_model=list[Performance])
 def get_performance():
-    return {"performance_records": db["performance"]}
+    return db["performance"]
 
 
-@app.get("/performance/{date}")
+@app.get("/performance/{date}", response_model=list[Performance])
 def get_performance_for_date(date: str):
     return [record for record in db["performance"] if record["date"] == date]
 
 
-@app.get("/transactions")
+@app.get("/transactions", response_model=list[Transaction])
 def get_transactions():
-    return {"transactions": db["transactions"]}
+    return db["transactions"]
 
 
-@app.get("/transactions/{account_id}")
+@app.get("/transactions/{account_id}", response_model=list[Transaction])
 def get_transactions_for_account(account_id: str):
     return [
         transaction

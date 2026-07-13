@@ -4,6 +4,10 @@ const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+const API_BASE_URL = process.env.API_BASE_URL || 'http://localhost:8000';
+// TODO: iterate through the pages and create routes dynamically
+const PAGES = ['accounts', 'index', 'performance', 'transactions'];
+
 // Middleware
 app.use(express.static(path.join(__dirname, '../public')));
 app.use(express.urlencoded({ extended: true }));
@@ -26,31 +30,47 @@ app.get('/', (req, res) => {
   res.render('index.html');
 });
 
+// Menu
+app.get('/menu', async (req, res) => {
+  res.render('menu');
+});
+
+// Options
+app.get('/options', async (req, res) => {
+  res.render('options');
+});
+
 // Accounts
-app.get('/accounts', (req, res) => {
-  const accounts = [
-    { accountId: 'ACC001', accountBalance: 1500.00, currentValue: 1500.00, sharesOwned: 100, ownership: '10%', returnOnInvestment: '20%' },
-    { accountId: 'ACC002', accountBalance: 5000.00, currentValue: 5000.00, sharesOwned: 200, ownership: '20%', returnOnInvestment: '25%' }
-  ];
+app.get('/accounts', async (req, res) => {
+  const response = await fetch(`${API_BASE_URL}/accounts`);
+  const accounts = await response.json();
   res.render('accounts', { accounts });
 });
 
+app.get('/accounts.html', async (req, res) => {
+  res.render('accounts.html');
+});
+
 // Performance
-app.get('/performance', (req, res) => {
-  const performance = [
-    { date: '2024-06-01', record: 'Positive', shares: 100, sharePrice: 12.00, returnOnInvestment: 200.00, totalBankroll: 1200.00, unitsWon: 10, unitPrice: 20.00 },
-    { date: '2024-06-02', record: 'Negative', shares: 50, sharePrice: 10.00, returnOnInvestment: -50.00, totalBankroll: 1150.00, unitsWon: 5, unitPrice: 15.00 }
-  ];
-  res.render('performance', { performance: performance });
+app.get('/performance', async (req, res) => {
+  const response = await fetch(`${API_BASE_URL}/performance`);
+  const performance = await response.json();
+  res.render('performance', { performance });
+});
+
+app.get('/performance.html', async (req, res) => {
+  res.render('performance.html');
 });
 
 // Transactions
-app.get('/transactions', (req, res) => {
-  const transactions = [
-    { date: '2024-06-01', accountId: 'ACC001', type: 'Deposit', amount: 500.00, shares: 100 },
-    { date: '2024-06-02', accountId: 'ACC002', type: 'Withdrawal', amount: 200.00, shares: 50 }
-  ];
+app.get('/transactions', async (req, res) => {
+  const response = await fetch(`${API_BASE_URL}/transactions`);
+  const transactions = await response.json();
   res.render('transactions', { transactions });
+});
+
+app.get('/transactions.html', async (req, res) => {
+  res.render('transactions.html');
 });
 
 // Error handling middleware
@@ -63,7 +83,7 @@ app.use((err, req, res, next) => {
 // Start server
 if (require.main === module) {
   app.listen(PORT, () => {
-    console.log(`HTMX Template server running on http://localhost:${PORT}`); // eslint-disable-line no-console
+    console.log(`Prototype server running on http://localhost:${PORT}`); // eslint-disable-line no-console
   });
 }
 

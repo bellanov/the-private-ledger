@@ -21,6 +21,7 @@ dependencies = [
     "fastapi[standard]",
     "httpx",
     "pandas",
+    "pydantic",
     "tenacity",
 ]
 

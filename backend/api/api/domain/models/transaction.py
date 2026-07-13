@@ -2,9 +2,11 @@
 
 from dataclasses import dataclass
 
+from api.domain.models.pydantic import CamelCaseModel
+
 
 @dataclass
-class Transaction:
+class Transaction(CamelCaseModel):
     """Represents a financial transaction.
 
     Attributes:
