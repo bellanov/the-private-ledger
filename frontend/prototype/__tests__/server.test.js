@@ -1,12 +1,12 @@
 const request = require('supertest');
 const app = require('../src/server');
 
-describe('HTMX Template Server', () => {
+describe('Private Ledger Prototype Server', () => {
   describe('GET /', () => {
     it('should return the home page', async () => {
       const res = await request(app).get('/');
       expect(res.statusCode).toBe(200);
-      expect(res.text).toContain('HTMX Template');
+      expect(res.text).toContain('Prototypes');
       expect(res.text).toContain('<!DOCTYPE html>');
     });
 
@@ -14,113 +14,116 @@ describe('HTMX Template Server', () => {
       const res = await request(app).get('/');
       expect(res.text).toContain('htmx.org');
     });
-  });
 
-  describe('GET /api/todos', () => {
-    it('should return todos list HTML', async () => {
-      const res = await request(app).get('/api/todos');
-      expect(res.statusCode).toBe(200);
-      expect(res.text).toContain('Learn HTMX');
-      expect(res.text).toContain('Build a project');
-      expect(res.text).toContain('Deploy to production');
+    it('should contain accounts section', async () => {
+      const res = await request(app).get('/');
+      expect(res.text).toContain('hx-get="/accounts"');
     });
 
-    it('should contain todo items with checkboxes', async () => {
-      const res = await request(app).get('/api/todos');
-      expect(res.text).toContain('type="checkbox"');
-      expect(res.text).toContain('hx-put="/api/todos/');
+    it('should contain performance section', async () => {
+      const res = await request(app).get('/');
+      expect(res.text).toContain('hx-get="/performance"');
     });
 
-    it('should contain delete buttons', async () => {
-      const res = await request(app).get('/api/todos');
-      expect(res.text).toContain('hx-delete="/api/todos/');
-      expect(res.text).toContain('Delete');
+    it('should contain transactions section', async () => {
+      const res = await request(app).get('/');
+      expect(res.text).toContain('hx-get="/transactions"');
     });
   });
 
-  describe('POST /api/todos', () => {
-    it('should return 400 if title is missing', async () => {
-      const res = await request(app)
-        .post('/api/todos')
-        .send('');
-      expect(res.statusCode).toBe(400);
-      expect(res.text).toContain('Title is required');
-    });
-
-    it('should add a new todo and return HTML', async () => {
-      const res = await request(app)
-        .post('/api/todos')
-        .set('Content-Type', 'application/x-www-form-urlencoded')
-        .send('title=Test Todo');
+  describe('GET /accounts', () => {
+    it('should return accounts HTML', async () => {
+      const res = await request(app).get('/accounts');
       expect(res.statusCode).toBe(200);
-      expect(res.text).toContain('todo-item');
-      expect(res.text).toContain('type="checkbox"');
+      expect(res.text).toContain('Accounts');
     });
 
-    it('should return a todo item with delete button', async () => {
-      const res = await request(app)
-        .post('/api/todos')
-        .set('Content-Type', 'application/x-www-form-urlencoded')
-        .send('title=Another Todo');
-      expect(res.text).toContain('hx-delete="/api/todos/');
-      expect(res.text).toContain('Delete');
+    it('should return table structure', async () => {
+      const res = await request(app).get('/accounts');
+      expect(res.text).toContain('<table>');
+      expect(res.text).toContain('</table>');
+    });
+
+    it('should contain account headers', async () => {
+      const res = await request(app).get('/accounts');
+      expect(res.text).toContain('Account ID');
+      expect(res.text).toContain('Account Name');
+      expect(res.text).toContain('Account Type');
+      expect(res.text).toContain('Balance');
     });
   });
 
-  describe('PUT /api/todos/:id', () => {
-    it('should return 200 and update todo', async () => {
-      const res = await request(app)
-        .put('/api/todos/1')
-        .send({ completed: 'true' });
+  describe('GET /performance', () => {
+    it('should return performance HTML', async () => {
+      const res = await request(app).get('/performance');
       expect(res.statusCode).toBe(200);
-      expect(res.text).toContain('todo-item');
+      expect(res.text).toContain('Performance');
     });
 
-    it('should return HTML for a todo with checkbox', async () => {
-      const res = await request(app)
-        .put('/api/todos/1')
-        .send({ completed: 'true' });
-      expect(res.text).toContain('type="checkbox"');
-      expect(res.text).toContain('hx-put="/api/todos/');
+    it('should return table structure', async () => {
+      const res = await request(app).get('/performance');
+      expect(res.text).toContain('<table>');
+      expect(res.text).toContain('</table>');
+    });
+
+    it('should contain performance fields', async () => {
+      const res = await request(app).get('/performance');
+      expect(res.text).toContain('Date');
+      expect(res.text).toContain('Record');
+      expect(res.text).toContain('Return on Investment');
+      expect(res.text).toContain('Shares');
+      expect(res.text).toContain('Share Price');
+      expect(res.text).toContain('Total Bankroll');
+      expect(res.text).toContain('Units Won');
+      expect(res.text).toContain('Unit Price');
+    });
+
+    it('should contain default performance values', async () => {
+      const res = await request(app).get('/performance');
+      expect(res.text).toContain('2024-06-01');
+      expect(res.text).toContain('Positive');
+      expect(res.text).toContain('20%');
+      expect(res.text).toContain('$200.00');
     });
   });
 
-  describe('DELETE /api/todos/:id', () => {
-    it('should return 204 No Content', async () => {
-      const res = await request(app).delete('/api/todos/1');
-      expect(res.statusCode).toBe(204);
+  describe('GET /transactions', () => {
+    it('should return transactions HTML', async () => {
+      const res = await request(app).get('/transactions');
+      expect(res.statusCode).toBe(200);
+      expect(res.text).toContain('Transactions');
+    });
+
+    it('should return table structure', async () => {
+      const res = await request(app).get('/transactions');
+      expect(res.text).toContain('<table>');
+      expect(res.text).toContain('</table>');
+    });
+
+    it('should contain transaction headers', async () => {
+      const res = await request(app).get('/transactions');
+      expect(res.text).toContain('Date');
+      expect(res.text).toContain('Account ID');
+      expect(res.text).toContain('Type');
+      expect(res.text).toContain('Amount');
+      expect(res.text).toContain('Description');
     });
   });
 
-  describe('GET /api/counter', () => {
-    beforeEach(() => {
-      app.resetCounter();
-    });
-
-    it('should increment counter by the count parameter', async () => {
-      const res = await request(app).get('/api/counter?count=1');
+  describe('POST /clicked', () => {
+    it('should return 200 on button click', async () => {
+      const res = await request(app).post('/clicked');
       expect(res.statusCode).toBe(200);
-      expect(res.text).toBe('1');
     });
 
-    it('should handle decrement (negative count)', async () => {
-      // Start with 5
-      await request(app).get('/api/counter?count=5');
-      // Then decrement by 2
-      const res = await request(app).get('/api/counter?count=-2');
-      expect(res.statusCode).toBe(200);
-      expect(res.text).toBe('3');
+    it('should return HTML fragment', async () => {
+      const res = await request(app).post('/clicked');
+      expect(res.text).toContain('Button was clicked');
     });
 
-    it('should handle default count of 0 (no change)', async () => {
-      const res = await request(app).get('/api/counter');
-      expect(res.statusCode).toBe(200);
-      expect(res.text).toBe('0');
-    });
-
-    it('should return a string response', async () => {
-      const res = await request(app).get('/api/counter?count=0');
-      expect(typeof res.text).toBe('string');
+    it('should include parent-div id for HTMX swap', async () => {
+      const res = await request(app).post('/clicked');
+      expect(res.text).toContain('id="parent-div"');
     });
   });
 
@@ -140,31 +143,20 @@ describe('HTMX Template Server', () => {
   });
 
   describe('HTMX Integration Patterns', () => {
-    it('should support hx-put requests for updates', async () => {
-      const res = await request(app)
-        .put('/api/todos/1')
-        .send({ completed: 'true' });
-      expect(res.statusCode).toBe(200);
-    });
-
-    it('should support hx-delete requests for removal', async () => {
-      const res = await request(app).delete('/api/todos/1');
-      expect(res.statusCode).toBe(204);
-    });
-
     it('should return HTML fragments for HTMX swapping', async () => {
-      const res = await request(app).get('/api/todos');
+      const res = await request(app).get('/accounts');
       expect(res.text).toContain('id=');
       expect(res.text).not.toContain('<!DOCTYPE html>');
     });
 
-    it('should support form-based interactions', async () => {
-      const res = await request(app)
-        .post('/api/todos')
-        .set('Content-Type', 'application/x-www-form-urlencoded')
-        .send('title=Form Test');
+    it('should support hx-post requests', async () => {
+      const res = await request(app).post('/clicked');
       expect(res.statusCode).toBe(200);
-      expect(res.text).toContain('todo-item');
+    });
+
+    it('should support hx-get requests', async () => {
+      const res = await request(app).get('/performance');
+      expect(res.statusCode).toBe(200);
     });
   });
 
@@ -174,9 +166,9 @@ describe('HTMX Template Server', () => {
       expect(res.headers['content-type']).toContain('text/html');
     });
 
-    it('should return text content for API endpoints', async () => {
-      const res = await request(app).get('/api/counter');
-      expect(res.statusCode).toBe(200);
+    it('should return HTML content for API endpoints', async () => {
+      const res = await request(app).get('/accounts');
+      expect(res.headers['content-type']).toContain('text/html');
     });
   });
 });
