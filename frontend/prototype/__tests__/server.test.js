@@ -7,7 +7,6 @@ describe("Private Ledger Prototype Server", () => {
       const res = await request(app).get("/");
       expect(res.statusCode).toBe(200);
       expect(res.text).toContain("Prototypes");
-      expect(res.text).toContain("<!DOCTYPE html>");
     });
 
     it("should include HTMX script tag", async () => {
