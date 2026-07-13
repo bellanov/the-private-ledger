@@ -48,12 +48,14 @@ This template showcases best practices for building dynamic web applications usi
 ## Installation
 
 1. Clone the repository:
+
 ```bash
 git clone <repository-url>
 cd html-template
 ```
 
 2. Install dependencies:
+
 ```bash
 npm install
 ```
@@ -63,6 +65,7 @@ npm install
 ### Development Mode
 
 Start the development server with auto-reload:
+
 ```bash
 npm run dev
 ```
@@ -72,6 +75,7 @@ Then open your browser and navigate to `http://localhost:3000`
 ### Production Mode
 
 Start the server:
+
 ```bash
 npm start
 ```
@@ -81,11 +85,13 @@ The server will be available at `http://localhost:3000`
 ## Running Tests
 
 Run all tests with coverage:
+
 ```bash
 npm test
 ```
 
 Run tests in watch mode:
+
 ```bash
 npm run test:watch
 ```
@@ -93,6 +99,7 @@ npm run test:watch
 ## Linting
 
 Check code quality:
+
 ```bash
 npm run lint
 ```
@@ -104,70 +111,89 @@ This will automatically fix formatting issues.
 This template demonstrates several key HTMX patterns:
 
 ### 1. **Dynamic Content Loading**
+
 ```html
-<div hx-get="/api/todos" hx-trigger="load" hx-swap="innerHTML">
-  Loading...
-</div>
+<div hx-get="/api/todos" hx-trigger="load" hx-swap="innerHTML">Loading...</div>
 ```
 
 ### 2. **Form Submission**
+
 ```html
 <form hx-post="/api/todos" hx-target="#todos-list" hx-swap="beforeend">
-  <input name="title" placeholder="Add a todo">
+  <input name="title" placeholder="Add a todo" />
   <button type="submit">Add</button>
 </form>
 ```
 
 ### 3. **Update Operations**
+
 ```html
-<input type="checkbox" 
-       hx-put="/api/todos/1"
-       hx-vals='{"completed": "true"}'
-       hx-target="closest .todo-item"
-       hx-swap="outerHTML">
+<input
+  type="checkbox"
+  hx-put="/api/todos/1"
+  hx-vals='{"completed": "true"}'
+  hx-target="closest .todo-item"
+  hx-swap="outerHTML"
+/>
 ```
 
 ### 4. **Deletion**
+
 ```html
-<button hx-delete="/api/todos/1" 
-        hx-target="closest .todo-item"
-        hx-swap="outerHTML swap:1s">
+<button
+  hx-delete="/api/todos/1"
+  hx-target="closest .todo-item"
+  hx-swap="outerHTML swap:1s"
+>
   Delete
 </button>
 ```
 
 ### 5. **Request Debouncing**
+
 ```html
-<input type="text" 
-       hx-get="/api/search"
-       hx-trigger="keyup changed delay:500ms"
-       hx-target="#search-results">
+<input
+  type="text"
+  hx-get="/api/search"
+  hx-trigger="keyup changed delay:500ms"
+  hx-target="#search-results"
+/>
 ```
 
 ## API Endpoints
 
 ### GET /
+
 Returns the home page with HTMX examples.
 
 ### GET /api/todos
+
 Returns the list of todos as HTML.
 
 ### POST /api/todos
+
 Creates a new todo item.
+
 - **Parameters**: `title` (required)
 - **Returns**: HTML for the new todo item
 
 ### PUT /api/todos/:id
+
 Updates a todo item.
+
 - **Parameters**: `completed` (true/false)
 - **Returns**: Updated todo item HTML
 
 ### DELETE /api/todos/:id
+
 Deletes a todo item.
+
 - **Returns**: 204 No Content
 
 ### GET /api/counter
+
 Returns the incremented counter value.
+
 - **Parameters**: `count` (optional, defaults to 0)
 - **Returns**: Plain text number
 
@@ -182,6 +208,7 @@ The project includes a GitHub Actions workflow that:
 5. **Checks** for security vulnerabilities
 
 Workflow triggers:
+
 - Push to `main` or `develop` branches
 - Pull requests to `main` or `develop` branches
 
@@ -212,8 +239,8 @@ Licensed under Apache License 2.0. See [LICENSE](LICENSE) file for details.
 ## Contributing
 
 Contributions are welcome! Please ensure:
+
 - All tests pass
 - Code is properly linted
 - New features include tests
 - Commit messages are descriptive
-
