@@ -10,8 +10,10 @@ class Performance:
     Attributes:
         date: The date of the performance record.
         record: A string representing the performance record.
+        shares: The number of shares held.
         share_price: The price per share.
         total_bankroll: The total bankroll for the day.
+        unit_price: The price per unit.
         units_won: The number of units won.
         return_on_investment: The return on investment for the day.
     """
