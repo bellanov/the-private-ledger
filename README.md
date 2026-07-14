@@ -42,6 +42,6 @@ Applications are distributed across the `backend` and `frontend` directories.
 
 ### Models
 
-Summary of the models used within the `api` project.
+Summary of the models used within the `api` project. The elements are translated into `camelCase` when exposed.
 
 ![Models](./diagrams/Models.svg)
