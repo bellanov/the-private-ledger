@@ -1,6 +1,9 @@
 """Account Model."""
 
 from dataclasses import dataclass
+from uuid import uuid4
+
+from pydantic import Field
 
 from api.domain.models.pydantic import CamelCaseModel
 
