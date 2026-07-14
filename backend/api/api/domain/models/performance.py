@@ -1,11 +1,12 @@
-"""Performance Tracker Model."""
+"""Performance Model."""
 
 from dataclasses import dataclass
 
+from api.domain.models.pydantic import CamelCaseModel
 
-@dataclass
-class Performance:
-    """Tracks daily performance metrics.
+
+class Performance(CamelCaseModel):
+    """Represents a performance record.
 
     Attributes:
         date: The date of the performance record.

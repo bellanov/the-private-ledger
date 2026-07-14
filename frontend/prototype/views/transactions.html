@@ -1,19 +1,42 @@
-<section>
-  <h2>Transactions</h2>
-  <table>
-    <tr>
-      <th>Date</th>
-      <th>Account ID</th>
-      <th>Type</th>
-      <th>Amount</th>
-      <th>Shares</th>
-    </tr>
-    <tr>
-      <td id="transaction-date">2024-06-01</td>
-      <td id="account-id">123456789</td>
-      <td id="transaction-type">Deposit</td>
-      <td id="transaction-amount">$500.00</td>
-      <td id="shares">100</td>
-    </tr>
-  </table>
-</section>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Private Ledger - Prototypes</title>
+    <script
+      src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.10/dist/htmx.min.js"
+      integrity="sha384-H5SrcfygHmAuTDZphMHqBJLc3FhssKjG7w/CeCpFReSfwBWDTKpkzPP8c+cLsK+V"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div>
+      <header>
+        <h1>Transactions</h1>
+        <p>Transaction details of <i>The Private Ledger</i>.</p>
+      </header>
+
+      <main>
+        <section>
+          <div hx-get="/menu" hx-trigger="load" hx-swap="outerHTML"></div>
+
+          <div hx-get="/options" hx-trigger="load" hx-swap="outerHTML"></div>
+        </section>
+
+        <section>
+          <div
+            hx-get="/transactions"
+            hx-trigger="load"
+            hx-swap="outerHTML"
+          ></div>
+        </section>
+      </main>
+
+      <footer>
+        <p>&copy; 2026 The Private Ledger.</p>
+      </footer>
+    </div>
+  </body>
+</html>

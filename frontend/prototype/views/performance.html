@@ -1,29 +1,42 @@
-<section>
-  <h2>Performance</h2>
-  <table>
-    <tr>
-      <th>Date</th>
-      <th>Record</th>
-      <th>Shares</th>
-      <th>Share Price</th>
-      <th>Return on Investment</th>
-      <th>Total Bankroll</th>
-      <th>Units Won</th>
-      <th>Unit Price</th>
-    </tr>
-    <tr>
-      <td id="date">2024-06-01</td>
-      <td id="record">Positive</td>
-      <td>
-        <span id="return-on-investment-percent">20%</span>
-        /
-        <span id="return-on-investment">$200.00</span>
-      </td>
-      <td id="shares">100</td>
-      <td id="share-price">$12.00</td>
-      <td id="total-bankroll">$1,200.00</td>
-      <td id="units-won">10</td>
-      <td id="unit-price">$20.00</td>
-    </tr>
-  </table>
-</section>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Private Ledger - Prototypes</title>
+    <script
+      src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.10/dist/htmx.min.js"
+      integrity="sha384-H5SrcfygHmAuTDZphMHqBJLc3FhssKjG7w/CeCpFReSfwBWDTKpkzPP8c+cLsK+V"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div>
+      <header>
+        <h1>Performance</h1>
+        <p>Performance metrics of <i>The Private Ledger</i>.</p>
+      </header>
+
+      <main>
+        <section>
+          <div hx-get="/menu" hx-trigger="load" hx-swap="outerHTML"></div>
+
+          <div hx-get="/options" hx-trigger="load" hx-swap="outerHTML"></div>
+        </section>
+
+        <section>
+          <div
+            hx-get="/performance"
+            hx-trigger="load"
+            hx-swap="outerHTML"
+          ></div>
+        </section>
+      </main>
+
+      <footer>
+        <p>&copy; 2026 The Private Ledger.</p>
+      </footer>
+    </div>
+  </body>
+</html>

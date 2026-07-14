@@ -1,0 +1,22 @@
+<div>
+<label>
+    <input type="radio" name="font-family" id="font-serif" value="serif" checked />
+    <span>Serif</span>
+</label>
+<label>
+    <input type="radio" name="font-family" id="font-sans" value="sans-serif"  />
+    <span>Sans-Serif</span>
+</label>
+</div>
+<script>
+const radios = document.querySelectorAll('input[name="font-family"]');
+const html = document.documentElement;
+
+radios.forEach(radio => {
+    radio.addEventListener('change', () => {
+    if (radio.checked) {
+        html.style.fontFamily = radio.value;
+    }
+    });
+});
+</script>

@@ -26,29 +26,3 @@ def test_performance_initialization_sets_all_fields():
     assert model.total_bankroll == 2500.0
     assert model.unit_price == 25.0
     assert model.units_won == 3.75
-
-
-@pytest.mark.unit
-def test_performance_equality_same_values():
-    left = Performance(
-        "2026-07-11",
-        "10-5",
-        0.12,
-        200.0,
-        12.5,
-        2500.0,
-        25.0,
-        3.75,
-    )
-    right = Performance(
-        "2026-07-11",
-        "10-5",
-        0.12,
-        200.0,
-        12.5,
-        2500.0,
-        25.0,
-        3.75,
-    )
-
-    assert left == right

@@ -31,7 +31,7 @@ The project utilizes **Docker** to containerize various aspects of the *frontend
 
 | Directory | Description |
 | -------- | -------- | 
-| backend   | Contains applications deployed to the backend.   | 
-| diagrams   | Contains architectural diagrams.   | 
-| frontend   | Contains applications deployed to the frontend.   | 
-| scripts   | Contains scripts to help accelerate development.  | 
+| *backend*   | Contains applications deployed to the backend.   | 
+| *diagrams*   | Contains architectural diagrams.   | 
+| *frontend*   | Contains applications deployed to the frontend.   | 
+| *scripts*   | Contains scripts to help accelerate development.  | 

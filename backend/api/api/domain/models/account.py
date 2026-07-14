@@ -1,11 +1,12 @@
-"""Master Tracking Sheet Model."""
+"""Account Model."""
 
 from dataclasses import dataclass
 
+from api.domain.models.pydantic import CamelCaseModel
 
-@dataclass
-class Account:
-    """Represents a master tracking sheet.
+
+class Account(CamelCaseModel):
+    """Represents an account.
 
     Attributes:
         account_id: The ID of the account associated with the transaction.
@@ -21,4 +22,4 @@ class Account:
     current_value: float
     shares_owned: float
     ownership: float
-    return_on_investment: dict[str, str]
+    return_on_investment: float

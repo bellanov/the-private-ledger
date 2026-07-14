@@ -20,27 +20,9 @@
 
       <main>
         <section>
-          <div
-            hx-get="/accounts"
-            hx-trigger="load delay:1s"
-            hx-swap="outerHTML"
-          ></div>
-        </section>
+          <div hx-get="/menu" hx-trigger="load" hx-swap="outerHTML"></div>
 
-        <section>
-          <div
-            hx-get="/performance"
-            hx-trigger="load delay:1s"
-            hx-swap="outerHTML"
-          ></div>
-        </section>
-
-        <section>
-          <div
-            hx-get="/transactions"
-            hx-trigger="load delay:1s"
-            hx-swap="outerHTML"
-          ></div>
+          <div hx-get="/options" hx-trigger="load" hx-swap="outerHTML"></div>
         </section>
       </main>
 
