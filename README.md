@@ -16,6 +16,8 @@ The project utilizes **Docker** to containerize various aspects of the *frontend
 
 ### Project Structure
 
+Applications are distributed across the `backend` and `frontend` directories.
+
 ```sh
 ├───backend
 │   ├───api
@@ -35,3 +37,11 @@ The project utilizes **Docker** to containerize various aspects of the *frontend
 | *diagrams*   | Contains architectural diagrams.   | 
 | *frontend*   | Contains applications deployed to the frontend.   | 
 | *scripts*   | Contains scripts to help accelerate development.  | 
+
+## API
+
+### Models
+
+Summary of the models used within the `api` project.
+
+![Models](./diagrams/Models.svg)
