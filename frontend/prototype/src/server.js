@@ -8,18 +8,18 @@ const API_BASE_URL = process.env.API_BASE_URL || 'http://localhost:8000';
 
 // TODO: iterate through the pages and create routes dynamically
 const PAGES = {
-  'accounts': {
-    "endpoint": "/accounts",
-    "render": "accounts",
+  accounts: {
+    endpoint: '/accounts',
+    render: 'accounts',
   },
-  'performance': {
-    "endpoint": "/performance",
-    "render": "performance",
+  performance: {
+    endpoint: '/performance',
+    render: 'performance',
   },
-  'transactions': {
-    "endpoint": "/transactions",
-    "render": "transactions",
-  }
+  transactions: {
+    endpoint: '/transactions',
+    render: 'transactions',
+  },
 };
 
 // Middleware

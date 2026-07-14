@@ -2,7 +2,6 @@ const request = require("supertest");
 const app = require("../src/server");
 
 describe("[integration] Private Ledger Prototype Server", () => {
-
   describe("GET /accounts", () => {
     it("should return accounts HTML", async () => {
       const res = await request(app).get("/accounts");
