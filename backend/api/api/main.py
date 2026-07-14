@@ -7,6 +7,7 @@ from fastapi import FastAPI
 
 from api.domain.models.account import Account
 from api.domain.models.performance import Performance
+from api.domain.models.summary import Summary
 from api.domain.models.transaction import Transaction
 
 
@@ -64,3 +65,13 @@ def get_transactions_for_account(account_id: str):
         for transaction in db["transactions"]
         if transaction["account_id"] == account_id
     ]
+
+
+@app.get("/summary", response_model=list[Summary])
+def get_summary():
+    summary = {
+        "total_bankroll": sum(float(a["account_balance"]) for a in db["accounts"]),
+        "current_share_price": "10.00",
+        "initial_share_price": "10.00"
+    }
+    return [Summary(**summary)]
