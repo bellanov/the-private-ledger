@@ -42,6 +42,15 @@ describe("[unit] Private Ledger Prototype Server", () => {
     });
   });
 
+  describe("GET /summary.html", () => {
+    it("should return full summary page", async () => {
+      const res = await request(app).get("/summary.html");
+      expect(res.statusCode).toBe(200);
+      expect(res.text).toContain("<!doctype html>");
+      expect(res.text).toContain("Summary");
+    });
+  });
+
   describe("GET /accounts.html", () => {
     it("should return full accounts page", async () => {
       const res = await request(app).get("/accounts.html");
