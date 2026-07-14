@@ -16,9 +16,9 @@ const PAGES = {
     endpoint: '/performance',
     render: 'performance',
   },
-  summary: {
-    endpoint: '/summary',
-    render: 'summary',
+  metrics: {
+    endpoint: '/metrics',
+    render: 'metrics',
   },
   transactions: {
     endpoint: '/transactions',

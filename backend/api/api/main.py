@@ -7,7 +7,7 @@ from fastapi import FastAPI
 
 from api.domain.models.account import Account
 from api.domain.models.performance import Performance
-from api.domain.models.summary import Summary
+from api.domain.models.metrics import Metrics
 from api.domain.models.transaction import Transaction
 
 BASE_DIR = Path(__file__).resolve()
@@ -66,9 +66,9 @@ def get_transactions_for_account(account_id: str):
     ]
 
 
-@app.get("/summary", response_model=Summary)
-def get_summary():
-    summary = {
+@app.get("/metrics", response_model=Metrics)
+def get_metics():
+    metrics = {
         "total_bankroll": sum(
             float(account["account_balance"]) for account in db["accounts"]
         ),
@@ -76,4 +76,4 @@ def get_summary():
         "initial_share_price": "10.00",
         "shares_owned": sum(float(account["shares_owned"]) for account in db["accounts"]),
     }
-    return summary
+    return metrics

@@ -3,7 +3,7 @@
 import pytest
 from pydantic import ValidationError
 
-from api.domain.models.summary import Summary
+from api.domain.models.metrics import Metrics
 
 
 @pytest.mark.unit
