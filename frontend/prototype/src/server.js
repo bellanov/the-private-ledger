@@ -5,8 +5,22 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 const API_BASE_URL = process.env.API_BASE_URL || 'http://localhost:8000';
+
 // TODO: iterate through the pages and create routes dynamically
-const PAGES = ['accounts', 'index', 'performance', 'transactions'];
+const PAGES = {
+  'accounts': {
+    "endpoint": "/accounts",
+    "render": "accounts",
+  },
+  'performance': {
+    "endpoint": "/performance",
+    "render": "performance",
+  },
+  'transactions': {
+    "endpoint": "/transactions",
+    "render": "transactions",
+  }
+};
 
 // Middleware
 app.use(express.static(path.join(__dirname, '../public')));
@@ -25,7 +39,7 @@ app.engine('html', (filepath, options, callback) => {
 
 // Routes
 
-// Home page
+// Index
 app.get('/', (req, res) => {
   res.render('index.html');
 });
@@ -40,38 +54,23 @@ app.get('/options', async (req, res) => {
   res.render('options');
 });
 
-// Accounts
-app.get('/accounts', async (req, res) => {
-  const response = await fetch(`${API_BASE_URL}/accounts`);
-  const accounts = await response.json();
-  res.render('accounts', { accounts });
-});
+// Pages
+for (const [page, config] of Object.entries(PAGES)) {
+  app.get(config.endpoint, async (req, res) => {
+    try {
+      const response = await fetch(`${API_BASE_URL}${config.endpoint}`);
+      const data = await response.json();
+      res.render(config.render, { [page]: data });
+    } catch (error) {
+      console.error(`Error fetching ${page}:`, error);
+      res.status(500).send('Internal Server Error');
+    }
+  });
 
-app.get('/accounts.html', async (req, res) => {
-  res.render('accounts.html');
-});
-
-// Performance
-app.get('/performance', async (req, res) => {
-  const response = await fetch(`${API_BASE_URL}/performance`);
-  const performance = await response.json();
-  res.render('performance', { performance });
-});
-
-app.get('/performance.html', async (req, res) => {
-  res.render('performance.html');
-});
-
-// Transactions
-app.get('/transactions', async (req, res) => {
-  const response = await fetch(`${API_BASE_URL}/transactions`);
-  const transactions = await response.json();
-  res.render('transactions', { transactions });
-});
-
-app.get('/transactions.html', async (req, res) => {
-  res.render('transactions.html');
-});
+  app.get(`/${page}.html`, async (req, res) => {
+    res.render(`${page}.html`);
+  });
+}
 
 // Error handling middleware
 // eslint-disable-next-line no-unused-vars

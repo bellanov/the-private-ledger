@@ -1,6 +1,6 @@
 """Account Model."""
 
-from pydantic import Field, field_validator
+from pydantic import Field
 
 from api.domain.models.pydantic import CamelCaseModel
 

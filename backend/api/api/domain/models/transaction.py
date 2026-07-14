@@ -24,4 +24,4 @@ class Transaction(CamelCaseModel):
     amount: float
     type: str = Field(..., pattern=r"^(DEPOSIT|WITHDRAWAL)$")
     shares: float
-    note: str = Field(..., pattern=r"^(venmo|bank|check|cashapp)$")
+    note: str = Field(..., pattern=r"^(venmo|bank|check|cashapp|zelle|apple)$")
