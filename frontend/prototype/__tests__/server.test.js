@@ -120,7 +120,7 @@ describe("Private Ledger Prototype Server", () => {
       expect(res.text).toContain("</table>");
     });
 
-    it("should contain transaction headers", async () => {
+    it("[integration] should contain transaction headers", async () => {
       const res = await request(app).get("/transactions");
       expect(res.text).toContain("Date");
       expect(res.text).toContain("Account ID");
@@ -138,7 +138,7 @@ describe("Private Ledger Prototype Server", () => {
     });
   });
 
-  describe("Static Files", () => {
+  describe("[unit] Static Files", () => {
     it("should serve CSS files", async () => {
       const res = await request(app).get("/styles.css");
       expect(res.statusCode).toBe(200);
@@ -146,20 +146,20 @@ describe("Private Ledger Prototype Server", () => {
     });
   });
 
-  describe("Error Handling", () => {
+  describe("[unit] Error Handling", () => {
     it("should handle 404 routes gracefully", async () => {
       const res = await request(app).get("/nonexistent");
       expect(res.statusCode).toBe(404);
     });
   });
 
-  describe("Content Type Headers", () => {
+  describe("[unit] Content Type Headers", () => {
     it("should return HTML content for home page", async () => {
       const res = await request(app).get("/");
       expect(res.headers["content-type"]).toContain("text/html");
     });
 
-    it("should return HTML content for partial endpoints", async () => {
+    it("[integration] should return HTML content for partial endpoints", async () => {
       const res = await request(app).get("/accounts");
       expect(res.headers["content-type"]).toContain("text/html");
     });

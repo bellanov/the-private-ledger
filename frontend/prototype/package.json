@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node src/server.js",
     "dev": "nodemon src/server.js",
-    "test": "jest --coverage",
+    "test": "jest --coverage -t \\[unit\\]",
+    "test:integration": "jest --coverage -t \\[integration\\]",
     "test:watch": "jest --watch",
     "lint": "eslint src",
     "format": "eslint src --fix"
