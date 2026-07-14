@@ -1,8 +1,8 @@
 const request = require("supertest");
 const app = require("../src/server");
 
-describe("Private Ledger Prototype Server", () => {
-  describe("[unit] GET /", () => {
+describe("[unit] Private Ledger Prototype Server", () => {
+  describe("GET /", () => {
     it("should return the home page", async () => {
       const res = await request(app).get("/");
       expect(res.statusCode).toBe(200);
@@ -25,7 +25,7 @@ describe("Private Ledger Prototype Server", () => {
     });
   });
 
-  describe("[unit] GET /menu", () => {
+  describe("GET /menu", () => {
     it("should return menu HTML", async () => {
       const res = await request(app).get("/menu");
       expect(res.statusCode).toBe(200);
@@ -33,7 +33,7 @@ describe("Private Ledger Prototype Server", () => {
     });
   });
 
-  describe("[unit] GET /options", () => {
+  describe("GET /options", () => {
     it("should return options HTML", async () => {
       const res = await request(app).get("/options");
       expect(res.statusCode).toBe(200);
@@ -42,7 +42,53 @@ describe("Private Ledger Prototype Server", () => {
     });
   });
 
-  describe("[integration] GET /accounts", () => {
+
+  describe("GET /accounts.html", () => {
+    it("should return full accounts page", async () => {
+      const res = await request(app).get("/accounts.html");
+      expect(res.statusCode).toBe(200);
+      expect(res.text).toContain("<!doctype html>");
+      expect(res.text).toContain("Accounts");
+    });
+  });
+
+  describe("GET /performance.html", () => {
+    it("should return full performance page", async () => {
+      const res = await request(app).get("/performance.html");
+      expect(res.statusCode).toBe(200);
+      expect(res.text).toContain("<!doctype html>");
+      expect(res.text).toContain("Performance");
+    });
+  });
+
+  describe("GET /transactions.html", () => {
+    it("should return full transactions page", async () => {
+      const res = await request(app).get("/transactions.html");
+      expect(res.statusCode).toBe(200);
+      expect(res.text).toContain("<!doctype html>");
+      expect(res.text).toContain("Transactions");
+    });
+  });
+
+  describe("GET /styles.css", () => {
+    it("should serve CSS files", async () => {
+      const res = await request(app).get("/styles.css");
+      expect(res.statusCode).toBe(200);
+      expect(res.type).toContain("css");
+    });
+  });
+
+  describe("GET /nonexistent", () => {
+    it("should handle 404 routes gracefully", async () => {
+      const res = await request(app).get("/nonexistent");
+      expect(res.statusCode).toBe(404);
+    });
+  });
+});
+
+describe("[integration] Private Ledger Prototype Server", () => {
+
+  describe("GET /accounts", () => {
     it("should return accounts HTML", async () => {
       const res = await request(app).get("/accounts");
       expect(res.statusCode).toBe(200);
@@ -63,16 +109,7 @@ describe("Private Ledger Prototype Server", () => {
     });
   });
 
-  describe("[unit] GET /accounts.html", () => {
-    it("should return full accounts page", async () => {
-      const res = await request(app).get("/accounts.html");
-      expect(res.statusCode).toBe(200);
-      expect(res.text).toContain("<!doctype html>");
-      expect(res.text).toContain("Accounts");
-    });
-  });
-
-  describe("[integration] GET /performance", () => {
+  describe("GET /performance", () => {
     it("should return performance HTML", async () => {
       const res = await request(app).get("/performance");
       expect(res.statusCode).toBe(200);
@@ -98,16 +135,7 @@ describe("Private Ledger Prototype Server", () => {
     });
   });
 
-  describe("[unit] GET /performance.html", () => {
-    it("should return full performance page", async () => {
-      const res = await request(app).get("/performance.html");
-      expect(res.statusCode).toBe(200);
-      expect(res.text).toContain("<!doctype html>");
-      expect(res.text).toContain("Performance");
-    });
-  });
-
-  describe("[integration] GET /transactions", () => {
+  describe("GET /transactions", () => {
     it("should return transactions HTML", async () => {
       const res = await request(app).get("/transactions");
       expect(res.statusCode).toBe(200);
@@ -129,31 +157,7 @@ describe("Private Ledger Prototype Server", () => {
     });
   });
 
-  describe("[unit] GET /transactions.html", () => {
-    it("should return full transactions page", async () => {
-      const res = await request(app).get("/transactions.html");
-      expect(res.statusCode).toBe(200);
-      expect(res.text).toContain("<!doctype html>");
-      expect(res.text).toContain("Transactions");
-    });
-  });
-
-  describe("[unit] Static Files", () => {
-    it("should serve CSS files", async () => {
-      const res = await request(app).get("/styles.css");
-      expect(res.statusCode).toBe(200);
-      expect(res.type).toContain("css");
-    });
-  });
-
-  describe("[unit] Error Handling", () => {
-    it("should handle 404 routes gracefully", async () => {
-      const res = await request(app).get("/nonexistent");
-      expect(res.statusCode).toBe(404);
-    });
-  });
-
-  describe("[integration] Content Type Headers", () => {
+  describe("Content Type Headers", () => {
     it("should return HTML content for home page", async () => {
       const res = await request(app).get("/");
       expect(res.headers["content-type"]).toContain("text/html");
