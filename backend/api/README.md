@@ -13,5 +13,6 @@ API layer for *ThePrivateLedger*.
 2. Start the `FastAPI` server.
 
    ```sh
-   fastapi dev api/main.py
+   scripts/run.ps1
+   scripts/run.sh
    ```
