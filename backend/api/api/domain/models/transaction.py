@@ -1,6 +1,6 @@
 """Transactions Model."""
 
-from dataclasses import dataclass
+from pydantic import Field
 
 from api.domain.models.pydantic import CamelCaseModel
 
@@ -17,9 +17,11 @@ class Transaction(CamelCaseModel):
         note: Type of note (Venmo, Bank Transfer, etc.).
     """
 
-    date: str
-    account_id: str
+    date: str = Field(
+        ..., pattern=r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(.\d+)?(Z|[+-]\d{2}:\d{2})?$"
+    )
+    account_id: str = Field(..., pattern=r"^PL-[a-f0-9]{32}$")
     amount: float
-    type: str
+    type: str = Field(..., pattern=r"^(DEPOSIT|WITHDRAWAL)$")
     shares: float
-    note: str
+    note: str = Field(..., pattern=r"^(venmo|bank|check|cashapp)$")

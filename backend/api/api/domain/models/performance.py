@@ -1,6 +1,6 @@
 """Performance Model."""
 
-from dataclasses import dataclass
+from pydantic import Field
 
 from api.domain.models.pydantic import CamelCaseModel
 
@@ -19,8 +19,8 @@ class Performance(CamelCaseModel):
         units_won: The number of units won.
     """
 
-    date: str
-    record: str
+    date: str = Field(..., pattern=r"^\d{4}-\d{2}-\d{2}$")
+    record: str = Field(..., pattern=r"^\d+-\d+$")
     return_on_investment: float
     shares: float
     share_price: float
