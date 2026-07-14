@@ -12,17 +12,8 @@ from api.domain.models.transaction import Transaction
 
 BASE_DIR = Path(__file__).resolve()
 
-# TODO: Turn into an enum for transaction types
-# TODO: Turn into an enum for note types
-# TODO: Dynamically generate account_id
 TRANSACTION = BASE_DIR.parent / "domain" / "data" / "Transaction.csv"
-
-# TODO: Dynamically generate performance records
-# TODO: Add validation wherever necessary
 PERFORMANCE = BASE_DIR.parent / "domain" / "data" / "Performance.csv"
-
-# TODO: Dynamically generate account records
-# TODO: Add validation wherever necessary
 ACCOUNT = BASE_DIR.parent / "domain" / "data" / "Account.csv"
 
 db = {
