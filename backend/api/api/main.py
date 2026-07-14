@@ -66,11 +66,13 @@ def get_transactions_for_account(account_id: str):
     ]
 
 
-@app.get("/summary", response_model=list[Summary])
+@app.get("/summary", response_model=Summary)
 def get_summary():
     summary = {
-        "total_bankroll": sum(float(a["account_balance"]) for a in db["accounts"]),
-        "current_share_price": "10.00",
+        "total_bankroll": sum(
+            float(account["account_balance"]) for account in db["accounts"]
+        ),
+        "current_share_price": "11.98",
         "initial_share_price": "10.00",
     }
-    return [Summary(**summary)]
+    return summary
