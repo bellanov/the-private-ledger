@@ -2,7 +2,7 @@ const request = require("supertest");
 const app = require("../src/server");
 
 describe("Private Ledger Prototype Server", () => {
-  describe("GET /", () => {
+  describe("[unit] GET /", () => {
     it("should return the home page", async () => {
       const res = await request(app).get("/");
       expect(res.statusCode).toBe(200);
@@ -25,7 +25,7 @@ describe("Private Ledger Prototype Server", () => {
     });
   });
 
-  describe("GET /menu", () => {
+  describe("[unit] GET /menu", () => {
     it("should return menu HTML", async () => {
       const res = await request(app).get("/menu");
       expect(res.statusCode).toBe(200);
@@ -33,7 +33,7 @@ describe("Private Ledger Prototype Server", () => {
     });
   });
 
-  describe("GET /options", () => {
+  describe("[unit] GET /options", () => {
     it("should return options HTML", async () => {
       const res = await request(app).get("/options");
       expect(res.statusCode).toBe(200);
@@ -42,7 +42,7 @@ describe("Private Ledger Prototype Server", () => {
     });
   });
 
-  describe("GET /accounts", () => {
+  describe("[integration] GET /accounts", () => {
     it("should return accounts HTML", async () => {
       const res = await request(app).get("/accounts");
       expect(res.statusCode).toBe(200);
@@ -63,7 +63,7 @@ describe("Private Ledger Prototype Server", () => {
     });
   });
 
-  describe("GET /accounts.html", () => {
+  describe("[unit] GET /accounts.html", () => {
     it("should return full accounts page", async () => {
       const res = await request(app).get("/accounts.html");
       expect(res.statusCode).toBe(200);
@@ -72,7 +72,7 @@ describe("Private Ledger Prototype Server", () => {
     });
   });
 
-  describe("GET /performance", () => {
+  describe("[integration] GET /performance", () => {
     it("should return performance HTML", async () => {
       const res = await request(app).get("/performance");
       expect(res.statusCode).toBe(200);
@@ -98,7 +98,7 @@ describe("Private Ledger Prototype Server", () => {
     });
   });
 
-  describe("GET /performance.html", () => {
+  describe("[unit] GET /performance.html", () => {
     it("should return full performance page", async () => {
       const res = await request(app).get("/performance.html");
       expect(res.statusCode).toBe(200);
@@ -107,7 +107,7 @@ describe("Private Ledger Prototype Server", () => {
     });
   });
 
-  describe("GET /transactions", () => {
+  describe("[integration] GET /transactions", () => {
     it("should return transactions HTML", async () => {
       const res = await request(app).get("/transactions");
       expect(res.statusCode).toBe(200);
@@ -120,7 +120,7 @@ describe("Private Ledger Prototype Server", () => {
       expect(res.text).toContain("</table>");
     });
 
-    it("[integration] should contain transaction headers", async () => {
+    it("should contain transaction headers", async () => {
       const res = await request(app).get("/transactions");
       expect(res.text).toContain("Date");
       expect(res.text).toContain("Account ID");
@@ -129,7 +129,7 @@ describe("Private Ledger Prototype Server", () => {
     });
   });
 
-  describe("GET /transactions.html", () => {
+  describe("[unit] GET /transactions.html", () => {
     it("should return full transactions page", async () => {
       const res = await request(app).get("/transactions.html");
       expect(res.statusCode).toBe(200);
@@ -153,13 +153,13 @@ describe("Private Ledger Prototype Server", () => {
     });
   });
 
-  describe("[unit] Content Type Headers", () => {
+  describe("[integration] Content Type Headers", () => {
     it("should return HTML content for home page", async () => {
       const res = await request(app).get("/");
       expect(res.headers["content-type"]).toContain("text/html");
     });
 
-    it("[integration] should return HTML content for partial endpoints", async () => {
+    it("should return HTML content for partial endpoints", async () => {
       const res = await request(app).get("/accounts");
       expect(res.headers["content-type"]).toContain("text/html");
     });
