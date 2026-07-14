@@ -9,11 +9,6 @@ from api.domain.models.account import Account
 from api.domain.models.performance import Performance
 from api.domain.models.transaction import Transaction
 
-# TODO: Enable these after the current endpoints are updated
-# from api.domain.models.account import Account
-# from api.domain.models.transaction import Transaction
-# from api.domain.models.performance import Performance
-
 
 BASE_DIR = Path(__file__).resolve()
 

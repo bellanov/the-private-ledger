@@ -1,9 +1,6 @@
 """Account Model."""
 
-from dataclasses import dataclass
-from uuid import uuid4
-
-from pydantic import Field
+from pydantic import Field, field_validator
 
 from api.domain.models.pydantic import CamelCaseModel
 
@@ -20,7 +17,7 @@ class Account(CamelCaseModel):
         return_on_investment: Return on investment metrics.
     """
 
-    account_id: str
+    account_id: str = Field(..., pattern=r"^PL-[a-f0-9]{32}$")
     account_balance: float
     current_value: float
     shares_owned: float
