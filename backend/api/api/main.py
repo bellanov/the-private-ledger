@@ -10,7 +10,6 @@ from api.domain.models.performance import Performance
 from api.domain.models.summary import Summary
 from api.domain.models.transaction import Transaction
 
-
 BASE_DIR = Path(__file__).resolve()
 
 TRANSACTION = BASE_DIR.parent / "domain" / "data" / "Transaction.csv"
@@ -72,6 +71,6 @@ def get_summary():
     summary = {
         "total_bankroll": sum(float(a["account_balance"]) for a in db["accounts"]),
         "current_share_price": "10.00",
-        "initial_share_price": "10.00"
+        "initial_share_price": "10.00",
     }
     return [Summary(**summary)]
