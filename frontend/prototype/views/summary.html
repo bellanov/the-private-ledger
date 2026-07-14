@@ -14,22 +14,23 @@
   <body>
     <div>
       <header>
-        <h1>Accounts</h1>
-        <p>Account details of <i>The Private Ledger</i>.</p>
+        <h1>Summary</h1>
+        <p>Summary metrics of <i>The Private Ledger</i>.</p>
       </header>
 
       <main>
         <section>
           <div hx-get="/menu" hx-trigger="load" hx-swap="outerHTML"></div>
+
           <div hx-get="/options" hx-trigger="load" hx-swap="outerHTML"></div>
         </section>
 
         <section>
-          <div hx-get="/accounts" hx-trigger="load" hx-swap="outerHTML"></div>
-        </section>
-
-        <section>
-          <div hx-get="/summary" hx-trigger="load" hx-swap="outerHTML"></div>
+          <div
+            hx-get="/summary"
+            hx-trigger="load"
+            hx-swap="outerHTML"
+          ></div>
         </section>
       </main>
 
