@@ -5,7 +5,6 @@ from dataclasses import dataclass
 from api.domain.models.pydantic import CamelCaseModel
 
 
-@dataclass
 class Performance(CamelCaseModel):
     """Represents a performance record.
 
