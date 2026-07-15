@@ -15,13 +15,13 @@ class TestMetricsInstantiation:
         metric = Metrics(
             current_share_price=10.50,
             initial_share_price=10.00,
-            shares_owned=100.0,
+            total_shares=100.0,
             total_bankroll=1050.00,
         )
 
         assert metric.current_share_price == 10.50
         assert metric.initial_share_price == 10.00
-        assert metric.shares_owned == 100.0
+        assert metric.total_shares == 100.0
         assert metric.total_bankroll == 1050.00
 
     def test_create_metric_with_zero_values(self):
@@ -29,13 +29,13 @@ class TestMetricsInstantiation:
         metric = Metrics(
             current_share_price=0.0,
             initial_share_price=0.0,
-            shares_owned=0.0,
+            total_shares=0.0,
             total_bankroll=0.0,
         )
 
         assert metric.current_share_price == 0.0
         assert metric.initial_share_price == 0.0
-        assert metric.shares_owned == 0.0
+        assert metric.total_shares == 0.0
         assert metric.total_bankroll == 0.0
 
     def test_create_metric_with_decimal_precision(self):
@@ -43,13 +43,13 @@ class TestMetricsInstantiation:
         metric = Metrics(
             current_share_price=12.3456,
             initial_share_price=10.9876,
-            shares_owned=123.456,
+            total_shares=123.456,
             total_bankroll=5678.1234,
         )
 
         assert metric.current_share_price == 12.3456
         assert metric.initial_share_price == 10.9876
-        assert metric.shares_owned == 123.456
+        assert metric.total_shares == 123.456
         assert metric.total_bankroll == 5678.1234
 
     def test_create_metric_with_camel_case_input(self):
@@ -57,13 +57,13 @@ class TestMetricsInstantiation:
         metric = Metrics(
             currentSharePrice=11.00,
             initialSharePrice=10.00,
-            sharesOwned=100.0,
+            totalShares=100.0,
             totalBankroll=1100.00,
         )
 
         assert metric.current_share_price == 11.00
         assert metric.initial_share_price == 10.00
-        assert metric.shares_owned == 100.0
+        assert metric.total_shares == 100.0
         assert metric.total_bankroll == 1100.00
 
 
@@ -85,7 +85,7 @@ class TestMetricsValidation:
             Metrics(
                 current_share_price="not a number",
                 initial_share_price=10.00,
-                shares_owned=100.0,
+                total_shares=100.0,
                 total_bankroll=1000.00,
             )
 
@@ -94,13 +94,13 @@ class TestMetricsValidation:
         metric = Metrics(
             current_share_price="10.50",
             initial_share_price="10.00",
-            shares_owned="100.0",
+            total_shares="100.0",
             total_bankroll="1050.00",
         )
 
         assert metric.current_share_price == 10.50
         assert metric.initial_share_price == 10.00
-        assert metric.shares_owned == 100.0
+        assert metric.total_shares == 100.0
         assert metric.total_bankroll == 1050.00
         assert isinstance(metric.current_share_price, float)
 
@@ -110,7 +110,7 @@ class TestMetricsValidation:
             Metrics(
                 current_share_price=None,
                 initial_share_price=10.00,
-                shares_owned=100.0,
+                total_shares=100.0,
                 total_bankroll=1000.00,
             )
 
@@ -120,17 +120,17 @@ class TestMetricsValidation:
             Metrics(
                 current_share_price=10.50,
                 initial_share_price=None,
-                shares_owned=100.0,
+                total_shares=100.0,
                 total_bankroll=1000.00,
             )
 
-    def test_metric_validates_shares_owned_type(self):
-        """Metrics should validate shares_owned is numeric."""
+    def test_metric_validates_total_shares_type(self):
+        """Metrics should validate total_shares is numeric."""
         with pytest.raises(ValidationError):
             Metrics(
                 current_share_price=10.50,
                 initial_share_price=10.00,
-                shares_owned=None,
+                total_shares=None,
                 total_bankroll=1000.00,
             )
 
@@ -140,7 +140,7 @@ class TestMetricsValidation:
             Metrics(
                 current_share_price=10.50,
                 initial_share_price=10.00,
-                shares_owned=100.0,
+                total_shares=100.0,
                 total_bankroll=None,
             )
 
@@ -154,13 +154,13 @@ class TestMetricsEquality:
         metric1 = Metrics(
             current_share_price=10.50,
             initial_share_price=10.00,
-            shares_owned=100.0,
+            total_shares=100.0,
             total_bankroll=1050.00,
         )
         metric2 = Metrics(
             current_share_price=10.50,
             initial_share_price=10.00,
-            shares_owned=100.0,
+            total_shares=100.0,
             total_bankroll=1050.00,
         )
 
@@ -171,13 +171,13 @@ class TestMetricsEquality:
         metric1 = Metrics(
             current_share_price=10.50,
             initial_share_price=10.00,
-            shares_owned=100.0,
+            total_shares=100.0,
             total_bankroll=1050.00,
         )
         metric2 = Metrics(
             current_share_price=11.00,
             initial_share_price=10.00,
-            shares_owned=100.0,
+            total_shares=100.0,
             total_bankroll=1050.00,
         )
 
@@ -188,30 +188,30 @@ class TestMetricsEquality:
         metric1 = Metrics(
             current_share_price=10.50,
             initial_share_price=10.00,
-            shares_owned=100.0,
+            total_shares=100.0,
             total_bankroll=1050.00,
         )
         metric2 = Metrics(
             current_share_price=10.50,
             initial_share_price=9.50,
-            shares_owned=100.0,
+            total_shares=100.0,
             total_bankroll=1050.00,
         )
 
         assert metric1 != metric2
 
-    def test_metric_inequality_different_shares_owned(self):
-        """Metrics with different shares_owned should not be equal."""
+    def test_metric_inequality_different_total_shares(self):
+        """Metrics with different total_shares should not be equal."""
         metric1 = Metrics(
             current_share_price=10.50,
             initial_share_price=10.00,
-            shares_owned=100.0,
+            total_shares=100.0,
             total_bankroll=1050.00,
         )
         metric2 = Metrics(
             current_share_price=10.50,
             initial_share_price=10.00,
-            shares_owned=200.0,
+            total_shares=200.0,
             total_bankroll=1050.00,
         )
 
@@ -222,13 +222,13 @@ class TestMetricsEquality:
         metric1 = Metrics(
             current_share_price=10.50,
             initial_share_price=10.00,
-            shares_owned=100.0,
+            total_shares=100.0,
             total_bankroll=1050.00,
         )
         metric2 = Metrics(
             current_share_price=10.50,
             initial_share_price=10.00,
-            shares_owned=100.0,
+            total_shares=100.0,
             total_bankroll=2000.00,
         )
 
@@ -244,7 +244,7 @@ class TestMetricsSerialization:
         metric = Metrics(
             current_share_price=10.50,
             initial_share_price=10.00,
-            shares_owned=100.0,
+            total_shares=100.0,
             total_bankroll=1050.00,
         )
 
@@ -252,7 +252,7 @@ class TestMetricsSerialization:
 
         assert data["current_share_price"] == 10.50
         assert data["initial_share_price"] == 10.00
-        assert data["shares_owned"] == 100.0
+        assert data["total_shares"] == 100.0
         assert data["total_bankroll"] == 1050.00
 
     def test_metric_model_dump_json(self):
@@ -260,7 +260,7 @@ class TestMetricsSerialization:
         metric = Metrics(
             current_share_price=10.50,
             initial_share_price=10.00,
-            shares_owned=100.0,
+            total_shares=100.0,
             total_bankroll=1050.00,
         )
 
@@ -277,7 +277,7 @@ class TestMetricsSerialization:
         metric = Metrics(
             current_share_price=10.50,
             initial_share_price=10.00,
-            shares_owned=100.0,
+            total_shares=100.0,
             total_bankroll=1050.00,
         )
 
@@ -285,7 +285,7 @@ class TestMetricsSerialization:
 
         assert "currentSharePrice" in data
         assert "initialSharePrice" in data
-        assert "sharesOwned" in data
+        assert "totalShares" in data
         assert "totalBankroll" in data
 
     def test_metric_has_all_attributes(self):
@@ -293,13 +293,13 @@ class TestMetricsSerialization:
         metric = Metrics(
             current_share_price=10.50,
             initial_share_price=10.00,
-            shares_owned=100.0,
+            total_shares=100.0,
             total_bankroll=1050.00,
         )
 
         assert hasattr(metric, "current_share_price")
         assert hasattr(metric, "initial_share_price")
-        assert hasattr(metric, "shares_owned")
+        assert hasattr(metric, "total_shares")
         assert hasattr(metric, "total_bankroll")
 
 
@@ -312,7 +312,7 @@ class TestMetricsSharePriceRelationships:
         metric = Metrics(
             current_share_price=12.00,
             initial_share_price=10.00,
-            shares_owned=100.0,
+            total_shares=100.0,
             total_bankroll=1200.00,
         )
 
@@ -323,7 +323,7 @@ class TestMetricsSharePriceRelationships:
         metric = Metrics(
             current_share_price=8.00,
             initial_share_price=10.00,
-            shares_owned=100.0,
+            total_shares=100.0,
             total_bankroll=800.00,
         )
 
@@ -334,7 +334,7 @@ class TestMetricsSharePriceRelationships:
         metric = Metrics(
             current_share_price=10.00,
             initial_share_price=10.00,
-            shares_owned=100.0,
+            total_shares=100.0,
             total_bankroll=1000.00,
         )
 
@@ -345,7 +345,7 @@ class TestMetricsSharePriceRelationships:
         metric = Metrics(
             current_share_price=12.00,
             initial_share_price=10.00,
-            shares_owned=100.0,
+            total_shares=100.0,
             total_bankroll=1200.00,
         )
 
@@ -358,7 +358,7 @@ class TestMetricsSharePriceRelationships:
         metric = Metrics(
             current_share_price=11.00,
             initial_share_price=10.00,
-            shares_owned=100.0,
+            total_shares=100.0,
             total_bankroll=1100.00,
         )
 
@@ -376,15 +376,15 @@ class TestMetricsBankrollCalculations:
     """Test total bankroll calculations."""
 
     def test_bankroll_equals_shares_times_price(self):
-        """Bankroll should equal current_share_price * shares_owned."""
+        """Bankroll should equal current_share_price * total_shares."""
         metric = Metrics(
             current_share_price=10.50,
             initial_share_price=10.00,
-            shares_owned=100.0,
+            total_shares=100.0,
             total_bankroll=1050.00,
         )
 
-        expected_bankroll = metric.current_share_price * metric.shares_owned
+        expected_bankroll = metric.current_share_price * metric.total_shares
 
         assert metric.total_bankroll == expected_bankroll
 
@@ -393,11 +393,11 @@ class TestMetricsBankrollCalculations:
         metric = Metrics(
             current_share_price=12.00,
             initial_share_price=10.00,
-            shares_owned=100.0,
+            total_shares=100.0,
             total_bankroll=1200.00,
         )
 
-        initial_investment = metric.initial_share_price * metric.shares_owned
+        initial_investment = metric.initial_share_price * metric.total_shares
 
         assert metric.total_bankroll > initial_investment
 
@@ -406,11 +406,11 @@ class TestMetricsBankrollCalculations:
         metric = Metrics(
             current_share_price=8.00,
             initial_share_price=10.00,
-            shares_owned=100.0,
+            total_shares=100.0,
             total_bankroll=800.00,
         )
 
-        initial_investment = metric.initial_share_price * metric.shares_owned
+        initial_investment = metric.initial_share_price * metric.total_shares
 
         assert metric.total_bankroll < initial_investment
 
@@ -419,11 +419,11 @@ class TestMetricsBankrollCalculations:
         metric = Metrics(
             current_share_price=11.00,
             initial_share_price=10.00,
-            shares_owned=100.0,
+            total_shares=100.0,
             total_bankroll=1100.00,
         )
 
-        initial_investment = metric.initial_share_price * metric.shares_owned
+        initial_investment = metric.initial_share_price * metric.total_shares
         roi = (metric.total_bankroll - initial_investment) / initial_investment * 100
 
         assert roi == 10.0
@@ -433,11 +433,11 @@ class TestMetricsBankrollCalculations:
         metric = Metrics(
             current_share_price=10.00,
             initial_share_price=10.00,
-            shares_owned=50.5,
+            total_shares=50.5,
             total_bankroll=505.00,
         )
 
-        expected_bankroll = metric.current_share_price * metric.shares_owned
+        expected_bankroll = metric.current_share_price * metric.total_shares
 
         assert metric.total_bankroll == expected_bankroll
 
@@ -451,13 +451,13 @@ class TestMetricsEdgeCases:
         metric = Metrics(
             current_share_price=0.01,
             initial_share_price=0.01,
-            shares_owned=100.0,
+            total_shares=100.0,
             total_bankroll=1.00,
         )
 
         assert metric.current_share_price == 0.01
         assert metric.initial_share_price == 0.01
-        assert metric.shares_owned == 100.0
+        assert metric.total_shares == 100.0
         assert metric.total_bankroll == 1.00
 
     def test_metric_with_large_values(self):
@@ -465,13 +465,13 @@ class TestMetricsEdgeCases:
         metric = Metrics(
             current_share_price=15000.00,
             initial_share_price=10000.00,
-            shares_owned=100.0,
+            total_shares=100.0,
             total_bankroll=1_500_000.00,
         )
 
         assert metric.current_share_price == 15000.00
         assert metric.initial_share_price == 10000.00
-        assert metric.shares_owned == 100.0
+        assert metric.total_shares == 100.0
         assert metric.total_bankroll == 1_500_000.00
 
     def test_metric_with_negative_values(self):
@@ -479,12 +479,12 @@ class TestMetricsEdgeCases:
         metric = Metrics(
             current_share_price=-5.00,
             initial_share_price=10.00,
-            shares_owned=100.0,
+            total_shares=100.0,
             total_bankroll=-500.00,
         )
 
         assert metric.current_share_price == -5.00
-        assert metric.shares_owned == 100.0
+        assert metric.total_shares == 100.0
         assert metric.total_bankroll == -500.00
 
     def test_metric_with_fractional_cents(self):
@@ -492,31 +492,31 @@ class TestMetricsEdgeCases:
         metric = Metrics(
             current_share_price=10.123,
             initial_share_price=10.456,
-            shares_owned=100.0,
+            total_shares=100.0,
             total_bankroll=1012.30,
         )
 
         assert metric.current_share_price == 10.123
         assert metric.initial_share_price == 10.456
-        assert metric.shares_owned == 100.0
+        assert metric.total_shares == 100.0
 
     def test_multiple_metrics_are_independent(self):
         """Multiple Metrics instances should not share state."""
         metric1 = Metrics(
             current_share_price=10.50,
             initial_share_price=10.00,
-            shares_owned=100.0,
+            total_shares=100.0,
             total_bankroll=1050.00,
         )
         metric2 = Metrics(
             current_share_price=12.00,
             initial_share_price=10.00,
-            shares_owned=200.0,
+            total_shares=200.0,
             total_bankroll=2400.00,
         )
 
         assert metric1.current_share_price != metric2.current_share_price
-        assert metric1.shares_owned != metric2.shares_owned
+        assert metric1.total_shares != metric2.total_shares
         assert metric1.total_bankroll != metric2.total_bankroll
 
     def test_metric_with_same_initial_and_current_price(self):
@@ -524,7 +524,7 @@ class TestMetricsEdgeCases:
         metric = Metrics(
             current_share_price=10.00,
             initial_share_price=10.00,
-            shares_owned=100.0,
+            total_shares=100.0,
             total_bankroll=1000.00,
         )
 
@@ -537,13 +537,13 @@ class TestMetricsEdgeCases:
         metric = Metrics(
             current_share_price=10.123456789,
             initial_share_price=10.987654321,
-            shares_owned=123.456789,
+            total_shares=123.456789,
             total_bankroll=1012.3456789,
         )
 
         assert metric.current_share_price == 10.123456789
         assert metric.initial_share_price == 10.987654321
-        assert metric.shares_owned == 123.456789
+        assert metric.total_shares == 123.456789
         assert metric.total_bankroll == 1012.3456789
 
     def test_metric_with_fractional_shares(self):
@@ -551,23 +551,23 @@ class TestMetricsEdgeCases:
         metric = Metrics(
             current_share_price=10.00,
             initial_share_price=10.00,
-            shares_owned=0.5,
+            total_shares=0.5,
             total_bankroll=5.00,
         )
 
-        assert metric.shares_owned == 0.5
-        assert metric.total_bankroll == metric.current_share_price * metric.shares_owned
+        assert metric.total_shares == 0.5
+        assert metric.total_bankroll == metric.current_share_price * metric.total_shares
 
     def test_metric_with_large_share_count(self):
         """Metrics should handle large numbers of shares."""
         metric = Metrics(
             current_share_price=10.00,
             initial_share_price=10.00,
-            shares_owned=1_000_000.0,
+            total_shares=1_000_000.0,
             total_bankroll=10_000_000.00,
         )
 
-        assert metric.shares_owned == 1_000_000.0
+        assert metric.total_shares == 1_000_000.0
         assert metric.total_bankroll == 10_000_000.00
 
 
@@ -580,25 +580,25 @@ class TestMetricsTypicalScenarios:
         metric = Metrics(
             current_share_price=10.00,
             initial_share_price=10.00,
-            shares_owned=100.0,
+            total_shares=100.0,
             total_bankroll=1000.00,
         )
 
         assert metric.current_share_price == metric.initial_share_price
         assert metric.total_bankroll == 1000.00
-        assert metric.shares_owned == 100.0
+        assert metric.total_shares == 100.0
 
     def test_profitable_scenario(self):
         """Metrics showing profit after successful betting."""
         metric = Metrics(
             current_share_price=12.50,
             initial_share_price=10.00,
-            shares_owned=100.0,
+            total_shares=100.0,
             total_bankroll=1250.00,
         )
 
         profit = metric.total_bankroll - (
-            metric.initial_share_price * metric.shares_owned
+            metric.initial_share_price * metric.total_shares
         )
 
         assert profit == 250.00
@@ -609,12 +609,12 @@ class TestMetricsTypicalScenarios:
         metric = Metrics(
             current_share_price=7.50,
             initial_share_price=10.00,
-            shares_owned=100.0,
+            total_shares=100.0,
             total_bankroll=750.00,
         )
 
         loss = (
-            metric.initial_share_price * metric.shares_owned
+            metric.initial_share_price * metric.total_shares
         ) - metric.total_bankroll
 
         assert loss == 250.00
@@ -625,12 +625,12 @@ class TestMetricsTypicalScenarios:
         metric = Metrics(
             current_share_price=10.05,
             initial_share_price=10.00,
-            shares_owned=100.0,
+            total_shares=100.0,
             total_bankroll=1005.00,
         )
 
         gain = metric.total_bankroll - (
-            metric.initial_share_price * metric.shares_owned
+            metric.initial_share_price * metric.total_shares
         )
 
         assert gain == 5.00
@@ -641,9 +641,9 @@ class TestMetricsTypicalScenarios:
         metric = Metrics(
             current_share_price=10.00,
             initial_share_price=10.00,
-            shares_owned=250.0,  # 3 accounts with varying shares
+            total_shares=250.0,  # 3 accounts with varying shares
             total_bankroll=2500.00,
         )
 
-        assert metric.shares_owned == 250.0
-        assert metric.total_bankroll == metric.current_share_price * metric.shares_owned
+        assert metric.total_shares == 250.0
+        assert metric.total_bankroll == metric.current_share_price * metric.total_shares

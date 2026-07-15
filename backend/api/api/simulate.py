@@ -5,6 +5,7 @@ ledger = {
     "initial_share_price": 10,
 }
 
+
 def simulate_transactions():
     """Simulate transactions for The Private Ledger."""
     pass
