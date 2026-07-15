@@ -235,19 +235,19 @@
           "accountId": {
             "type": "string",
             "pattern": "^PL-[a-f0-9]{32}$",
-            "title": "Accountid"
+            "title": "Account ID"
           },
           "accountBalance": {
             "type": "number",
-            "title": "Accountbalance"
+            "title": "Account Balance"
           },
           "currentValue": {
             "type": "number",
-            "title": "Currentvalue"
+            "title": "Current Value"
           },
           "sharesOwned": {
             "type": "number",
-            "title": "Sharesowned"
+            "title": "Shares Owned"
           },
           "ownership": {
             "type": "number",
@@ -255,7 +255,7 @@
           },
           "returnOnInvestment": {
             "type": "number",
-            "title": "Returnoninvestment"
+            "title": "Return On Investment"
           }
         },
         "type": "object",
@@ -297,7 +297,7 @@
           },
           "returnOnInvestment": {
             "type": "number",
-            "title": "Returnoninvestment"
+            "title": "Return On Investment"
           },
           "shares": {
             "type": "number",
@@ -305,19 +305,19 @@
           },
           "sharePrice": {
             "type": "number",
-            "title": "Shareprice"
+            "title": "Share Price"
           },
           "totalBankroll": {
             "type": "number",
-            "title": "Totalbankroll"
+            "title": "Total Bankroll"
           },
           "unitPrice": {
             "type": "number",
-            "title": "Unitprice"
+            "title": "Unit Price"
           },
           "unitsWon": {
             "type": "number",
-            "title": "Unitswon"
+            "title": "Units Won"
           }
         },
         "type": "object",
@@ -338,15 +338,15 @@
         "properties": {
           "currentSharePrice": {
             "type": "number",
-            "title": "Currentshareprice"
+            "title": "Current Share Price"
           },
           "initialSharePrice": {
             "type": "number",
-            "title": "Initialshareprice"
+            "title": "Initial Share Price"
           },
           "totalBankroll": {
             "type": "number",
-            "title": "Totalbankroll"
+            "title": "Total Bankroll"
           }
         },
         "type": "object",
@@ -368,7 +368,7 @@
           "accountId": {
             "type": "string",
             "pattern": "^PL-[a-f0-9]{32}$",
-            "title": "Accountid"
+            "title": "Account ID"
           },
           "amount": {
             "type": "number",
