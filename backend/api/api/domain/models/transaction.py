@@ -18,7 +18,7 @@ class Transaction(CamelCaseModel):
     """
 
     date: str = Field(
-        ..., pattern=r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(.\d+)?(Z|[+-]\d{2}:\d{2})?$"
+        ..., pattern=r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d+)?(Z|[+-]\d{2}:\d{2})?$"
     )
     account_id: str = Field(..., pattern=r"^PL-[a-f0-9]{32}$")
     amount: float
