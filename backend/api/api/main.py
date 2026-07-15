@@ -74,6 +74,8 @@ def get_metics():
         ),
         "current_share_price": "11.98",
         "initial_share_price": "10.00",
-        "shares_owned": sum(float(account["shares_owned"]) for account in db["accounts"]),
+        "shares_owned": sum(
+            float(account["shares_owned"]) for account in db["accounts"]
+        ),
     }
     return metrics
