@@ -6,8 +6,8 @@ import pandas as pd
 from fastapi import FastAPI
 
 from api.domain.models.account import Account
-from api.domain.models.performance import Performance
 from api.domain.models.metrics import Metrics
+from api.domain.models.performance import Performance
 from api.domain.models.transaction import Transaction
 
 BASE_DIR = Path(__file__).resolve()

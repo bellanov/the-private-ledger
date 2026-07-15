@@ -42,12 +42,12 @@ describe("[unit] Private Ledger Prototype Server", () => {
     });
   });
 
-  describe("GET /summary.html", () => {
-    it("should return full summary page", async () => {
-      const res = await request(app).get("/summary.html");
+  describe("GET /metrics.html", () => {
+    it("should return full metrics page", async () => {
+      const res = await request(app).get("/metrics.html");
       expect(res.statusCode).toBe(200);
       expect(res.text).toContain("<!doctype html>");
-      expect(res.text).toContain("Summary");
+      expect(res.text).toContain("Metrics");
     });
   });
 
