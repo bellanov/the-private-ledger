@@ -2,21 +2,21 @@ const request = require("supertest");
 const app = require("../src/server");
 
 describe("[integration] Private Ledger Prototype Server", () => {
-  describe("GET /summary", () => {
-    it("should return summary HTML", async () => {
-      const res = await request(app).get("/summary");
+  describe("GET /metrics", () => {
+    it("should return metrics HTML", async () => {
+      const res = await request(app).get("/metrics");
       expect(res.statusCode).toBe(200);
-      expect(res.text).toContain("Summary");
+      expect(res.text).toContain("Metrics");
     });
 
     it("should return table structure", async () => {
-      const res = await request(app).get("/summary");
+      const res = await request(app).get("/metrics");
       expect(res.text).toContain("<table>");
       expect(res.text).toContain("</table>");
     });
 
-    it("should contain summary fields", async () => {
-      const res = await request(app).get("/summary");
+    it("should contain metrics fields", async () => {
+      const res = await request(app).get("/metrics");
       expect(res.text).toContain("Current Share Price");
       expect(res.text).toContain("Initial Share Price");
       expect(res.text).toContain("Total Bankroll");
@@ -99,7 +99,7 @@ describe("[integration] Private Ledger Prototype Server", () => {
     });
 
     it("should return HTML content for partial endpoints", async () => {
-      const res = await request(app).get("/summary");
+      const res = await request(app).get("/metrics");
       expect(res.headers["content-type"]).toContain("text/html");
     });
 
@@ -109,7 +109,7 @@ describe("[integration] Private Ledger Prototype Server", () => {
     });
 
     it("should return HTML content for full page endpoints", async () => {
-      const res = await request(app).get("/summary.html");
+      const res = await request(app).get("/metrics.html");
       expect(res.headers["content-type"]).toContain("text/html");
     });
   });
