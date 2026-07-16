@@ -67,7 +67,7 @@ def get_transactions_for_account(account_id: str):
 
 
 @app.get("/metrics", response_model=Metrics)
-def get_metics():
+def get_metrics():
     total_bankroll = sum(
         float(account["account_balance"]) for account in db["accounts"]
     )
