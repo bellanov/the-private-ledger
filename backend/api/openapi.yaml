@@ -137,8 +137,8 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
   /metrics:
     get:
-      summary: Get Metics
-      operationId: get_metics_metrics_get
+      summary: Get Metrics
+      operationId: get_metrics_metrics_get
       responses:
         '200':
           description: Successful Response

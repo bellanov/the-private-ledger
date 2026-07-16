@@ -68,14 +68,20 @@ def get_transactions_for_account(account_id: str):
 
 @app.get("/metrics", response_model=Metrics)
 def get_metics():
+    total_bankroll = sum(
+        float(account["account_balance"]) for account in db["accounts"]
+    )
+    total_shares = sum(
+        float(account["shares_owned"]) for account in db["accounts"]
+    )
+    # Calculate current share price as total_bankroll / total_shares
+    current_share_price = (
+        total_bankroll / total_shares if total_shares > 0 else 0.0
+    )
     metrics = {
-        "total_bankroll": sum(
-            float(account["account_balance"]) for account in db["accounts"]
-        ),
-        "current_share_price": 11.98,
+        "total_bankroll": total_bankroll,
+        "current_share_price": current_share_price,
         "initial_share_price": 10.00,
-        "total_shares": sum(
-            float(account["shares_owned"]) for account in db["accounts"]
-        ),
+        "total_shares": total_shares,
     }
     return metrics
