@@ -1,4 +1,4 @@
-account_id,account_balance,shares_owned,ownership,current_value,return_on_investment
+account_id,account_balance,total_shares,ownership,current_value,return_on_investment
 PL-f3d9c1a24b7e4c18a9d2f6e1b8c04735,100,10,10.00,100,0.00
 PL-8a12e5d94c3f4a7bb6e1820fd9c4512a,100,10,10.00,100,0.00
 PL-4d7b92c1e8f64ab39c15d702fa6e8b41,100,10,10.00,100,0.00
