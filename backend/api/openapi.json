@@ -209,17 +209,17 @@
         }
       }
     },
-    "/summary": {
+    "/metrics": {
       "get": {
-        "summary": "Get Summary",
-        "operationId": "get_summary_summary_get",
+        "summary": "Get Metrics",
+        "operationId": "get_metrics_metrics_get",
         "responses": {
           "200": {
             "description": "Successful Response",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Summary"
+                  "$ref": "#/components/schemas/Metrics"
                 }
               }
             }
@@ -334,30 +334,6 @@
         "title": "Performance",
         "description": "Represents a performance record.\n\nAttributes:\n    date: The date of the performance record.\n    record: A string representing the performance record.\n    return_on_investment: The return on investment for the day.\n    shares: The number of shares held.\n    share_price: The price per share.\n    total_bankroll: The total bankroll for the day.\n    unit_price: The price per unit.\n    units_won: The number of units won."
       },
-      "Summary": {
-        "properties": {
-          "currentSharePrice": {
-            "type": "number",
-            "title": "Current Share Price"
-          },
-          "initialSharePrice": {
-            "type": "number",
-            "title": "Initial Share Price"
-          },
-          "totalBankroll": {
-            "type": "number",
-            "title": "Total Bankroll"
-          }
-        },
-        "type": "object",
-        "required": [
-          "currentSharePrice",
-          "initialSharePrice",
-          "totalBankroll"
-        ],
-        "title": "Summary",
-        "description": "Represents a summary of the ledger.\n\nAttributes:\n    current_share_price: The current price of a share.\n    initial_share_price: The initial price of a share.\n    total_bankroll: The total bankroll of the account."
-      },
       "Transaction": {
         "properties": {
           "date": {
@@ -440,6 +416,35 @@
           "type"
         ],
         "title": "ValidationError"
+      },
+      "Metrics": {
+        "properties": {
+          "currentSharePrice": {
+            "type": "number",
+            "title": "Current Share Price"
+          },
+          "initialSharePrice": {
+            "type": "number",
+            "title": "Initial Share Price"
+          },
+          "totalShares": {
+            "type": "number",
+            "title": "Total Shares"
+          },
+          "totalBankroll": {
+            "type": "number",
+            "title": "Total Bankroll"
+          }
+        },
+        "type": "object",
+        "required": [
+          "currentSharePrice",
+          "initialSharePrice",
+          "totalShares",
+          "totalBankroll"
+        ],
+        "title": "Metrics",
+        "description": "Represents metrics of the ledger.\n\nAttributes:\n    current_share_price: The current price of a share (total_bankroll / total_shares).\n    initial_share_price: The initial price of a share.\n    total_shares: The total number of shares owned by all accounts.\n    total_bankroll: The total bankroll of the Ledger."
       }
     }
   }
