@@ -4,6 +4,8 @@ from pydantic import Field
 
 from api.domain.models.pydantic import CamelCaseModel
 
+UUID = r"^[a-f0-9]{32}$"
+
 
 class Ledger(CamelCaseModel):
     """Represents a ledger.
@@ -15,7 +17,7 @@ class Ledger(CamelCaseModel):
         initial_share_price: The initial price of a share.
     """
 
-    id: str = Field(..., pattern=r"^[a-f0-9]{32}$")
+    id: str = Field(..., pattern=UUID)
     name: str
     description: str
     current_share_price: float

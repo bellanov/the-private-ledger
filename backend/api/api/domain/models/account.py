@@ -4,6 +4,8 @@ from pydantic import Field
 
 from api.domain.models.pydantic import CamelCaseModel
 
+ACCOUNT = r"^PL-[a-f0-9]{32}$"
+
 
 class Account(CamelCaseModel):
     """Represents an account.
@@ -17,7 +19,7 @@ class Account(CamelCaseModel):
         return_on_investment: Return on investment metrics.
     """
 
-    account_id: str = Field(..., pattern=r"^PL-[a-f0-9]{32}$")
+    account_id: str = Field(..., pattern=ACCOUNT)
     account_balance: float
     current_value: float
     total_shares: float

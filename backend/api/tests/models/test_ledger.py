@@ -92,7 +92,9 @@ class TestLedgerValidation:
             Ledger(current_share_price=10.00)
 
         errors = exc_info.value.errors()
-        assert len(errors) >= 4  # Missing required fields (id, name, description, initial_share_price)
+        assert (
+            len(errors) >= 4
+        )  # Missing required fields (id, name, description, initial_share_price)
 
     def test_ledger_validates_id_pattern(self):
         """Ledger should validate id matches UUID pattern (32 hex chars)."""

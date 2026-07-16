@@ -6,10 +6,10 @@ import pandas as pd
 from fastapi import FastAPI
 
 from api.domain.models.account import Account
+from api.domain.models.ledger import Ledger
 from api.domain.models.metrics import Metrics
 from api.domain.models.performance import Performance
 from api.domain.models.transaction import Transaction
-from api.domain.models.ledger import Ledger
 
 BASE_DIR = Path(__file__).resolve()
 
@@ -46,15 +46,15 @@ def get_account(account_id: str):
         account for account in db["accounts"] if account["account_id"] == account_id
     ]
 
+
 @app.get("/ledgers", response_model=list[Ledger])
 def get_ledgers():
     return db["ledgers"]
 
+
 @app.get("/ledgers/{ledger_id}", response_model=list[Ledger])
 def get_ledger(ledger_id: str):
-    return [
-        ledger for ledger in db["ledgers"] if ledger["id"] == ledger_id
-    ]
+    return [ledger for ledger in db["ledgers"] if ledger["id"] == ledger_id]
 
 
 @app.get("/performance", response_model=list[Performance])
@@ -88,7 +88,7 @@ def get_metics():
     )
     total_shares = sum(float(account["total_shares"]) for account in db["accounts"])
     average_share_price = total_bankroll / total_shares
-    
+
     metrics = {
         "total_bankroll": total_bankroll,
         "average_share_price": average_share_price,

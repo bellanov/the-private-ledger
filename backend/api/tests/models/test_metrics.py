@@ -464,7 +464,13 @@ class TestMetricsTypicalScenarios:
         assert metric.total_bankroll == 1005.00
         assert metric.average_share_price == 10.05
         # Use approximate comparison for floating-point arithmetic
-        assert abs(metric.total_bankroll - (metric.average_share_price * metric.total_shares)) < 0.01
+        assert (
+            abs(
+                metric.total_bankroll
+                - (metric.average_share_price * metric.total_shares)
+            )
+            < 0.01
+        )
 
     def test_multi_account_scenario(self):
         """Metrics with multiple accounts owning shares."""
