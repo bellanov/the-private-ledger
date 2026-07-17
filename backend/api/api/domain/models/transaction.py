@@ -4,6 +4,10 @@ from pydantic import Field
 
 from api.domain.models.pydantic import CamelCaseModel
 
+ISO_DATE = r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d+)?(Z|[+-]\d{2}:\d{2})?$"
+NOTE = r"^(venmo|bank|check|cashapp|zelle|apple)$"
+TRANSACTION_TYPE = r"^(DEPOSIT|WITHDRAWAL)$"
+
 
 class Transaction(CamelCaseModel):
     """Represents a financial transaction.
@@ -19,10 +23,10 @@ class Transaction(CamelCaseModel):
 
     date: str = Field(
         ...,
-        pattern=r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d+)?(Z|[+-]\d{2}:\d{2})?$",
+        pattern=ISO_DATE,
     )
     account_id: str = Field(..., pattern=r"^PL-[a-f0-9]{32}$")
     amount: float
-    type: str = Field(..., pattern=r"^(DEPOSIT|WITHDRAWAL)$")
+    type: str = Field(..., pattern=TRANSACTION_TYPE)
     shares: float
-    note: str = Field(..., pattern=r"^(venmo|bank|check|cashapp|zelle|apple)$")
+    note: str = Field(..., pattern=NOTE)

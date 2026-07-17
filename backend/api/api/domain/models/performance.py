@@ -4,6 +4,9 @@ from pydantic import Field
 
 from api.domain.models.pydantic import CamelCaseModel
 
+ISO_DATE = r"^\d{4}-\d{2}-\d{2}$"
+RECORD = r"^\d+-\d+$"
+
 
 class Performance(CamelCaseModel):
     """Represents a performance record.
@@ -19,8 +22,8 @@ class Performance(CamelCaseModel):
         units_won: The number of units won.
     """
 
-    date: str = Field(..., pattern=r"^\d{4}-\d{2}-\d{2}$")
-    record: str = Field(..., pattern=r"^\d+-\d+$")
+    date: str = Field(..., pattern=ISO_DATE)
+    record: str = Field(..., pattern=RECORD)
     return_on_investment: float
     shares: float
     share_price: float

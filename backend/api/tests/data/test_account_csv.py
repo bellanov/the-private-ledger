@@ -34,7 +34,8 @@ class TestAccountCSVIntegrity:
         expected_headers = {
             "account_id",
             "account_balance",
-            "shares_owned",
+            "total_shares",
+            "ledger_id",
             "ownership",
             "current_value",
             "return_on_investment",
@@ -71,12 +72,12 @@ class TestAccountCSVIntegrity:
                 pytest.fail(f"Non-numeric balance: {account['account_balance']}")
 
     def test_all_shares_are_numeric(self, accounts):
-        """All shares_owned values should be numeric."""
+        """All total_shares values should be numeric."""
         for account in accounts:
             try:
-                float(account["shares_owned"])
+                float(account["total_shares"])
             except ValueError:
-                pytest.fail(f"Non-numeric shares: {account['shares_owned']}")
+                pytest.fail(f"Non-numeric shares: {account['total_shares']}")
 
     def test_all_ownership_are_numeric(self, accounts):
         """All ownership values should be numeric."""
@@ -103,14 +104,14 @@ class TestAccountCSVIntegrity:
                 pytest.fail(f"Non-numeric ROI: {account['return_on_investment']}")
 
     def test_total_shares_equals_100(self, accounts):
-        """Total shares_owned across all accounts should equal 100."""
-        total_shares = sum(float(a["shares_owned"]) for a in accounts)
+        """Total total_shares across all accounts should equal 100."""
+        total_shares = sum(float(a["total_shares"]) for a in accounts)
         assert total_shares == 100.0
 
     def test_each_account_has_10_shares(self, accounts):
         """Each account should have exactly 10 shares."""
         for account in accounts:
-            assert float(account["shares_owned"]) == 10.0
+            assert float(account["total_shares"]) == 10.0
 
     def test_ownership_percentage_is_10_percent_each(self, accounts):
         """Each account's ownership should be exactly 10%."""
