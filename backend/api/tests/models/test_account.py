@@ -14,6 +14,7 @@ class TestAccountInstantiation:
         """Account should store all constructor values."""
         account = Account(
             account_id="PL-f3d9c1a24b7e4c18a9d2f6e1b8c04735",
+            ledger_id="f3d9c1a24b7e4c18a9d2f6e1b8c04735",
             account_balance=50000.00,
             current_value=57500.00,
             total_shares=100.0,
@@ -22,6 +23,7 @@ class TestAccountInstantiation:
         )
 
         assert account.account_id == "PL-f3d9c1a24b7e4c18a9d2f6e1b8c04735"
+        assert account.ledger_id == "f3d9c1a24b7e4c18a9d2f6e1b8c04735"
         assert account.account_balance == 50000.00
         assert account.current_value == 57500.00
         assert account.total_shares == 100.0
@@ -32,6 +34,7 @@ class TestAccountInstantiation:
         """Account should handle zero values correctly."""
         account = Account(
             account_id="PL-8a12e5d94c3f4a7bb6e1820fd9c4512a",
+            ledger_id="8a12e5d94c3f4a7bb6e1820fd9c4512a",
             account_balance=0.0,
             current_value=0.0,
             total_shares=0.0,
@@ -49,6 +52,7 @@ class TestAccountInstantiation:
         """Account should preserve decimal precision."""
         account = Account(
             account_id="PL-4d7b92c1e8f64ab39c15d702fa6e8b41",
+            ledger_id="4d7b92c1e8f64ab39c15d702fa6e8b41",
             account_balance=1234.567,
             current_value=5678.901,
             total_shares=123.456,
@@ -66,6 +70,7 @@ class TestAccountInstantiation:
         """Account should accept camelCase field names."""
         account = Account(
             accountId="PL-b6e41d9a73c24f80a5d9e1c24b7f6038",
+            ledgerId="b6e41d9a73c24f80a5d9e1c24b7f6038",
             accountBalance=1000.0,
             currentValue=1100.0,
             totalShares=10.0,
@@ -74,6 +79,7 @@ class TestAccountInstantiation:
         )
 
         assert account.account_id == "PL-b6e41d9a73c24f80a5d9e1c24b7f6038"
+        assert account.ledger_id == "b6e41d9a73c24f80a5d9e1c24b7f6038"
         assert account.account_balance == 1000.0
 
 
@@ -87,13 +93,14 @@ class TestAccountValidation:
             Account(account_id="PL-test")
 
         errors = exc_info.value.errors()
-        assert len(errors) >= 5  # Missing required fields
+        assert len(errors) >= 6  # Missing required fields
 
     def test_account_validates_numeric_fields(self):
         """Account should validate numeric fields."""
         with pytest.raises(ValidationError):
             Account(
                 account_id="PL-test",
+                ledger_id="a5f28c71d3e6492eb8c4f16a9d7032bc",
                 account_balance="not a number",
                 current_value=1000.0,
                 total_shares=10.0,
@@ -106,6 +113,7 @@ class TestAccountValidation:
         with pytest.raises(ValidationError):
             Account(
                 account_id=12345,
+                ledger_id="c8e15a42b9d74f03ae6c1d84f2759b10",
                 account_balance=1000.0,
                 current_value=1000.0,
                 total_shares=10.0,
@@ -117,6 +125,7 @@ class TestAccountValidation:
         """Account should convert numeric strings to floats."""
         account = Account(
             account_id="PL-19c7e4b2d5a64fb8b3e1079ac4d862ef",
+            ledger_id="19c7e4b2d5a64fb8b3e1079ac4d862ef",
             account_balance="1000.0",
             current_value="1100.0",
             total_shares="10.0",
@@ -137,6 +146,7 @@ class TestAccountEquality:
         """Accounts with identical values should be equal."""
         account1 = Account(
             account_id="PL-a5f28c71d3e6492eb8c4f16a9d7032bc",
+            ledger_id="a5f28c71d3e6492eb8c4f16a9d7032bc",
             account_balance=1000.0,
             current_value=1100.0,
             total_shares=10.0,
@@ -145,6 +155,7 @@ class TestAccountEquality:
         )
         account2 = Account(
             account_id="PL-a5f28c71d3e6492eb8c4f16a9d7032bc",
+            ledger_id="a5f28c71d3e6492eb8c4f16a9d7032bc",
             account_balance=1000.0,
             current_value=1100.0,
             total_shares=10.0,
@@ -158,6 +169,7 @@ class TestAccountEquality:
         """Accounts with different balances should not be equal."""
         account1 = Account(
             account_id="PL-72d4b8e19ac34f5ba1e96c20d7f4836a",
+            ledger_id="72d4b8e19ac34f5ba1e96c20d7f4836a",
             account_balance=1000.0,
             current_value=1100.0,
             total_shares=10.0,
@@ -166,6 +178,7 @@ class TestAccountEquality:
         )
         account2 = Account(
             account_id="PL-72d4b8e19ac34f5ba1e96c20d7f4836a",
+            ledger_id="72d4b8e19ac34f5ba1e96c20d7f4836a",
             account_balance=2000.0,
             current_value=1100.0,
             total_shares=10.0,
@@ -179,6 +192,7 @@ class TestAccountEquality:
         """Accounts with different IDs should not be equal."""
         account1 = Account(
             account_id="PL-c8e15a42b9d74f03ae6c1d84f2759b10",
+            ledger_id="c8e15a42b9d74f03ae6c1d84f2759b10",
             account_balance=1000.0,
             current_value=1100.0,
             total_shares=10.0,
@@ -187,6 +201,7 @@ class TestAccountEquality:
         )
         account2 = Account(
             account_id="PL-5e2f7c1a9d4b4e6f8a3c1d7e9b2f4a6c",
+            ledger_id="5e2f7c1a9d4b4e6f8a3c1d7e9b2f4a6c",
             account_balance=1000.0,
             current_value=1100.0,
             total_shares=10.0,
@@ -205,6 +220,7 @@ class TestAccountSerialization:
         """model_dump should return dictionary with snake_case keys."""
         account = Account(
             account_id="PL-91ab4e7d2c6f48b3a5d9e0f1c2b7a8d4",
+            ledger_id="91ab4e7d2c6f48b3a5d9e0f1c2b7a8d4",
             account_balance=1000.0,
             current_value=1100.0,
             total_shares=10.0,
@@ -215,6 +231,7 @@ class TestAccountSerialization:
         data = account.model_dump()
 
         assert data["account_id"] == "PL-91ab4e7d2c6f48b3a5d9e0f1c2b7a8d4"
+        assert data["ledger_id"] == "91ab4e7d2c6f48b3a5d9e0f1c2b7a8d4"
         assert data["account_balance"] == 1000.0
         assert data["current_value"] == 1100.0
         assert data["total_shares"] == 10.0
@@ -225,6 +242,7 @@ class TestAccountSerialization:
         """model_dump_json should return JSON string."""
         account = Account(
             account_id="PL-f3d9c1a24b7e4c18a9d2f6e1b8c04735",
+            ledger_id="f3d9c1a24b7e4c18a9d2f6e1b8c04735",
             account_balance=1000.0,
             current_value=1100.0,
             total_shares=10.0,
@@ -236,12 +254,14 @@ class TestAccountSerialization:
 
         assert isinstance(json_str, str)
         assert "PL-f3d9c1a24b7e4c18a9d2f6e1b8c04735" in json_str
+        assert "f3d9c1a24b7e4c18a9d2f6e1b8c04735" in json_str
         assert "1000.0" in json_str
 
     def test_account_model_dump_by_alias(self):
         """model_dump with by_alias=True should use camelCase."""
         account = Account(
             account_id="PL-8a12e5d94c3f4a7bb6e1820fd9c4512a",
+            ledger_id="8a12e5d94c3f4a7bb6e1820fd9c4512a",
             account_balance=1000.0,
             current_value=1100.0,
             total_shares=10.0,
@@ -252,6 +272,7 @@ class TestAccountSerialization:
         data = account.model_dump(by_alias=True)
 
         assert "accountId" in data
+        assert "ledgerId" in data
         assert "accountBalance" in data
         assert "currentValue" in data
         assert "totalShares" in data
@@ -261,6 +282,7 @@ class TestAccountSerialization:
         """Account should have all expected attributes."""
         account = Account(
             account_id="PL-4d7b92c1e8f64ab39c15d702fa6e8b41",
+            ledger_id="4d7b92c1e8f64ab39c15d702fa6e8b41",
             account_balance=1000.0,
             current_value=1100.0,
             total_shares=10.0,
@@ -269,6 +291,7 @@ class TestAccountSerialization:
         )
 
         assert hasattr(account, "account_id")
+        assert hasattr(account, "ledger_id")
         assert hasattr(account, "account_balance")
         assert hasattr(account, "current_value")
         assert hasattr(account, "total_shares")
@@ -284,6 +307,7 @@ class TestAccountReturnOnInvestment:
         """ROI should handle positive values."""
         account = Account(
             account_id="PL-b6e41d9a73c24f80a5d9e1c24b7f6038",
+            ledger_id="b6e41d9a73c24f80a5d9e1c24b7f6038",
             account_balance=1000.0,
             current_value=1150.0,
             total_shares=10.0,
@@ -297,6 +321,7 @@ class TestAccountReturnOnInvestment:
         """ROI should handle negative return values."""
         account = Account(
             account_id="PL-19c7e4b2d5a64fb8b3e1079ac4d862ef",
+            ledger_id="19c7e4b2d5a64fb8b3e1079ac4d862ef",
             account_balance=1000.0,
             current_value=900.0,
             total_shares=10.0,
@@ -310,6 +335,7 @@ class TestAccountReturnOnInvestment:
         """ROI should handle zero value (break-even)."""
         account = Account(
             account_id="PL-a5f28c71d3e6492eb8c4f16a9d7032bc",
+            ledger_id="a5f28c71d3e6492eb8c4f16a9d7032bc",
             account_balance=1000.0,
             current_value=1000.0,
             total_shares=10.0,
@@ -328,6 +354,7 @@ class TestAccountFinancialCalculations:
         """Current value should exceed balance for profit."""
         account = Account(
             account_id="PL-72d4b8e19ac34f5ba1e96c20d7f4836a",
+            ledger_id="72d4b8e19ac34f5ba1e96c20d7f4836a",
             account_balance=50000.00,
             current_value=57500.00,
             total_shares=100.0,
@@ -344,6 +371,7 @@ class TestAccountFinancialCalculations:
         """Current value should be less than balance for loss."""
         account = Account(
             account_id="PL-c8e15a42b9d74f03ae6c1d84f2759b10",
+            ledger_id="c8e15a42b9d74f03ae6c1d84f2759b10",
             account_balance=50000.00,
             current_value=40000.00,
             total_shares=100.0,
@@ -360,6 +388,7 @@ class TestAccountFinancialCalculations:
         """Current value equal to balance means no gain/loss."""
         account = Account(
             account_id="PL-5e2f7c1a9d4b4e6f8a3c1d7e9b2f4a6c",
+            ledger_id="5e2f7c1a9d4b4e6f8a3c1d7e9b2f4a6c",
             account_balance=50000.00,
             current_value=50000.00,
             total_shares=100.0,
@@ -376,6 +405,7 @@ class TestAccountFinancialCalculations:
         """Price per share should equal current_value / total_shares."""
         account = Account(
             account_id="PL-91ab4e7d2c6f48b3a5d9e0f1c2b7a8d4",
+            ledger_id="91ab4e7d2c6f48b3a5d9e0f1c2b7a8d4",
             account_balance=50000.00,
             current_value=50000.00,
             total_shares=100.0,
@@ -396,6 +426,7 @@ class TestAccountEdgeCases:
         """Account should handle very small decimal values."""
         account = Account(
             account_id="PL-f3d9c1a24b7e4c18a9d2f6e1b8c04735",
+            ledger_id="f3d9c1a24b7e4c18a9d2f6e1b8c04735",
             account_balance=0.01,
             current_value=0.02,
             total_shares=0.001,
@@ -411,6 +442,7 @@ class TestAccountEdgeCases:
         """Account should handle large financial values."""
         account = Account(
             account_id="PL-8a12e5d94c3f4a7bb6e1820fd9c4512a",
+            ledger_id="8a12e5d94c3f4a7bb6e1820fd9c4512a",
             account_balance=1_000_000.00,
             current_value=1_500_000.00,
             total_shares=10000.0,
@@ -425,6 +457,7 @@ class TestAccountEdgeCases:
         """Account should handle fractional ownership percentages."""
         account = Account(
             account_id="PL-4d7b92c1e8f64ab39c15d702fa6e8b41",
+            ledger_id="4d7b92c1e8f64ab39c15d702fa6e8b41",
             account_balance=1000.0,
             current_value=1100.0,
             total_shares=10.5,
@@ -439,6 +472,7 @@ class TestAccountEdgeCases:
         """Account should handle 100% ownership."""
         account = Account(
             account_id="PL-b6e41d9a73c24f80a5d9e1c24b7f6038",
+            ledger_id="b6e41d9a73c24f80a5d9e1c24b7f6038",
             account_balance=50000.00,
             current_value=55000.00,
             total_shares=100.0,
@@ -452,6 +486,7 @@ class TestAccountEdgeCases:
         """Multiple Account instances should not share state."""
         account1 = Account(
             account_id="PL-19c7e4b2d5a64fb8b3e1079ac4d862ef",
+            ledger_id="19c7e4b2d5a64fb8b3e1079ac4d862ef",
             account_balance=1000.0,
             current_value=1100.0,
             total_shares=10.0,
@@ -460,6 +495,7 @@ class TestAccountEdgeCases:
         )
         account2 = Account(
             account_id="PL-a5f28c71d3e6492eb8c4f16a9d7032bc",
+            ledger_id="a5f28c71d3e6492eb8c4f16a9d7032bc",
             account_balance=2000.0,
             current_value=2200.0,
             total_shares=20.0,
