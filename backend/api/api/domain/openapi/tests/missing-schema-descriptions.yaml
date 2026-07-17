@@ -1,0 +1,51 @@
+openapi: 3.0.3
+info:
+  title: Missing Schema Descriptions Example
+  description: This spec violates the schema-description-required rule.
+  version: 1.0.0
+  contact:
+    name: API Support
+    email: support@example.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+
+servers:
+  - url: https://api.example.com/v1
+    description: Production server
+
+paths:
+  /items:
+    get:
+      summary: List all items
+      description: Returns a list of items.
+      operationId: listItems
+      tags:
+        - items
+      responses:
+        "200":
+          description: A list of items.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ItemList"
+
+components:
+  schemas:
+    ItemList:
+      type: object
+      properties:
+        items:
+          type: array
+          # Missing description - violates schema-description-required (warn)
+          items:
+            $ref: "#/components/schemas/Item"
+    Item:
+      type: object
+      properties:
+        id:
+          type: string
+          # Missing description - violates schema-description-required (warn)
+        name:
+          type: string
+          # Missing description - violates schema-description-required (warn)

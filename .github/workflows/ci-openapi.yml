@@ -1,0 +1,38 @@
+name: OpenAPI CI
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "backend/api/api/domain/openapi/specs/**.yaml"
+      - "backend/api/api/domain/openapi/.spectral.yml"
+  pull_request:
+    paths:
+      - "backend/api/api/domain/openapi/specs/**.yaml"
+      - "backend/api/api/domain/openapi/.spectral.yml"
+
+jobs:
+  spectral:
+    name: Lint OpenAPI Specs
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: backend/api/api/domain/openapi
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install Spectral CLI
+        run: npm install -g @stoplight/spectral-cli
+
+      - name: Validate OpenAPI specs
+        run: |
+          spectral lint specs/**/*.yaml --ruleset .spectral.yml --fail-severity error
