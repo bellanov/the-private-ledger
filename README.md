@@ -44,8 +44,10 @@ Applications are distributed across the `backend` and `frontend` directories.
 
 Summary of the models used within the `api` project. The elements are translated into `camelCase` when exposed.
 
-[OpenAPI Specification: YAML](https://github.com/bellanov/the-private-ledger/blob/main/backend/api/openapi.yaml)
+*OpenAPI Specifications*
 
-[OpenAPI Specification: JSON](https://github.com/bellanov/the-private-ledger/blob/main/backend/api/openapi.json)
+- [YAML](https://github.com/bellanov/the-private-ledger/blob/main/backend/api/openapi.yaml)
+
+- [JSON](https://github.com/bellanov/the-private-ledger/blob/main/backend/api/openapi.json)
 
 ![Models](./diagrams/Models.svg)
