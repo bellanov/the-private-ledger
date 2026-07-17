@@ -7,11 +7,13 @@ on:
   push:
     branches: [ "main" ]
     paths:
-    - "backend/api/**/*.py"
+    - "backend/api/api/domain/openapi/**/*.yaml"
+    - "backend/api/api/domain/openapi/**/*.json"
   pull_request:
     branches: [ "main" ]
     paths:
-    - "backend/api/**/*.py"
+    - "backend/api/api/domain/openapi/**/*.yaml"
+    - "backend/api/api/domain/openapi/**/*.json"
 
 jobs:
   build:
