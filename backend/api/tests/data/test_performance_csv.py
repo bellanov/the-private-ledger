@@ -137,22 +137,22 @@ class TestCrossCSVRelationships:
         assert perf_bankroll == account_sum
 
     def test_performance_shares_matches_account_sum(self, accounts, performance):
-        """Performance shares should equal sum of account shares_owned."""
-        account_shares = sum(float(a["shares_owned"]) for a in accounts)
+        """Performance shares should equal sum of account total_shares."""
+        account_shares = sum(float(a["total_shares"]) for a in accounts)
         perf_shares = float(performance[0]["shares"])
         assert perf_shares == account_shares
 
     def test_performance_share_price_calculation(self, accounts, performance):
         """Performance share_price should equal total_bankroll / shares."""
         account_sum = sum(float(a["current_value"]) for a in accounts)
-        account_shares = sum(float(a["shares_owned"]) for a in accounts)
+        account_shares = sum(float(a["total_shares"]) for a in accounts)
         expected_price = account_sum / account_shares
         actual_price = float(performance[0]["share_price"])
         assert actual_price == expected_price
 
     def test_transaction_total_shares_matches_account_sum(self, accounts, transactions):
         """Transaction total shares should equal account total shares."""
-        account_shares = sum(float(a["shares_owned"]) for a in accounts)
+        account_shares = sum(float(a["total_shares"]) for a in accounts)
         transaction_shares = sum(float(t["shares"]) for t in transactions)
         assert transaction_shares == account_shares
 

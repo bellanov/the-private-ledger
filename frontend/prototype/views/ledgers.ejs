@@ -1,0 +1,21 @@
+<section>
+  <h2>Ledgers</h2>
+  <table>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Current Share Price</th>
+      <th>Initial Share Price</th>
+    </tr>
+    <% ledgers.forEach(ledger => { %>
+    <tr>
+      <td><%= ledger.id %></td>
+      <td><%= ledger.name %></td>
+      <td><%= ledger.description %></td>
+      <td>$<%= ledger.currentSharePrice %></td>
+      <td>$<%= ledger.initialSharePrice %></td>
+    </tr>
+    <% }); %>
+  </table>
+</section>
