@@ -1,4 +1,4 @@
-name: Validate OpenAPI Specs
+name: OpenAPI CI
 
 on:
   push:
