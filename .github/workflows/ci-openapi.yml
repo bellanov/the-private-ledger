@@ -5,12 +5,12 @@ on:
     branches:
       - main
     paths:
-      - "backend/api/api/openapi/specs/**.yaml"
-      - "backend/api/api/openapi/.spectral.yml"
+      - "backend/api/api/domain/openapi/specs/**.yaml"
+      - "backend/api/api/domain/openapi/.spectral.yml"
   pull_request:
     paths:
-      - "backend/api/api/openapi/specs/**.yaml"
-      - "backend/api/api/openapi/.spectral.yml"
+      - "backend/api/api/domain/openapi/specs/**.yaml"
+      - "backend/api/api/domain/openapi/.spectral.yml"
 
 jobs:
   spectral:
@@ -19,7 +19,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: backend/api/api/openapi
+        working-directory: backend/api/api/domain/openapi
 
     steps:
       - name: Checkout repository
