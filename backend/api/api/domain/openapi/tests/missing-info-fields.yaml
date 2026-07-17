@@ -1,0 +1,29 @@
+openapi: 3.0.3
+info:
+  title: Missing Info Fields Example
+  description: This spec violates the info-contact-required and info-license-required rules.
+  version: 1.0.0
+  # Missing contact - violates info-contact-required (warn)
+  # Missing license - violates info-license-required (warn)
+
+servers:
+  - url: https://api.example.com/v1
+    description: Production server
+
+paths:
+  /items:
+    get:
+      summary: List all items
+      description: Returns a list of items.
+      operationId: listItems
+      tags:
+        - items
+      responses:
+        "200":
+          description: A list of items.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object

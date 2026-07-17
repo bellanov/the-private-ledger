@@ -1,0 +1,240 @@
+openapi: 3.0.3
+info:
+  contact:
+    email: support@example.com
+    name: API Support
+  description: A template OpenAPI specification.
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  title: OpenAPI Template
+  version: 1.0.0
+servers:
+- description: Production server
+  url: https://api.example.com/v1
+tags:
+- description: Item operations
+  name: items
+paths:
+  /items:
+    get:
+      description: Returns a paginated list of all items.
+      operationId: listItems
+      parameters:
+      - description: Maximum number of items to return.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 20
+          maximum: 100
+          minimum: 1
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ItemList"
+          description: A list of items.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Bad request.
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Internal server error.
+      summary: List all items
+      tags:
+      - items
+    post:
+      description: Creates a new item.
+      operationId: createItem
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ItemInput"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Item"
+          description: Item created successfully.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Bad request.
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Internal server error.
+      summary: Create an item
+      tags:
+      - items
+  /items/{itemId}:
+    delete:
+      description: Deletes a single item by its ID.
+      operationId: deleteItem
+      parameters:
+      - description: The unique identifier of the item.
+        explode: false
+        in: path
+        name: itemId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: Item deleted successfully.
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Item not found.
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Internal server error.
+      summary: Delete an item
+      tags:
+      - items
+    get:
+      description: Returns a single item by its ID.
+      operationId: getItem
+      parameters:
+      - description: The unique identifier of the item.
+        explode: false
+        in: path
+        name: itemId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Item"
+          description: The requested item.
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Item not found.
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Internal server error.
+      summary: Get an item
+      tags:
+      - items
+components:
+  schemas:
+    Item:
+      example:
+        createdAt: 2024-01-01T00:00:00Z
+        name: Sample Item
+        description: This is a sample item.
+        id: abc123
+      properties:
+        id:
+          description: The unique identifier of the item.
+          example: abc123
+          type: string
+        name:
+          description: The name of the item.
+          example: Sample Item
+          type: string
+        description:
+          description: An optional description of the item.
+          example: This is a sample item.
+          type: string
+        createdAt:
+          description: The timestamp when the item was created.
+          example: 2024-01-01T00:00:00Z
+          format: date-time
+          type: string
+      required:
+      - id
+      - name
+      type: object
+    ItemInput:
+      example:
+        name: New Item
+        description: This is a new item.
+      properties:
+        name:
+          description: The name of the item.
+          example: New Item
+          type: string
+        description:
+          description: An optional description of the item.
+          example: This is a new item.
+          type: string
+      required:
+      - name
+      type: object
+    ItemList:
+      example:
+        total: 42
+        items:
+        - createdAt: 2024-01-01T00:00:00Z
+          name: Sample Item
+          description: This is a sample item.
+          id: abc123
+        - createdAt: 2024-01-01T00:00:00Z
+          name: Sample Item
+          description: This is a sample item.
+          id: abc123
+      properties:
+        items:
+          description: The list of items.
+          items:
+            $ref: "#/components/schemas/Item"
+          type: array
+        total:
+          description: The total number of items available.
+          example: 42
+          type: integer
+      required:
+      - items
+      type: object
+    Error:
+      example:
+        code: 400
+        message: Bad request.
+      properties:
+        code:
+          description: The error code.
+          example: 400
+          type: integer
+        message:
+          description: A human-readable error message.
+          example: Bad request.
+          type: string
+      required:
+      - code
+      - message
+      type: object

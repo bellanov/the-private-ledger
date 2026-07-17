@@ -1,0 +1,83 @@
+extends:
+  - "spectral:oas"
+
+rules:
+  # Require all operations to have a summary
+  operation-summary-required:
+    description: All operations must have a summary.
+    message: "Operation '{{path}}' is missing a summary."
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete,options,head,trace]"
+    then:
+      field: summary
+      function: truthy
+
+  # Require all operations to have tags
+  operation-tags-required:
+    description: All operations must have at least one tag.
+    message: "Operation '{{path}}' must have at least one tag."
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete,options,head,trace]"
+    then:
+      field: tags
+      function: truthy
+
+  # Require all operations to have an operationId
+  operation-id-required:
+    description: All operations must have an operationId.
+    message: "Operation '{{path}}' is missing an operationId."
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete,options,head,trace]"
+    then:
+      field: operationId
+      function: truthy
+
+  # Require all operations to have at least one response
+  operation-responses-required:
+    description: All operations must define at least one response.
+    message: "Operation '{{path}}' must define at least one response."
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete,options,head,trace]"
+    then:
+      field: responses
+      function: truthy
+
+  # Require info contact object
+  info-contact-required:
+    description: The info object must have a contact field.
+    message: "The info object must include a contact field."
+    severity: warn
+    given: "$.info"
+    then:
+      field: contact
+      function: truthy
+
+  # Require info license object
+  info-license-required:
+    description: The info object must have a license field.
+    message: "The info object must include a license field."
+    severity: warn
+    given: "$.info"
+    then:
+      field: license
+      function: truthy
+
+  # Require servers to be defined
+  servers-required:
+    description: At least one server must be defined.
+    message: "The spec must include at least one server definition."
+    severity: warn
+    given: "$"
+    then:
+      field: servers
+      function: truthy
+
+  # Require all schemas to have a description
+  schema-description-required:
+    description: All component schemas must have a description.
+    message: "Schema property '{{path}}' is missing a description."
+    severity: warn
+    given: "$.components.schemas[*].properties[*]"
+    then:
+      field: description
+      function: truthy

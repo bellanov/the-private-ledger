@@ -1,0 +1,25 @@
+openapi: 3.0.3
+info:
+  title: Missing Responses Example
+  description: This spec violates the operation-responses-required rule.
+  version: 1.0.0
+  contact:
+    name: API Support
+    email: support@example.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+
+servers:
+  - url: https://api.example.com/v1
+    description: Production server
+
+paths:
+  /items:
+    get:
+      summary: List all items
+      description: Returns a list of items.
+      operationId: listItems
+      tags:
+        - items
+      # Missing responses - violates operation-responses-required (error)
