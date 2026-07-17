@@ -35,6 +35,7 @@ class TestAccountCSVIntegrity:
             "account_id",
             "account_balance",
             "total_shares",
+            "ledger_id",
             "ownership",
             "current_value",
             "return_on_investment",
