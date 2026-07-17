@@ -5,6 +5,7 @@ from pydantic import Field
 from api.domain.models.pydantic import CamelCaseModel
 
 ACCOUNT = r"^PL-[a-f0-9]{32}$"
+LEDGER = r"^[a-f0-9]{32}$"
 
 
 class Account(CamelCaseModel):
@@ -20,6 +21,7 @@ class Account(CamelCaseModel):
     """
 
     account_id: str = Field(..., pattern=ACCOUNT)
+    ledger_id: str = Field(..., pattern=LEDGER)
     account_balance: float
     current_value: float
     total_shares: float
