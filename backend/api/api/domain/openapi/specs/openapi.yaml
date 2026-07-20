@@ -3,7 +3,8 @@ openapi: 3.0.3
 info:
   title: ThePrivateLedger API
   version: 0.2.0
-  description: API for managing financial accounts, transactions, and performance
+  description:
+    API for managing financial accounts, transactions, and performance
     metrics.
   contact:
     name: Bellanov Apilli
@@ -35,13 +36,13 @@ paths:
       description: Get a list of all accounts with their details.
       operationId: getAccounts
       responses:
-        '200':
+        "200":
           description: Successful Response
           content:
             application/json:
               schema:
                 items:
-                  $ref: '#/components/schemas/Account'
+                  $ref: "#/components/schemas/Account"
                 type: array
   /accounts/{account_id}:
     get:
@@ -51,27 +52,27 @@ paths:
       description: Get details of a specific account by its ID.
       operationId: getAccount
       parameters:
-      - name: account_id
-        in: path
-        required: true
-        schema:
-          type: string
-          title: Account Id
+        - name: account_id
+          in: path
+          required: true
+          schema:
+            type: string
+            title: Account Id
       responses:
-        '200':
+        "200":
           description: Successful Response
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Account'
-        '422':
+                  $ref: "#/components/schemas/Account"
+        "422":
           description: Validation Error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/HTTPValidationError'
+                $ref: "#/components/schemas/HTTPValidationError"
   /performance:
     get:
       tags:
@@ -80,13 +81,13 @@ paths:
       description: Get performance metrics for all dates.
       operationId: getPerformance
       responses:
-        '200':
+        "200":
           description: Successful Response
           content:
             application/json:
               schema:
                 items:
-                  $ref: '#/components/schemas/Performance'
+                  $ref: "#/components/schemas/Performance"
                 type: array
   /performance/{date}:
     get:
@@ -96,27 +97,27 @@ paths:
       description: Get performance metrics for a specific date.
       operationId: getPerformanceForDate
       parameters:
-      - name: date
-        in: path
-        required: true
-        schema:
-          type: string
-          title: Date
+        - name: date
+          in: path
+          required: true
+          schema:
+            type: string
+            title: Date
       responses:
-        '200':
+        "200":
           description: Successful Response
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Performance'
-        '422':
+                  $ref: "#/components/schemas/Performance"
+        "422":
           description: Validation Error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/HTTPValidationError'
+                $ref: "#/components/schemas/HTTPValidationError"
   /transactions:
     get:
       tags:
@@ -125,13 +126,13 @@ paths:
       description: Get all transactions with their details.
       operationId: getTransactions
       responses:
-        '200':
+        "200":
           description: Successful Response
           content:
             application/json:
               schema:
                 items:
-                  $ref: '#/components/schemas/Transaction'
+                  $ref: "#/components/schemas/Transaction"
                 type: array
   /transactions/{account_id}:
     get:
@@ -141,42 +142,43 @@ paths:
       description: Get all transactions for a specific account.
       operationId: getTransactionsForAccount
       parameters:
-      - name: account_id
-        in: path
-        required: true
-        schema:
-          type: string
-          title: Account Id
+        - name: account_id
+          in: path
+          required: true
+          schema:
+            type: string
+            title: Account Id
       responses:
-        '200':
+        "200":
           description: Successful Response
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Transaction'
-        '422':
+                  $ref: "#/components/schemas/Transaction"
+        "422":
           description: Validation Error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/HTTPValidationError'
+                $ref: "#/components/schemas/HTTPValidationError"
   /metrics:
     get:
       tags:
         - metrics
       summary: Get Metrics
-      description: Get metrics of the ledger, including current share price, initial share
+      description:
+        Get metrics of the ledger, including current share price, initial share
         price, total shares, and total bankroll.
       operationId: getMetrics
       responses:
-        '200':
+        "200":
           description: Successful Response
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Metrics'
+                $ref: "#/components/schemas/Metrics"
 components:
   schemas:
     Account:
@@ -208,14 +210,15 @@ components:
           description: The return on investment for the account.
       type: object
       required:
-      - accountId
-      - accountBalance
-      - currentValue
-      - sharesOwned
-      - ownership
-      - returnOnInvestment
+        - accountId
+        - accountBalance
+        - currentValue
+        - sharesOwned
+        - ownership
+        - returnOnInvestment
       title: Account
-      description: "Represents an account.\n\nAttributes:\n    account_id: The ID\
+      description:
+        "Represents an account.\n\nAttributes:\n    account_id: The ID\
         \ of the account associated with the transaction.\n    account_balance: The\
         \ balance of the account.\n    current_value: The current value of the account.\n\
         \    shares_owned: The number of shares owned in the account.\n    ownership:\
@@ -225,7 +228,7 @@ components:
       properties:
         detail:
           items:
-            $ref: '#/components/schemas/ValidationError'
+            $ref: "#/components/schemas/ValidationError"
           type: array
           title: Detail
           description: A list of validation errors encountered during the request.
@@ -269,16 +272,17 @@ components:
           description: The number of units won on that date.
       type: object
       required:
-      - date
-      - record
-      - returnOnInvestment
-      - shares
-      - sharePrice
-      - totalBankroll
-      - unitPrice
-      - unitsWon
+        - date
+        - record
+        - returnOnInvestment
+        - shares
+        - sharePrice
+        - totalBankroll
+        - unitPrice
+        - unitsWon
       title: Performance
-      description: "Represents a performance record.\n\nAttributes:\n    date: The\
+      description:
+        "Represents a performance record.\n\nAttributes:\n    date: The\
         \ date of the performance record.\n    record: A string representing the performance\
         \ record.\n    return_on_investment: The return on investment for the day.\n\
         \    shares: The number of shares held.\n    share_price: The price per share.\n\
@@ -316,14 +320,15 @@ components:
           description: The type of note associated with the transaction (e.g., Venmo, Bank Transfer, Check, CashApp, Zelle, Apple Pay).
       type: object
       required:
-      - date
-      - accountId
-      - amount
-      - type
-      - shares
-      - note
+        - date
+        - accountId
+        - amount
+        - type
+        - shares
+        - note
       title: Transaction
-      description: "Represents a financial transaction.\n\nAttributes:\n    date:\
+      description:
+        "Represents a financial transaction.\n\nAttributes:\n    date:\
         \ The date of the transaction.\n    account_id: The ID of the account associated\
         \ with the transaction.\n    amount: The amount of the transaction.\n    type:\
         \ The type of the transaction (deposit, withdrawal).\n    shares: The number\
@@ -334,8 +339,8 @@ components:
         loc:
           items:
             anyOf:
-            - type: string
-            - type: integer
+              - type: string
+              - type: integer
           type: array
           title: Location
           description: A list indicating where the validation error occurred in the input data.
@@ -356,9 +361,9 @@ components:
           description: Additional context for the validation error.
       type: object
       required:
-      - loc
-      - msg
-      - type
+        - loc
+        - msg
+        - type
       title: ValidationError
     Metrics:
       properties:
@@ -380,12 +385,13 @@ components:
           description: The total bankroll of the Ledger.
       type: object
       required:
-      - currentSharePrice
-      - initialSharePrice
-      - totalShares
-      - totalBankroll
+        - currentSharePrice
+        - initialSharePrice
+        - totalShares
+        - totalBankroll
       title: Metrics
-      description: "Represents metrics of the ledger.\n\nAttributes:\n    current_share_price:\
+      description:
+        "Represents metrics of the ledger.\n\nAttributes:\n    current_share_price:\
         \ The current price of a share (total_bankroll / total_shares).\n    initial_share_price:\
         \ The initial price of a share.\n    total_shares: The total number of shares\
         \ owned by all accounts.\n    total_bankroll: The total bankroll of the Ledger."
