@@ -16,9 +16,21 @@ servers:
   - url: https://localhost:8000
     description: Local development server
 
+tags:
+  - name: accounts
+    description: Account operations
+  - name: transactions
+    description: Transaction operations
+  - name: performance
+    description: Performance metrics operations
+  - name: metrics
+    description: Ledger metrics operations
+
 paths:
   /accounts:
     get:
+      tags:
+        - accounts
       summary: Get Accounts
       description: Get a list of all accounts with their details.
       operationId: getAccounts
@@ -31,9 +43,10 @@ paths:
                 items:
                   $ref: '#/components/schemas/Account'
                 type: array
-                title: Response Get Accounts Accounts Get
   /accounts/{account_id}:
     get:
+      tags:
+        - accounts
       summary: Get Account
       description: Get details of a specific account by its ID.
       operationId: getAccount
@@ -53,7 +66,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Account'
-                title: Response Get Account Accounts  Account Id  Get
         '422':
           description: Validation Error
           content:
@@ -62,6 +74,8 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
   /performance:
     get:
+      tags:
+        - performance
       summary: Get Performance
       description: Get performance metrics for all dates.
       operationId: getPerformance
@@ -74,9 +88,10 @@ paths:
                 items:
                   $ref: '#/components/schemas/Performance'
                 type: array
-                title: Response Get Performance Performance Get
   /performance/{date}:
     get:
+      tags:
+        - performance
       summary: Get Performance For Date
       description: Get performance metrics for a specific date.
       operationId: getPerformanceForDate
@@ -96,7 +111,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Performance'
-                title: Response Get Performance For Date Performance  Date  Get
         '422':
           description: Validation Error
           content:
@@ -105,6 +119,8 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
   /transactions:
     get:
+      tags:
+        - transactions
       summary: Get Transactions
       description: Get all transactions with their details.
       operationId: getTransactions
@@ -117,9 +133,10 @@ paths:
                 items:
                   $ref: '#/components/schemas/Transaction'
                 type: array
-                title: Response Get Transactions Transactions Get
   /transactions/{account_id}:
     get:
+      tags:
+        - transactions
       summary: Get Transactions For Account
       description: Get all transactions for a specific account.
       operationId: getTransactionsForAccount
@@ -139,8 +156,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Transaction'
-                title: Response Get Transactions For Account Transactions  Account
-                  Id  Get
         '422':
           description: Validation Error
           content:
@@ -149,6 +164,8 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
   /metrics:
     get:
+      tags:
+        - metrics
       summary: Get Metrics
       description: Get metrics of the ledger, including current share price, initial share
         price, total shares, and total bankroll.
@@ -168,21 +185,27 @@ components:
           type: string
           pattern: ^PL-[a-f0-9]{32}$
           title: Account ID
+          description: The unique identifier of the account, following the format "PL-" followed by 32 hexadecimal characters.
         accountBalance:
           type: number
           title: Account Balance
+          description: The balance of the account, representing the total amount of funds available.
         currentValue:
           type: number
           title: Current Value
+          description: The current value of the account, calculated as account_balance * current_share_price.
         sharesOwned:
           type: number
           title: Shares Owned
+          description: The number of shares owned in the account.
         ownership:
           type: number
           title: Ownership
+          description: The ownership percentage of the account.
         returnOnInvestment:
           type: number
           title: Return On Investment
+          description: The return on investment for the account.
       type: object
       required:
       - accountId
@@ -205,6 +228,7 @@ components:
             $ref: '#/components/schemas/ValidationError'
           type: array
           title: Detail
+          description: A list of validation errors encountered during the request.
       type: object
       title: HTTPValidationError
     Performance:
@@ -213,28 +237,36 @@ components:
           type: string
           pattern: ^\d{4}-\d{2}-\d{2}$
           title: Date
+          description: The date of the performance record in YYYY-MM-DD format.
         record:
           type: string
           pattern: ^\d+-\d+$
           title: Record
+          description: A string representing the performance record for that date, formatted as "wins-losses".
         returnOnInvestment:
           type: number
           title: Return On Investment
+          description: The return on investment for that date.
         shares:
           type: number
           title: Shares
+          description: The number of shares held for that date.
         sharePrice:
           type: number
           title: Share Price
+          description: The price per share for that date.
         totalBankroll:
           type: number
           title: Total Bankroll
+          description: The total bankroll for that date.
         unitPrice:
           type: number
           title: Unit Price
+          description: The price per unit for that date.
         unitsWon:
           type: number
           title: Units Won
+          description: The number of units won on that date.
       type: object
       required:
       - date
@@ -258,24 +290,30 @@ components:
           type: string
           pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d+)?(Z|[+-]\d{2}:\d{2})?$
           title: Date
+          description: The date and time of the transaction in ISO 8601 format.
         accountId:
           type: string
           pattern: ^PL-[a-f0-9]{32}$
           title: Account ID
+          description: The ID of the account associated with the transaction.
         amount:
           type: number
           title: Amount
+          description: The amount of the transaction.
         type:
           type: string
           pattern: ^(DEPOSIT|WITHDRAWAL)$
           title: Type
+          description: The type of transaction (DEPOSIT or WITHDRAWAL).
         shares:
           type: number
           title: Shares
+          description: The number of shares involved in the transaction.
         note:
           type: string
           pattern: ^(venmo|bank|check|cashapp|zelle|apple)$
           title: Note
+          description: The type of note associated with the transaction (e.g., Venmo, Bank Transfer, Check, CashApp, Zelle, Apple Pay).
       type: object
       required:
       - date
@@ -300,17 +338,22 @@ components:
             - type: integer
           type: array
           title: Location
+          description: A list indicating where the validation error occurred in the input data.
         msg:
           type: string
           title: Message
+          description: A human-readable error message describing the validation error.
         type:
           type: string
           title: Error Type
+          description: The type of validation error (e.g., "value_error", "type_error").
         input:
           title: Input
+          description: The input data that caused the validation error.
         ctx:
           type: object
           title: Context
+          description: Additional context for the validation error.
       type: object
       required:
       - loc
@@ -322,15 +365,19 @@ components:
         currentSharePrice:
           type: number
           title: Current Share Price
+          description: The current price of a share (total_bankroll / total_shares).
         initialSharePrice:
           type: number
           title: Initial Share Price
+          description: The initial price of a share.
         totalShares:
           type: number
           title: Total Shares
+          description: The total number of shares owned by all accounts.
         totalBankroll:
           type: number
           title: Total Bankroll
+          description: The total bankroll of the Ledger.
       type: object
       required:
       - currentSharePrice
