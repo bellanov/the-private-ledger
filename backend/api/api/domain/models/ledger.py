@@ -11,14 +11,14 @@ class Ledger(CamelCaseModel):
     """Represents a ledger.
 
     Attributes:
-        ledger_id: The ID of the ledger.
+        id: The ID of the ledger.
         name: The name of the ledger.
         description: The description of the ledger.
         current_share_price: The current price of a share.
         initial_share_price: The initial price of a share.
     """
 
-    ledger_id: str = Field(..., pattern=UUID)
+    id: str = Field(..., pattern=UUID)
     name: str
     description: str
     current_share_price: float

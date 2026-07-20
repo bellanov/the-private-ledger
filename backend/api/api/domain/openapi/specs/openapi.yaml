@@ -1,4 +1,5 @@
-openapi: 3.1.0
+openapi: 3.0.3
+
 info:
   title: ThePrivateLedger API
   version: 0.2.0
@@ -10,11 +11,17 @@ info:
   license:
     name: MIT
     url: https://opensource.org/licenses/MIT
+
+servers:
+  - url: https://localhost:8000
+    description: Local development server
+
 paths:
   /accounts:
     get:
       summary: Get Accounts
-      operationId: get_accounts_accounts_get
+      description: Get a list of all accounts with their details.
+      operationId: getAccounts
       responses:
         '200':
           description: Successful Response
@@ -28,7 +35,8 @@ paths:
   /accounts/{account_id}:
     get:
       summary: Get Account
-      operationId: get_account_accounts__account_id__get
+      description: Get details of a specific account by its ID.
+      operationId: getAccount
       parameters:
       - name: account_id
         in: path
@@ -55,7 +63,8 @@ paths:
   /performance:
     get:
       summary: Get Performance
-      operationId: get_performance_performance_get
+      description: Get performance metrics for all dates.
+      operationId: getPerformance
       responses:
         '200':
           description: Successful Response
@@ -69,7 +78,8 @@ paths:
   /performance/{date}:
     get:
       summary: Get Performance For Date
-      operationId: get_performance_for_date_performance__date__get
+      description: Get performance metrics for a specific date.
+      operationId: getPerformanceForDate
       parameters:
       - name: date
         in: path
@@ -96,7 +106,8 @@ paths:
   /transactions:
     get:
       summary: Get Transactions
-      operationId: get_transactions_transactions_get
+      description: Get all transactions with their details.
+      operationId: getTransactions
       responses:
         '200':
           description: Successful Response
@@ -110,7 +121,8 @@ paths:
   /transactions/{account_id}:
     get:
       summary: Get Transactions For Account
-      operationId: get_transactions_for_account_transactions__account_id__get
+      description: Get all transactions for a specific account.
+      operationId: getTransactionsForAccount
       parameters:
       - name: account_id
         in: path
@@ -138,7 +150,9 @@ paths:
   /metrics:
     get:
       summary: Get Metrics
-      operationId: get_metrics_metrics_get
+      description: Get metrics of the ledger, including current share price, initial share
+        price, total shares, and total bankroll.
+      operationId: getMetrics
       responses:
         '200':
           description: Successful Response
