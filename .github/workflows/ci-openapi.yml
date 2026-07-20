@@ -36,3 +36,4 @@ jobs:
       - name: Validate OpenAPI specs
         run: |
           spectral lint specs/**/*.yaml --ruleset .spectral.yml --fail-severity error
+          spectral lint specs/**/*.json --ruleset .spectral.yml --fail-severity error
