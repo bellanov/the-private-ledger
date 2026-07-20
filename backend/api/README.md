@@ -19,7 +19,7 @@ API layer for *ThePrivateLedger*.
 
 # OpenAPI Specification
 
-The API includes OpenAPI 3.1.0 specifications in both JSON and YAML formats:
+The API includes OpenAPI 3.1.0 specifications in both JSON and YAML formats within the `specs` folder:
 
 - `openapi.json` - OpenAPI specification in JSON format
 - `openapi.yaml` - OpenAPI specification in YAML format
