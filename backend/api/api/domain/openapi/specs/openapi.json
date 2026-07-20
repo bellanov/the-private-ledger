@@ -1,5 +1,5 @@
 {
-  "openapi": "3.1.0",
+  "openapi": "3.0.3",
   "info": {
     "title": "ThePrivateLedger API",
     "version": "0.2.0",
@@ -13,11 +13,39 @@
       "url": "https://opensource.org/licenses/MIT"
     }
   },
+  "servers": [
+    {
+      "url": "https://localhost:8000",
+      "description": "Local development server"
+    }
+  ],
+  "tags": [
+    {
+      "name": "accounts",
+      "description": "Account operations"
+    },
+    {
+      "name": "transactions",
+      "description": "Transaction operations"
+    },
+    {
+      "name": "performance",
+      "description": "Performance metrics operations"
+    },
+    {
+      "name": "metrics",
+      "description": "Ledger metrics operations"
+    }
+  ],
   "paths": {
     "/accounts": {
       "get": {
+        "tags": [
+          "accounts"
+        ],
         "summary": "Get Accounts",
-        "operationId": "get_accounts_accounts_get",
+        "description": "Get a list of all accounts with their details.",
+        "operationId": "getAccounts",
         "responses": {
           "200": {
             "description": "Successful Response",
@@ -27,8 +55,7 @@
                   "items": {
                     "$ref": "#/components/schemas/Account"
                   },
-                  "type": "array",
-                  "title": "Response Get Accounts Accounts Get"
+                  "type": "array"
                 }
               }
             }
@@ -38,8 +65,12 @@
     },
     "/accounts/{account_id}": {
       "get": {
+        "tags": [
+          "accounts"
+        ],
         "summary": "Get Account",
-        "operationId": "get_account_accounts__account_id__get",
+        "description": "Get details of a specific account by its ID.",
+        "operationId": "getAccount",
         "parameters": [
           {
             "name": "account_id",
@@ -60,8 +91,7 @@
                   "type": "array",
                   "items": {
                     "$ref": "#/components/schemas/Account"
-                  },
-                  "title": "Response Get Account Accounts  Account Id  Get"
+                  }
                 }
               }
             }
@@ -81,8 +111,12 @@
     },
     "/performance": {
       "get": {
+        "tags": [
+          "performance"
+        ],
         "summary": "Get Performance",
-        "operationId": "get_performance_performance_get",
+        "description": "Get performance metrics for all dates.",
+        "operationId": "getPerformance",
         "responses": {
           "200": {
             "description": "Successful Response",
@@ -92,8 +126,7 @@
                   "items": {
                     "$ref": "#/components/schemas/Performance"
                   },
-                  "type": "array",
-                  "title": "Response Get Performance Performance Get"
+                  "type": "array"
                 }
               }
             }
@@ -103,8 +136,12 @@
     },
     "/performance/{date}": {
       "get": {
+        "tags": [
+          "performance"
+        ],
         "summary": "Get Performance For Date",
-        "operationId": "get_performance_for_date_performance__date__get",
+        "description": "Get performance metrics for a specific date.",
+        "operationId": "getPerformanceForDate",
         "parameters": [
           {
             "name": "date",
@@ -125,8 +162,7 @@
                   "type": "array",
                   "items": {
                     "$ref": "#/components/schemas/Performance"
-                  },
-                  "title": "Response Get Performance For Date Performance  Date  Get"
+                  }
                 }
               }
             }
@@ -146,8 +182,12 @@
     },
     "/transactions": {
       "get": {
+        "tags": [
+          "transactions"
+        ],
         "summary": "Get Transactions",
-        "operationId": "get_transactions_transactions_get",
+        "description": "Get all transactions with their details.",
+        "operationId": "getTransactions",
         "responses": {
           "200": {
             "description": "Successful Response",
@@ -157,8 +197,7 @@
                   "items": {
                     "$ref": "#/components/schemas/Transaction"
                   },
-                  "type": "array",
-                  "title": "Response Get Transactions Transactions Get"
+                  "type": "array"
                 }
               }
             }
@@ -168,8 +207,12 @@
     },
     "/transactions/{account_id}": {
       "get": {
+        "tags": [
+          "transactions"
+        ],
         "summary": "Get Transactions For Account",
-        "operationId": "get_transactions_for_account_transactions__account_id__get",
+        "description": "Get all transactions for a specific account.",
+        "operationId": "getTransactionsForAccount",
         "parameters": [
           {
             "name": "account_id",
@@ -190,8 +233,7 @@
                   "type": "array",
                   "items": {
                     "$ref": "#/components/schemas/Transaction"
-                  },
-                  "title": "Response Get Transactions For Account Transactions  Account Id  Get"
+                  }
                 }
               }
             }
@@ -211,8 +253,12 @@
     },
     "/metrics": {
       "get": {
+        "tags": [
+          "metrics"
+        ],
         "summary": "Get Metrics",
-        "operationId": "get_metrics_metrics_get",
+        "description": "Get metrics of the ledger, including current share price, initial share price, total shares, and total bankroll.",
+        "operationId": "getMetrics",
         "responses": {
           "200": {
             "description": "Successful Response",
@@ -235,27 +281,33 @@
           "accountId": {
             "type": "string",
             "pattern": "^PL-[a-f0-9]{32}$",
-            "title": "Account ID"
+            "title": "Account ID",
+            "description": "The unique identifier of the account, following the format \"PL-\" followed by 32 hexadecimal characters."
           },
           "accountBalance": {
             "type": "number",
-            "title": "Account Balance"
+            "title": "Account Balance",
+            "description": "The balance of the account, representing the total amount of funds available."
           },
           "currentValue": {
             "type": "number",
-            "title": "Current Value"
+            "title": "Current Value",
+            "description": "The current value of the account, calculated as account_balance * current_share_price."
           },
           "sharesOwned": {
             "type": "number",
-            "title": "Shares Owned"
+            "title": "Shares Owned",
+            "description": "The number of shares owned in the account."
           },
           "ownership": {
             "type": "number",
-            "title": "Ownership"
+            "title": "Ownership",
+            "description": "The ownership percentage of the account."
           },
           "returnOnInvestment": {
             "type": "number",
-            "title": "Return On Investment"
+            "title": "Return On Investment",
+            "description": "The return on investment for the account."
           }
         },
         "type": "object",
@@ -277,7 +329,8 @@
               "$ref": "#/components/schemas/ValidationError"
             },
             "type": "array",
-            "title": "Detail"
+            "title": "Detail",
+            "description": "A list of validation errors encountered during the request."
           }
         },
         "type": "object",
@@ -288,36 +341,44 @@
           "date": {
             "type": "string",
             "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
-            "title": "Date"
+            "title": "Date",
+            "description": "The date of the performance record in YYYY-MM-DD format."
           },
           "record": {
             "type": "string",
             "pattern": "^\\d+-\\d+$",
-            "title": "Record"
+            "title": "Record",
+            "description": "A string representing the performance record for that date, formatted as \"wins-losses\"."
           },
           "returnOnInvestment": {
             "type": "number",
-            "title": "Return On Investment"
+            "title": "Return On Investment",
+            "description": "The return on investment for that date."
           },
           "shares": {
             "type": "number",
-            "title": "Shares"
+            "title": "Shares",
+            "description": "The number of shares held for that date."
           },
           "sharePrice": {
             "type": "number",
-            "title": "Share Price"
+            "title": "Share Price",
+            "description": "The price per share for that date."
           },
           "totalBankroll": {
             "type": "number",
-            "title": "Total Bankroll"
+            "title": "Total Bankroll",
+            "description": "The total bankroll for that date."
           },
           "unitPrice": {
             "type": "number",
-            "title": "Unit Price"
+            "title": "Unit Price",
+            "description": "The price per unit for that date."
           },
           "unitsWon": {
             "type": "number",
-            "title": "Units Won"
+            "title": "Units Won",
+            "description": "The number of units won on that date."
           }
         },
         "type": "object",
@@ -339,41 +400,40 @@
           "date": {
             "type": "string",
             "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?(Z|[+-]\\d{2}:\\d{2})?$",
-            "title": "Date"
+            "title": "Date",
+            "description": "The date and time of the transaction in ISO 8601 format."
           },
           "accountId": {
             "type": "string",
             "pattern": "^PL-[a-f0-9]{32}$",
-            "title": "Account ID"
+            "title": "Account ID",
+            "description": "The ID of the account associated with the transaction."
           },
           "amount": {
             "type": "number",
-            "title": "Amount"
+            "title": "Amount",
+            "description": "The amount of the transaction."
           },
           "type": {
             "type": "string",
             "pattern": "^(DEPOSIT|WITHDRAWAL)$",
-            "title": "Type"
+            "title": "Type",
+            "description": "The type of transaction (DEPOSIT or WITHDRAWAL)."
           },
           "shares": {
             "type": "number",
-            "title": "Shares"
+            "title": "Shares",
+            "description": "The number of shares involved in the transaction."
           },
           "note": {
             "type": "string",
             "pattern": "^(venmo|bank|check|cashapp|zelle|apple)$",
-            "title": "Note"
+            "title": "Note",
+            "description": "The type of note associated with the transaction (e.g., Venmo, Bank Transfer, Check, CashApp, Zelle, Apple Pay)."
           }
         },
         "type": "object",
-        "required": [
-          "date",
-          "accountId",
-          "amount",
-          "type",
-          "shares",
-          "note"
-        ],
+        "required": ["date", "accountId", "amount", "type", "shares", "note"],
         "title": "Transaction",
         "description": "Represents a financial transaction.\n\nAttributes:\n    date: The date of the transaction.\n    account_id: The ID of the account associated with the transaction.\n    amount: The amount of the transaction.\n    type: The type of the transaction (deposit, withdrawal).\n    shares: The number of shares involved in the transaction.\n    note: Type of note (Venmo, Bank Transfer, etc.)."
       },
@@ -391,49 +451,54 @@
               ]
             },
             "type": "array",
-            "title": "Location"
+            "title": "Location",
+            "description": "A list indicating where the validation error occurred in the input data."
           },
           "msg": {
             "type": "string",
-            "title": "Message"
+            "title": "Message",
+            "description": "A human-readable error message describing the validation error."
           },
           "type": {
             "type": "string",
-            "title": "Error Type"
+            "title": "Error Type",
+            "description": "The type of validation error (e.g., \"value_error\", \"type_error\")."
           },
           "input": {
-            "title": "Input"
+            "title": "Input",
+            "description": "The input data that caused the validation error."
           },
           "ctx": {
             "type": "object",
-            "title": "Context"
+            "title": "Context",
+            "description": "Additional context for the validation error."
           }
         },
         "type": "object",
-        "required": [
-          "loc",
-          "msg",
-          "type"
-        ],
+        "required": ["loc", "msg", "type"],
         "title": "ValidationError"
       },
       "Metrics": {
         "properties": {
           "currentSharePrice": {
             "type": "number",
-            "title": "Current Share Price"
+            "title": "Current Share Price",
+            "description": "The current price of a share (total_bankroll / total_shares)."
           },
           "initialSharePrice": {
             "type": "number",
-            "title": "Initial Share Price"
+            "title": "Initial Share Price",
+            "description": "The initial price of a share."
           },
           "totalShares": {
             "type": "number",
-            "title": "Total Shares"
+            "title": "Total Shares",
+            "description": "The total number of shares owned by all accounts."
           },
           "totalBankroll": {
             "type": "number",
-            "title": "Total Bankroll"
+            "title": "Total Bankroll",
+            "description": "The total bankroll of the Ledger."
           }
         },
         "type": "object",

@@ -13,6 +13,7 @@ class Ledger(CamelCaseModel):
     Attributes:
         id: The ID of the ledger.
         name: The name of the ledger.
+        description: The description of the ledger.
         current_share_price: The current price of a share.
         initial_share_price: The initial price of a share.
     """

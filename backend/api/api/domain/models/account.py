@@ -12,7 +12,7 @@ class Account(CamelCaseModel):
     """Represents an account.
 
     Attributes:
-        account_id: The ID of the account associated with the transaction.
+        id: The ID of the account associated with the transaction.
         account_balance: The balance of the account.
         current_value: The current value of the account.
         total_shares: The total number of shares in the account.
@@ -20,7 +20,7 @@ class Account(CamelCaseModel):
         return_on_investment: Return on investment metrics.
     """
 
-    account_id: str = Field(..., pattern=ACCOUNT)
+    id: str = Field(..., pattern=ACCOUNT)
     ledger_id: str = Field(..., pattern=LEDGER)
     account_balance: float
     current_value: float

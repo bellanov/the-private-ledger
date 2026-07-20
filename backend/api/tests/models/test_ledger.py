@@ -338,6 +338,7 @@ class TestLedgerSerialization:
 
         data = ledger.model_dump(by_alias=True)
 
+        assert "id" in data
         assert "currentSharePrice" in data
         assert "initialSharePrice" in data
 

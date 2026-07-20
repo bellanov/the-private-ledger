@@ -64,7 +64,7 @@ scripts/openapi.ps1
 
 ### Client Generation
 
-A series of [Generators](https://openapi-generator.tech/docs/generators) are available that let you generate boilerplate code for various clients from a valid *OpenAPI* spec:
+A series of [Generators](https://openapi-generator.tech/docs/generators) are available that let you generate boilerplate code for various clients from a valid _OpenAPI_ spec:
 
 ```bash
 # Python
@@ -82,11 +82,13 @@ npx @openapitools/openapi-generator-cli generate -i specs/openapi.yaml -g java -
 The `.spectral.yml` file extends the standard `spectral:oas` ruleset and adds custom rules:
 
 ### Error-Level Rules (CI Failures)
+
 - **operation-summary-required**: All operations must have a summary
 - **operation-id-required**: All operations must have an operationId
 - **operation-responses-required**: All operations must define at least one response
 
 ### Warning-Level Rules
+
 - **operation-tags-required**: All operations should have at least one tag
 - **info-contact-required**: API info must include contact information
 - **info-license-required**: API info must include license information
@@ -114,10 +116,13 @@ The pipeline validates the `specs/` directory and ignores the `tests/` examples.
 ## Examples
 
 ### Valid Spec
+
 See `specs/openapi.yaml` for a complete example that passes all validation rules.
 
 ### Invalid Specs (for reference)
+
 The `tests/` directory contains examples that intentionally violate various rules. See `tests/README.md` for details. These examples are for reference only and are not part of CI validation.
+
 - Understanding what each rule enforces
 - Training team members on API quality standards
 
