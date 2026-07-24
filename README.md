@@ -38,6 +38,8 @@ Applications are distributed across the `backend` and `frontend` directories.
 | *frontend*   | Contains applications deployed to the frontend.   | 
 | *scripts*   | Contains scripts to help accelerate development.  | 
 
+![Models](./diagrams/Project.svg)
+
 ## API
 
 ### Models
@@ -50,4 +52,3 @@ Summary of the models used within the `api` project. The elements are translated
 
 - [JSON](https://github.com/bellanov/the-private-ledger/blob/main/backend/api/openapi.json)
 
-![Models](./diagrams/Models.svg)
