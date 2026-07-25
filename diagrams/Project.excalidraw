@@ -2649,7 +2649,7 @@
       "type": "rectangle",
       "x": -309.91000967566765,
       "y": 1055.487991656829,
-      "width": 563.3149993738662,
+      "width": 757.6881935559887,
       "height": 290.3250431681606,
       "angle": 0,
       "strokeColor": "#1e1e1e",
@@ -2669,8 +2669,8 @@
         "type": 3
       },
       "seed": 1144126945,
-      "version": 4011,
-      "versionNonce": 161627338,
+      "version": 4244,
+      "versionNonce": 1156435798,
       "isDeleted": false,
       "boundElements": [
         {
@@ -2694,7 +2694,7 @@
           "type": "arrow"
         }
       ],
-      "updated": 1784933225531,
+      "updated": 1784948635081,
       "link": null,
       "locked": false
     },
@@ -2703,8 +2703,8 @@
       "type": "text",
       "x": -280.6024474276994,
       "y": 1064.1505132409095,
-      "width": 511.0035400390625,
-      "height": 245,
+      "width": 703.676669216605,
+      "height": 210,
       "angle": 0,
       "strokeColor": "#1e1e1e",
       "backgroundColor": "transparent",
@@ -2721,14 +2721,14 @@
       "index": "b3U",
       "roundness": null,
       "seed": 1473878465,
-      "version": 3695,
-      "versionNonce": 438607178,
+      "version": 3873,
+      "versionNonce": 808367882,
       "isDeleted": false,
       "boundElements": [],
-      "updated": 1784933225533,
+      "updated": 1784948629660,
       "link": null,
       "locked": false,
-      "text": "\nCamelCaseModel\n\nConverts Python snake_case attributes\ninto camelCase.\n\nmodel_config : ConfigDict",
+      "text": "\nCamelCaseModel\n\nConverts Python snake_case attributes into camelCase.\n\nmodel_config : ConfigDict",
       "fontSize": 28,
       "fontFamily": 6,
       "textAlign": "left",
@@ -2743,7 +2743,7 @@
       "type": "arrow",
       "x": -870.442653737218,
       "y": 1661.293757700107,
-      "width": 834.1901437484835,
+      "width": 928.6163216155131,
       "height": 320.64324445919783,
       "angle": 0,
       "strokeColor": "#1e1e1e",
@@ -2760,11 +2760,11 @@
         "type": 2
       },
       "seed": 1612674561,
-      "version": 1233,
-      "versionNonce": 437157462,
+      "version": 1466,
+      "versionNonce": 1937098518,
       "isDeleted": false,
       "boundElements": [],
-      "updated": 1784933360339,
+      "updated": 1784948635082,
       "link": null,
       "locked": false,
       "points": [
@@ -2773,7 +2773,7 @@
           0
         ],
         [
-          834.1901437484835,
+          928.6163216155131,
           -320.64324445919783
         ]
       ],
@@ -2803,7 +2803,7 @@
       "type": "arrow",
       "x": 1165.645769347172,
       "y": 1793.7367087319221,
-      "width": 1038.541010884682,
+      "width": 887.7480149903955,
       "height": 451.92367390693244,
       "angle": 0,
       "strokeColor": "#1e1e1e",
@@ -2820,11 +2820,11 @@
         "type": 2
       },
       "seed": 1534887073,
-      "version": 1059,
-      "versionNonce": 898966806,
+      "version": 1292,
+      "versionNonce": 1281717398,
       "isDeleted": false,
       "boundElements": [],
-      "updated": 1784933360341,
+      "updated": 1784948635081,
       "link": null,
       "locked": false,
       "points": [
@@ -2837,7 +2837,7 @@
           -317.20395610280184
         ],
         [
-          -1038.541010884682,
+          -887.7480149903955,
           -451.92367390693244
         ]
       ],
@@ -3648,10 +3648,10 @@
     {
       "id": "sSssd50mx3W0fb8eBpT51",
       "type": "arrow",
-      "x": -1428.6273964328016,
-      "y": 1688.4802947937908,
-      "width": 1112.717386757134,
-      "height": 380.11354114192613,
+      "x": -1428.6273964328018,
+      "y": 1693.8544298419254,
+      "width": 1116.7131672224996,
+      "height": 359.97335268275674,
       "angle": 0,
       "strokeColor": "#1e1e1e",
       "backgroundColor": "transparent",
@@ -3667,11 +3667,11 @@
         "type": 2
       },
       "seed": 1589995350,
-      "version": 848,
-      "versionNonce": 1747434698,
+      "version": 1081,
+      "versionNonce": 1748398550,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1784933355553,
+      "updated": 1784948635082,
       "link": null,
       "locked": false,
       "points": [
@@ -3680,8 +3680,8 @@
           0
         ],
         [
-          1112.717386757134,
-          -380.11354114192613
+          1116.7131672224996,
+          -359.97335268275674
         ]
       ],
       "startBinding": {
@@ -3839,11 +3839,11 @@
       "index": "b3r",
       "roundness": null,
       "seed": 625459018,
-      "version": 3427,
-      "versionNonce": 533546454,
+      "version": 3429,
+      "versionNonce": 921606870,
       "isDeleted": false,
       "boundElements": [],
-      "updated": 1784933360340,
+      "updated": 1784948589793,
       "link": null,
       "locked": false,
       "text": "\nMetrics\n\nRepresents metrics of the ledger.\n\naverage_share_price : str\ntotal_shares : str\ntotal_bankroll : str",
@@ -4017,8 +4017,8 @@
       "type": "arrow",
       "x": 391.28707310383,
       "y": 1793.17636160003,
-      "width": 307.77598155151406,
-      "height": 441.3633267750406,
+      "width": 236.05882227623678,
+      "height": 441.3633267750404,
       "angle": 0,
       "strokeColor": "#1e1e1e",
       "backgroundColor": "transparent",
@@ -4034,11 +4034,11 @@
         "type": 2
       },
       "seed": 1405108566,
-      "version": 1099,
-      "versionNonce": 348695254,
+      "version": 1332,
+      "versionNonce": 513307734,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1784933360340,
+      "updated": 1784948635082,
       "link": null,
       "locked": false,
       "points": [
@@ -4051,8 +4051,8 @@
           -219.75085973410955
         ],
         [
-          -307.77598155151406,
-          -441.3633267750406
+          -236.05882227623678,
+          -441.3633267750404
         ]
       ],
       "startBinding": {
@@ -4079,10 +4079,10 @@
     {
       "id": "YwoSFzCLkIGy8e6BFqPak",
       "type": "arrow",
-      "x": -135.41916534067386,
+      "x": -133.54333272890528,
       "y": 1663.1818478887942,
-      "width": 154.4620194317746,
-      "height": 311.36881306380474,
+      "width": 251.80798173722903,
+      "height": 311.3688130638045,
       "angle": 0,
       "strokeColor": "#1e1e1e",
       "backgroundColor": "transparent",
@@ -4098,11 +4098,11 @@
         "type": 2
       },
       "seed": 341955402,
-      "version": 113,
-      "versionNonce": 1128712342,
+      "version": 346,
+      "versionNonce": 1131641238,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1784933360340,
+      "updated": 1784948635082,
       "link": null,
       "locked": false,
       "points": [
@@ -4111,8 +4111,8 @@
           0
         ],
         [
-          154.4620194317746,
-          -311.36881306380474
+          251.80798173722903,
+          -311.3688130638045
         ]
       ],
       "startBinding": {
