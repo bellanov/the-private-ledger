@@ -4,10 +4,6 @@
 name: API CI 
 
 on:
-  push:
-    branches: [ "main" ]
-    paths:
-    - "backend/api/**.py"
   pull_request:
     branches: [ "main" ]
     paths:

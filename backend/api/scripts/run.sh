@@ -3,4 +3,4 @@
 # Run the development server.
 
 echo "Starting development server..."
-fastapi dev ./api/main.py
+uv run fastapi dev ./api/main.py
