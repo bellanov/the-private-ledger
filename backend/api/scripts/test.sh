@@ -5,10 +5,10 @@
 set -e
 
 echo "Executing Unit Tests..."
-coverage run -m pytest tests/
+uv run coverage run -m pytest tests/
 
 echo "Generating Report..."
-coverage report -m
+uv run coverage report -m
 
 echo "Build HTML Report..."
-coverage html
+uv run coverage html
