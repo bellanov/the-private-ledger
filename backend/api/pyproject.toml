@@ -53,4 +53,4 @@ omit = [
 profile = "black"
 
 [tool.black]
-target-version = ['py312', 'py313', 'py314']
+target-version = ['py314']
