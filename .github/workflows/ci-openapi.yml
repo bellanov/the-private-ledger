@@ -1,12 +1,6 @@
 name: OpenAPI CI
 
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - "backend/api/api/domain/openapi/specs/**.yaml"
-      - "backend/api/api/domain/openapi/.spectral.yml"
   pull_request:
     paths:
       - "backend/api/api/domain/openapi/specs/**.yaml"

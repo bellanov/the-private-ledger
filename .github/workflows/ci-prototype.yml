@@ -1,12 +1,8 @@
 name: Prototype CI
 
 on:
-  push:
-    branches: [ main, develop ]
-    paths:
-    - "frontend/prototype/**"
   pull_request:
-    branches: [ main, develop ]
+    branches: [main]
     paths:
     - "frontend/prototype/**"
 
