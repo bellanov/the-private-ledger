@@ -39,3 +39,6 @@ Temporary Items
 # Diagrams
 diagrams/*.bkp
 diagrams/*.dtmp
+
+# Environment Files
+.env.*

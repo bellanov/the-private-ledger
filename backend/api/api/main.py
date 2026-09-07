@@ -36,44 +36,44 @@ app = FastAPI()
 
 
 @app.get("/accounts", response_model=list[Account])
-def get_accounts():
+async def get_accounts():
     return db["accounts"]
 
 
 @app.get("/accounts/{account_id}", response_model=list[Account])
-def get_account(account_id: str):
+async def get_account(account_id: str):
     return [
         account for account in db["accounts"] if account["account_id"] == account_id
     ]
 
 
 @app.get("/ledgers", response_model=list[Ledger])
-def get_ledgers():
+async def get_ledgers():
     return db["ledgers"]
 
 
 @app.get("/ledgers/{ledger_id}", response_model=list[Ledger])
-def get_ledger(ledger_id: str):
+async def get_ledger(ledger_id: str):
     return [ledger for ledger in db["ledgers"] if ledger["id"] == ledger_id]
 
 
 @app.get("/performance", response_model=list[Performance])
-def get_performance():
+async def get_performance():
     return db["performance"]
 
 
 @app.get("/performance/{date}", response_model=list[Performance])
-def get_performance_for_date(date: str):
+async def get_performance_for_date(date: str):
     return [record for record in db["performance"] if record["date"] == date]
 
 
 @app.get("/transactions", response_model=list[Transaction])
-def get_transactions():
+async def get_transactions():
     return db["transactions"]
 
 
 @app.get("/transactions/{account_id}", response_model=list[Transaction])
-def get_transactions_for_account(account_id: str):
+async def get_transactions_for_account(account_id: str):
     return [
         transaction
         for transaction in db["transactions"]
@@ -82,7 +82,7 @@ def get_transactions_for_account(account_id: str):
 
 
 @app.get("/metrics", response_model=Metrics)
-def get_metics():
+async def get_metrics():
     total_bankroll = sum(
         float(account["account_balance"]) for account in db["accounts"]
     )
