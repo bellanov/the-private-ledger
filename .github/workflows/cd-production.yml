@@ -1,18 +1,18 @@
-# Continuous Deployment (CD) workflow for the "development" environment using Terraform and GitHub Actions.
+# Continuous Deployment (CD) workflow for the "production" environment using Terraform and GitHub Actions.
 
-name: "🚀 CD: Development"
+name: "🚀 CD: Production"
 
 on:
   push:
     branches: ["main"]
     paths:
-      - "terraform/environments/development/**"
-      - ".github/workflows/cd-development.yml"
+      - "terraform/environments/production/**"
+      - ".github/workflows/cd-production.yml"
   pull_request:
     branches: ["main"]
     paths:
-      - "terraform/environments/development/**"
-      - ".github/workflows/cd-development.yml"
+      - "terraform/environments/production/**"
+      - ".github/workflows/cd-production.yml"
 
 permissions:
   contents: read
@@ -22,13 +22,13 @@ jobs:
   terraform:
     name: "Terraform"
     runs-on: ubuntu-latest
-    # environment: development
+    # environment: production
 
     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
     defaults:
       run:
         shell: bash
-        working-directory: terraform/environments/development
+        working-directory: terraform/environments/production
 
     steps:
       # Checkout the repository to the GitHub Actions runner
@@ -38,7 +38,7 @@ jobs:
       # Authenticate with Google Cloud
       - uses: "google-github-actions/auth@v3"
         with:
-          project_id: "the-private-ledger-303105"
+          project_id: "the-private-ledger"
           workload_identity_provider: "projects/57922902849/locations/global/workloadIdentityPools/github/providers/the-private-ledger"
 
       # Install the latest version of Terraform CLI

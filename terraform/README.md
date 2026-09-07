@@ -63,14 +63,8 @@ It is recommended that an environment file be established with the following var
         workload_identity_provider: '...' # "projects/${PROJECT_NUMBER}/locations/global/workloadIdentityPools/github/providers/my-repo"
     ```
 
-4. Grant the **Service Account** the necessary **roles** to access resources.
+4. Grant the **Workload Identity Federation (WIF)** the necessary **roles** to access resources.
 
     ```sh
-    terraform/scripts/wif/grant_service_account_roles.sh
-    ```
-
-5. Configure Terraform to use the **Workload Identity Federation (WIF)** for authentication.
-
-    ```sh
-    terraform/scripts/wif/configure_terraform_wif.sh
+    terraform/scripts/wif/grant_wif_permissions.sh
     ```
