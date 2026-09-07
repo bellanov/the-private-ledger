@@ -1,6 +1,6 @@
 terraform {
   backend "gcs" {
-    bucket = "gcp-production-503118"
+    bucket = "the-private-ledger"
     prefix = "terraform/state"
   }
 
